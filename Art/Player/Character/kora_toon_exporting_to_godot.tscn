@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6rt6f6anxfu2"]
+
+[ext_resource type="PackedScene" uid="uid://bmw253d0il5uo" path="res://Art/Player/Character/kora_toon.glb" id="1_wk0ue"]
+[ext_resource type="Texture2D" uid="uid://cke5o305l38eh" path="res://Art/Player/Character/kora_toon_dif.png" id="2_tjgsl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6muc"]
+albedo_texture = ExtResource("2_tjgsl")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mg54i"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_veguu"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_wd8tm"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_mg54i")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_veguu")
+blend_point_1/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e1h2e"]
+nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_wd8tm")
+nodes/BlendSpace1D/position = Vector2(400, 80)
+nodes/output/position = Vector2(860, 100)
+node_connections = [&"output", 0, &"BlendSpace1D"]
+
+[node name="kora_toon_exporting_to_godot" instance=ExtResource("1_wk0ue")]
+
+[node name="Skeleton3D" parent="rig" index="0"]
+bones/1/position = Vector3(0.000106988, -0.001651, -0.00813953)
+bones/1/rotation = Quaternion(0.0211558, 0.0287685, -0.000609004, 0.999362)
+bones/2/rotation = Quaternion(3.91447e-09, -0.0293757, 0.00124428, 0.999568)
+bones/3/rotation = Quaternion(0.714026, 8.60783e-08, 9.05334e-08, 0.700119)
+bones/4/rotation = Quaternion(-0.713717, -0.0196781, 0.021846, 0.699817)
+bones/5/rotation = Quaternion(0.781919, 7.98056e-08, 9.59998e-08, 0.62338)
+bones/8/rotation = Quaternion(0.970914, -0.0719484, 0.0988245, 0.205871)
+bones/8/scale = Vector3(1.00373, 0.992579, 1.00373)
+bones/9/rotation = Quaternion(1.08656e-08, -0.00262274, -8.9078e-09, 0.999997)
+bones/10/rotation = Quaternion(0.367516, -0.00314047, 0.00124087, 0.930011)
+bones/10/scale = Vector3(1.00572, 0.983032, 1.01155)
+bones/11/rotation = Quaternion(-4.55887e-08, 0.0126886, 2.72107e-08, 0.99992)
+bones/12/rotation = Quaternion(0.795134, -0.012832, 0.0550991, -0.603789)
+bones/12/scale = Vector3(0.990755, 0.992537, 1.01703)
+bones/16/rotation = Quaternion(0.980992, -0.0227336, -0.0885299, 0.171176)
+bones/16/scale = Vector3(1.00255, 0.994928, 1.00255)
+bones/17/rotation = Quaternion(2.64981e-09, -0.00109052, -2.65726e-08, 0.999999)
+bones/18/rotation = Quaternion(0.266634, -0.00233823, 0.000644438, 0.963795)
+bones/18/scale = Vector3(1.00361, 0.990746, 1.00573)
+bones/19/rotation = Quaternion(-1.32208e-08, 0.0488342, -2.6756e-09, 0.998807)
+bones/20/rotation = Quaternion(0.749425, -0.0494489, -0.0133436, -0.660105)
+bones/20/scale = Vector3(0.993838, 0.994138, 1.01215)
+bones/21/rotation = Quaternion(-0.00282727, 0.954981, -0.296652, -0.000915457)
+bones/25/rotation = Quaternion(0.700905, 8.43486e-08, 8.70634e-08, 0.713255)
+bones/26/rotation = Quaternion(-0.702987, 0.0343202, -0.011854, 0.710275)
+bones/27/rotation = Quaternion(0.665899, 9.14319e-08, 7.93813e-08, 0.746042)
+bones/34/rotation = Quaternion(-0.474235, -0.533289, -0.449223, 0.537497)
+bones/35/rotation = Quaternion(0.533495, -0.64705, 0.194455, -0.508819)
+bones/35/scale = Vector3(1.00599, 0.988116, 1.00599)
+bones/36/rotation = Quaternion(-1.05515e-07, 0.0359468, 3.43417e-08, 0.999354)
+bones/37/rotation = Quaternion(0.558108, 0.035818, -0.0242095, 0.828641)
+bones/37/scale = Vector3(1.00283, 0.978561, 1.01912)
+bones/38/rotation = Quaternion(9.3142e-08, 0.0350919, 1.15042e-07, 0.999384)
+bones/39/rotation = Quaternion(-0.206726, 0.0348974, -0.0534191, 0.976316)
+bones/39/scale = Vector3(0.991407, 1.01351, 0.995436)
+bones/41/rotation = Quaternion(-0.544978, 0.514954, 0.590335, 0.298874)
+bones/43/rotation = Quaternion(0.498937, 0.63812, -0.253164, -0.528935)
+bones/43/scale = Vector3(1.00404, 0.991972, 1.00404)
+bones/44/rotation = Quaternion(-1.86222e-08, -0.0265668, 2.99566e-08, 0.999647)
+bones/45/rotation = Quaternion(0.336059, -0.0261902, 0.00931906, 0.941431)
+bones/45/scale = Vector3(1.0017, 0.991983, 1.00643)
+bones/46/rotation = Quaternion(-5.84543e-08, -0.0308419, -3.64596e-08, 0.999524)
+bones/47/rotation = Quaternion(0.0368497, -0.030937, 0.0956732, 0.994249)
+bones/47/scale = Vector3(0.995232, 1.01012, 0.994742)
+bones/50/position = Vector3(0.00953312, 0.0505188, 0.233193)
+bones/50/rotation = Quaternion(0.794579, -0.0182182, 0.0238713, 0.606418)
+bones/51/rotation = Quaternion(-0.102229, -0.00300282, -0.0291914, 0.994328)
+bones/52/rotation = Quaternion(-0.018493, -0.0027327, -0.0294148, 0.999393)
+bones/53/rotation = Quaternion(-0.0479487, 1.2049e-07, -5.84987e-09, 0.99885)
+bones/54/rotation = Quaternion(0.432839, -0.00409875, 0.0360778, 0.90074)
+bones/56/rotation = Quaternion(-0.334486, -0.00535242, 0.0329367, 0.94181)
+bones/57/rotation = Quaternion(-0.615707, 9.8354e-05, 1.9537e-05, 0.787975)
+bones/58/rotation = Quaternion(-0.289437, 3.0996e-05, -0.00179067, 0.957195)
+
+[node name="kora_uv" parent="rig/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_g6muc")
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "run"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_e1h2e")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/BlendSpace1D/blend_position = 0
