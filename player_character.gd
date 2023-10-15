@@ -1,9 +1,10 @@
-class_name PlayerCharacter
 extends CharacterBody3D
+class_name PlayerCharacter
 
 @export var SPEED = 5.0
 @export var LERP_SPEED = 0.35
 @export var JUMP_VELOCITY = 4.5
+@export var INVINCIBLE : bool = false
 
 @onready var animTree = $"kora_toon/Locomote"
 
@@ -39,3 +40,42 @@ func _physics_process(delta):
 	animTree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
 	
 	move_and_slide()
+
+func slash():
+	# stop all movement
+	velocity = Vector3.ZERO
+
+# called when we receive a hurt from somewhere
+func hurt(amount:int, origin:Vector3, impulseMultiplier:int = 50):
+	# only if we're not invincible
+	if INVINCIBLE:
+		return
+	else:
+		INVINCIBLE = true
+
+	# stop all movement
+	velocity = Vector3.ZERO
+
+	# play hurt animation
+	animTree.set("parameters/BlendSpace1D/blend_position", 0.0)
+	# animTree.set("parameters/Hit", true)
+	# animTree.set("parameters/Hit", false)
+
+	print("hurt for " + str(amount) + " damage")
+	
+	# get the vector from the source to us
+	var attackVector = global_transform.origin - origin
+	# normalize it
+	var normalizedAttackVector = attackVector.normalized()
+	normalizedAttackVector.y = 0
+	# apply impulse to player character
+	velocity = normalizedAttackVector * impulseMultiplier
+	move_and_slide()
+
+	# flash the players visibility
+	for n in 20:
+		visible = !visible
+		await get_tree().create_timer(0.05).timeout
+	
+	INVINCIBLE = false
+	
