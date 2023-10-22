@@ -6,44 +6,33 @@ class_name PlayerCharacter
 @export var JUMP_VELOCITY = 4.5
 @export var INVINCIBLE : bool = false
 
-@onready var animTree = $"kora_toon/Locomote"
+@onready var animTree = $"SkinnedMesh/AnimationTree"
+@onready var stateMachine = $"StateMachine"
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+func _ready():
+	stateMachine.TransitionTo("Locomote")
+
+func _process(delta):
+	if Input.is_action_just_pressed("slash"):
+		slash()
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	# Handle Jump.
-	# if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	# 	velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
-	
-	if input_dir:
-		velocity.x = lerp(velocity.x, input_dir.x * SPEED, LERP_SPEED)
-		velocity.z = lerp(velocity.z, input_dir.y * SPEED, LERP_SPEED)
-		
-		# rotate to face direction
-		## add the direction to the current position
-		var lookat_location = global_transform.origin + Vector3(input_dir.x, 0, input_dir.y)
-		## lookat that location
-		look_at(lookat_location, Vector3.UP)
-	else:
-		velocity.x = lerp(velocity.x, 0.0, LERP_SPEED)
-		velocity.z = lerp(velocity.z, 0.0, LERP_SPEED)
-		
-	animTree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
-	
 	move_and_slide()
 
+func can_slash():
+	# if we are not currently slashing
+	if stateMachine.current_state is Slash:
+		return false
+		
+	return true
+
 func slash():
-	# stop all movement
-	velocity = Vector3.ZERO
+	print(can_slash())
+	if(!can_slash()):
+		return
+	
+	stateMachine.TransitionTo("Slash")
+	
 
 # called when we receive a hurt from somewhere
 func hurt(amount:int, origin:Vector3, impulseMultiplier:int = 50):
@@ -70,7 +59,6 @@ func hurt(amount:int, origin:Vector3, impulseMultiplier:int = 50):
 	normalizedAttackVector.y = 0
 	# apply impulse to player character
 	velocity = normalizedAttackVector * impulseMultiplier
-	move_and_slide()
 
 	# flash the players visibility
 	for n in 20:
