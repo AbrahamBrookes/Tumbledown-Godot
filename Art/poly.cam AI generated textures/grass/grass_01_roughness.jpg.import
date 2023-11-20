@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://05fla6iyox0f"
-path.s3tc="res://.godot/imported/grass_01_albedo.jpg-46f59c14098a7d15ea99358343a55de5.s3tc.ctex"
+uid="uid://cg0cp6trqeqdw"
+path.s3tc="res://.godot/imported/grass_01_roughness.jpg-3a6d0e136c42e649c0ff10732bc97a9d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/Terrain/grass/grass_01_albedo.jpg"
-dest_files=["res://.godot/imported/grass_01_albedo.jpg-46f59c14098a7d15ea99358343a55de5.s3tc.ctex"]
+source_file="res://Art/poly.cam AI generated textures/grass/grass_01_roughness.jpg"
+dest_files=["res://.godot/imported/grass_01_roughness.jpg-3a6d0e136c42e649c0ff10732bc97a9d.s3tc.ctex"]
 
 [params]
 

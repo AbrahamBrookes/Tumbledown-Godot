@@ -9,6 +9,8 @@ class_name PlayerCharacter
 @onready var animTree = $"SkinnedMesh/AnimationTree"
 @onready var stateMachine = $"StateMachine"
 
+var startedSlashingAt
+
 func _ready():
 	stateMachine.TransitionTo("Locomote")
 
@@ -27,11 +29,20 @@ func can_slash():
 	return true
 
 func slash():
-	print(can_slash())
 	if(!can_slash()):
 		return
 	
 	stateMachine.TransitionTo("Slash")
+
+func can_crouch():
+	# return stateMachine.current_state is Locomote
+	pass
+
+func crouch():
+	if(!can_crouch()):
+		return
+	
+	stateMachine.TransitionTo("Crouch")
 	
 
 # called when we receive a hurt from somewhere

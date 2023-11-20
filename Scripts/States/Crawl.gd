@@ -1,15 +1,16 @@
 extends State
-class_name Locomote
+class_name Crawl
+
+# crawling is much like locomoting, with a different animation and slower
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@export var mass = 10.0
 
-@export var SPEED = 5.0
+@export var SPEED = 3.0
 @export var LERP_SPEED = 0.35
 
 func Enter():
-	stateMachine.travel("Locomote")
+	stateMachine.travel("Crawl")
 
 
 func Exit():
@@ -23,7 +24,7 @@ func Update(_delta: float):
 func Physics_Update(_delta: float):
 	# Add the gravity.
 	if not playerCharacter.is_on_floor():
-		playerCharacter.velocity.y -= gravity * _delta * mass
+		playerCharacter.velocity.y -= gravity * _delta
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
@@ -41,4 +42,5 @@ func Physics_Update(_delta: float):
 		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, 0.0, LERP_SPEED)
 		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, LERP_SPEED)
 	
-	animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.velocity.length() / SPEED)
+	animTree.set("parameters/StateMachine/Crawl/blend_position", playerCharacter.velocity.length() / SPEED)
+
