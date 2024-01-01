@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c27reistrb4v6"]
 
-[ext_resource type="Material" uid="uid://cvgksxk5ky26i" path="res://Art/poly.cam AI generated textures/dirt/dirt.tres" id="1_ubhf2"]
+[ext_resource type="Material" uid="uid://cvgksxk5ky26i" path="res://Art/poly.cam AI generated textures/dirt.tres" id="1_ubhf2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y0oac"]
 resource_name = "dirt"

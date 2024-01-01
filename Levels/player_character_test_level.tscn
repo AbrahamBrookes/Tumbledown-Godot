@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dreof5fl2e6cd"]
+[gd_scene load_steps=12 format=3 uid="uid://dreof5fl2e6cd"]
 
 [ext_resource type="PackedScene" uid="uid://5oyo75w8bmvq" path="res://player_character.tscn" id="1_p6mi5"]
-[ext_resource type="Material" uid="uid://djuf0llv76g7c" path="res://Art/poly.cam AI generated textures/grass/grass.tres" id="1_s56kn"]
+[ext_resource type="Material" uid="uid://djuf0llv76g7c" path="res://Art/poly.cam AI generated textures/grass.tres" id="1_yrcmh"]
 [ext_resource type="Script" path="res://Levels/Area3DHurt.gd" id="4_4c73y"]
 [ext_resource type="PackedScene" uid="uid://c83jd4qwjt4ge" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.tscn" id="5_fud1c"]
 [ext_resource type="MeshLibrary" uid="uid://c4cbpbkmcdnnd" path="res://Art/Terrain/WorldLedges/Forest_02/forest_02_ledges.tres" id="5_wpg3p"]
+[ext_resource type="PackedScene" uid="uid://y81qe2axsnx" path="res://Art/Gameplay/pushy_crate/pushy_crate.tscn" id="7_6jkfa"]
 [ext_resource type="MeshLibrary" uid="uid://dl874xwkvieaf" path="res://Art/Terrain/WorldLedges/Plains_01/Plains_01_meshlib.tres" id="11_ytuyx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_anda7"]
@@ -27,8 +28,9 @@ disable_mode = 1
 shape = SubResource("BoxShape3D_anda7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="GroundPlane"]
+material_override = ExtResource("1_yrcmh")
 mesh = SubResource("BoxMesh_4xyxo")
-surface_material_override/0 = ExtResource("1_s56kn")
+surface_material_override/0 = ExtResource("1_yrcmh")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_p6mi5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 1.3986, 1)
@@ -65,7 +67,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 20)
 mesh_library = ExtResource("5_wpg3p")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(196628, 65529, 4, 196629, 65529, 4, 196630, 65529, 4, 196631, 65529, 4, 196632, 65529, 4, 196633, 65529, 4, 196634, 65530, 1441796, 196627, 65530, 1048580, 196627, 65529, 1048581, 196634, 65529, 5, 262170, 65529, 7, 262163, 65529, 1048583, 262164, 65529, 6, 262165, 65529, 6, 262166, 65529, 6, 262167, 65529, 6, 262168, 65529, 6, 262169, 65529, 6, 65563, 65516, 1441795, 65562, 65516, 655362, 65561, 65516, 655362, 65560, 65516, 655362, 65559, 65516, 655362, 65563, 65515, 1441794, 65563, 65514, 1441794, 65562, 65515, 1441800, 65562, 65514, 1441800, 65561, 65514, 1441800, 65560, 65514, 1441800, 65559, 65514, 1441800, 65559, 65515, 1441800, 65560, 65515, 1441800, 65561, 65515, 1441800)
+"cells": PackedInt32Array(196628, 65529, 4, 196629, 65529, 4, 196630, 65529, 4, 196631, 65529, 4, 196632, 65529, 4, 196633, 65529, 4, 196634, 65530, 1441796, 196627, 65530, 1048580, 196627, 65529, 1048581, 196634, 65529, 5, 262170, 65529, 7, 262163, 65529, 1048583, 262164, 65529, 6, 262165, 65529, 6, 262166, 65529, 6, 262167, 65529, 6, 262168, 65529, 6, 262169, 65529, 6, 65564, 65520, 0, 65566, 65520, 1441794, 65564, 65522, 1441794, 65563, 65522, 655362, 65563, 65518, 1048578, 65566, 65518, 2, 65565, 65518, 1, 65564, 65518, 1, 65566, 65519, 1441793, 65563, 65521, 1048577, 65563, 65520, 1048577, 65563, 65519, 1048577, 65564, 65519, 1048584, 65565, 65519, 1048584)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
@@ -134,5 +136,8 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.5, 
 
 [node name="pine_tree_22" parent="." instance=ExtResource("5_fud1c")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3.5, -8)
+
+[node name="pushy_crate" parent="." instance=ExtResource("7_6jkfa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11373, 3, -1.66458)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

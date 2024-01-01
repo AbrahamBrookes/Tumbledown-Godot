@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dqhswuw1hrc6n"]
 
-[ext_resource type="Material" uid="uid://cvgksxk5ky26i" path="res://Art/poly.cam AI generated textures/dirt/dirt.tres" id="1_saois"]
+[ext_resource type="Material" uid="uid://cvgksxk5ky26i" path="res://Art/poly.cam AI generated textures/dirt.tres" id="1_saois"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_df7hd"]
 

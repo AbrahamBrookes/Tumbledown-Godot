@@ -1,7 +1,7 @@
 [gd_scene load_steps=28 format=3 uid="uid://dr5h26kydhkx"]
 
-[ext_resource type="Material" uid="uid://cvgksxk5ky26i" path="res://Art/poly.cam AI generated textures/dirt/dirt.tres" id="1_kryas"]
-[ext_resource type="Material" uid="uid://djuf0llv76g7c" path="res://Art/poly.cam AI generated textures/grass/grass.tres" id="2_5nddk"]
+[ext_resource type="Material" uid="uid://djuf0llv76g7c" path="res://Art/poly.cam AI generated textures/grass.tres" id="1_rio0k"]
+[ext_resource type="Material" uid="uid://cvgksxk5ky26i" path="res://Art/poly.cam AI generated textures/dirt.tres" id="2_aaqpu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hntpv"]
 resource_name = "grass"
@@ -414,8 +414,8 @@ shadow_mesh = SubResource("ArrayMesh_p45g0")
 [node name="ledge_grass_01_corner" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_rclxm")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_5nddk")
-surface_material_override/1 = ExtResource("1_kryas")
+surface_material_override/0 = ExtResource("1_rio0k")
+surface_material_override/1 = ExtResource("2_aaqpu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_corner"]
 
@@ -426,8 +426,8 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_straight" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_boh2d")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
-surface_material_override/1 = ExtResource("2_5nddk")
+surface_material_override/0 = ExtResource("2_aaqpu")
+surface_material_override/1 = ExtResource("1_rio0k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_straight"]
 
@@ -438,8 +438,8 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_corner_inner" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_l5e6v")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
-surface_material_override/1 = ExtResource("2_5nddk")
+surface_material_override/0 = ExtResource("2_aaqpu")
+surface_material_override/1 = ExtResource("1_rio0k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_corner_inner"]
 
@@ -450,8 +450,8 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_ramp" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_flyxe")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
-surface_material_override/1 = ExtResource("2_5nddk")
+surface_material_override/0 = ExtResource("2_aaqpu")
+surface_material_override/1 = ExtResource("1_rio0k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_ramp"]
 
@@ -462,7 +462,7 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_top" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_ewnlt")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("2_5nddk")
+surface_material_override/0 = ExtResource("1_rio0k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_top"]
 
@@ -473,7 +473,7 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_corner_cliff" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_v5i8e")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
+surface_material_override/0 = ExtResource("2_aaqpu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_corner_cliff"]
 
@@ -484,7 +484,7 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_straight_cliff" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_lxj7i")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
+surface_material_override/0 = ExtResource("2_aaqpu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_straight_cliff"]
 
@@ -495,7 +495,7 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_corner_inner_cliff" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_fjxsf")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
+surface_material_override/0 = ExtResource("2_aaqpu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_corner_inner_cliff"]
 
@@ -506,8 +506,8 @@ shape = SubResource("BoxShape3D_unwcy")
 [node name="ledge_grass_01_ramp2" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_wtnyp")
 skeleton = NodePath("")
-surface_material_override/0 = ExtResource("1_kryas")
-surface_material_override/1 = ExtResource("2_5nddk")
+surface_material_override/0 = ExtResource("2_aaqpu")
+surface_material_override/1 = ExtResource("1_rio0k")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="ledge_grass_01_ramp2"]
 

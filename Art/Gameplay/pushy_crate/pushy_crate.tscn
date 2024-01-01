@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://y81qe2axsnx"]
+
+[ext_resource type="PackedScene" uid="uid://bst3pf83nx3ht" path="res://Art/Gameplay/pushy_crate/pushy_crate.glb" id="1_vn6b6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2tnx"]
+
+[node name="pushy_crate" type="Node3D"]
+
+[node name="pushy_crate" parent="." instance=ExtResource("1_vn6b6")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pushy_crate"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pushy_crate/StaticBody3D"]
+shape = SubResource("BoxShape3D_t2tnx")
