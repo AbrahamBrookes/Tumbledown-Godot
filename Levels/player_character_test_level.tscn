@@ -138,6 +138,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.5, 
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 3.5, -8)
 
 [node name="pushy_crate" parent="." instance=ExtResource("7_6jkfa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.11373, 3, -1.66458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38627, 1, -1.16458)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

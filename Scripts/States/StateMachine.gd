@@ -26,7 +26,7 @@ func _physics_process(delta):
 	if(current_state):
 		current_state.Physics_Update(delta)
 
-func TransitionTo(new_state_name):
+func TransitionTo(new_state_name, extra_data = null):
 	var new_state = states.get(new_state_name.to_lower())
 	if(!new_state):
 		return
@@ -34,7 +34,7 @@ func TransitionTo(new_state_name):
 	if(current_state):
 		current_state.Exit()
 	
-	new_state.Enter()
+	new_state.Enter(extra_data)
 	
 	current_state = new_state
 	

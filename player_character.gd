@@ -20,6 +20,10 @@ func _process(delta):
 
 func _physics_process(delta):
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if(collider.has_method('push')):
+			stateMachine.TransitionTo("LeaningCrate", collider)
 
 func can_slash():
 	# if we are not currently slashing

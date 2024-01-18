@@ -7,7 +7,7 @@ signal Transitioned
 @onready var animTree = owner.get_node("PlayerCharacter/SkinnedMesh/AnimationTree")
 @onready var stateMachine = animTree.get("parameters/StateMachine/playback")
 
-func Enter():
+func Enter(extra_data = null):
 	pass
 
 

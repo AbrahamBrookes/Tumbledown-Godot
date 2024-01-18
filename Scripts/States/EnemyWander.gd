@@ -11,7 +11,7 @@ func randomize_wander():
 	move_direction = Vector3(randf_range(-1.0, 1.0), 0.0, randf_range(-1.0, 1.0)).normalized()
 	wander_time = randf_range(1.0, 3.0)
 
-func Enter():
+func Enter(extra_data = null):
 	randomize_wander()
 
 func Update(delta: float):

@@ -1,7 +1,7 @@
 extends State
 class_name Slash
 
-func Enter():
+func Enter(extra_data = null):
 	animTree.set("parameters/AnimSpeed/scale", 4.0)
 	stateMachine.travel("Slash")
 

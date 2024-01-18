@@ -8,7 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var SPEED = 5.0
 @export var LERP_SPEED = 0.35
 
-func Enter():
+func Enter(extra_data = null):
 	stateMachine.travel("Locomote")
 
 
@@ -42,3 +42,4 @@ func Physics_Update(_delta: float):
 		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, LERP_SPEED)
 	
 	animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.velocity.length() / SPEED)
+
