@@ -8,6 +8,8 @@ var can_be_pushed = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# on start, snap location to rounded numbers or pushing won't work
+	position = position.round()
 	pass # Replace with function body.
 
 

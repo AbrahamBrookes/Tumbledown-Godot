@@ -42,4 +42,14 @@ func Physics_Update(_delta: float):
 		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, LERP_SPEED)
 	
 	animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.velocity.length() / SPEED)
+	
+	
+	for i in playerCharacter.get_slide_collision_count():
+		var collider = playerCharacter.get_slide_collision(i).get_collider()
+		if(collider.has_method('push')):
+			# only if we are pushing towards a cardinal direction (no diagonals)
+			var input = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south").round()
+			# one of the values in the vector must be zero
+			if input.x == 0 or input.y == 0 and input != Vector2.ZERO:
+				get_parent().TransitionTo("LeaningCrate", collider)
 

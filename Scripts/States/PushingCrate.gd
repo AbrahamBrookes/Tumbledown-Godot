@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var LERP_SPEED = 0.15
 var destination = Vector3.ZERO
 var push_dir = Vector2.ZERO # cache the push dir so we can check if it changed
+var push_vector = Vector3.ZERO # a vector3 representing the direction we are pushing
 
 func Enter(extra_data = null):
 	assert(!!extra_data, "we need to be passed a crate to push!")
@@ -21,7 +22,7 @@ func Enter(extra_data = null):
 	# cache the push_dir
 	push_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south").round()
 	# calculate where we'll be pushing to
-	var push_vector = Vector3(push_dir.x, 0, push_dir.y)
+	push_vector = Vector3(push_dir.x, 0, push_dir.y)
 	destination = playerCharacter.position + push_vector
 	playerCharacter.velocity = push_vector.normalized()
 
@@ -35,9 +36,9 @@ func Update(_delta: float):
 
 
 func Physics_Update(_delta: float):
-	# if we have reached our destination, stop moving
-	if playerCharacter.position.distance_to(destination) < 0.01:
+	# if the crate has reached its destination, stop moving
+	if crate.velocity == Vector3.ZERO:
 		playerCharacter.velocity = Vector3.ZERO
-		get_parent().TransitionTo('LeaningCrate', crate)
+		get_parent().TransitionTo('Locomote')
 	
 

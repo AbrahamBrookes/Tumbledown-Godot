@@ -6,6 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2tnx"]
 
 [node name="pushy_crate_collider" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_8kw3k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
