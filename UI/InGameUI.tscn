@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4jplwvnlcwie"]
+
+[ext_resource type="Script" path="res://UI/InGameUI.gd" id="1_edhev"]
+[ext_resource type="PackedScene" uid="uid://dtyr0l5158u1f" path="res://UI/Dialogue/Dialogue.tscn" id="2_xva76"]
+
+[node name="InGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_edhev")
+
+[node name="Dialogue" parent="." instance=ExtResource("2_xva76")]
+layout_mode = 1
