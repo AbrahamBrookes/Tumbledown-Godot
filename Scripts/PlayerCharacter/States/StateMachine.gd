@@ -29,6 +29,7 @@ func _physics_process(delta):
 func TransitionTo(new_state_name, extra_data = null):
 	var new_state = states.get(new_state_name.to_lower())
 	if(!new_state):
+		push_error("state " + new_state_name + " not found")
 		return
 	
 	if(current_state):
@@ -37,3 +38,5 @@ func TransitionTo(new_state_name, extra_data = null):
 	new_state.Enter(extra_data)
 	
 	current_state = new_state
+	
+	print("transitioned to " + new_state_name)

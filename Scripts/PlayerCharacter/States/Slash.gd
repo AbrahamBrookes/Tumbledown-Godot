@@ -4,7 +4,7 @@ class_name Slash
 var can_slash_again: bool
 
 func Enter(extra_data = null):
-	animTree.set("parameters/AnimSpeed/scale", 3.0)
+	owner.animTree.set("parameters/AnimSpeed/scale", 3.0)
 	stateMachine.travel("Slash")
 	can_slash_again = false
 	
@@ -18,7 +18,7 @@ func Exit():
 func Update(_delta: float):
 	pass
 	# hack because I can't get the animation function track to work
-	var current_animation = animTree.get("parameters/StateMachine/playback").get_current_node()
+	var current_animation = owner.animTree.get("parameters/StateMachine/playback").get_current_node()
 	if not current_animation == "Slash":
 		Transitioned.emit("Locomote")
 

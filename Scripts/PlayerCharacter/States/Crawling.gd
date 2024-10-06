@@ -48,7 +48,7 @@ func Physics_Update(_delta: float):
 #		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, 0.0, LERP_SPEED)
 #		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, LERP_SPEED)
 #	
-#	animTree.set("parameters/StateMachine/Crawling/blend_position", playerCharacter.velocity.length() / SPEED)
+#	owner.animTree.set("parameters/StateMachine/Crawling/blend_position", playerCharacter.velocity.length() / SPEED)
 #	print(playerCharacter.velocity.length() / SPEED)
 #
 #

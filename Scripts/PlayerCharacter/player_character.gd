@@ -6,7 +6,7 @@ class_name PlayerCharacter
 @export var JUMP_VELOCITY = 4.5
 @export var INVINCIBLE : bool = false
 
-@onready var animTree = $SkinnedMesh/AnimationTree
+@export var animTree : AnimationTree
 @onready var stateMachine = $StateMachine
 
 func _ready():
