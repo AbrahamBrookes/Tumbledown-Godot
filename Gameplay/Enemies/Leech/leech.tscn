@@ -1,10 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt18tdtteswcm"]
+[gd_scene load_steps=29 format=3 uid="uid://bt18tdtteswcm"]
 
 [ext_resource type="Script" path="res://Gameplay/Enemies/Leech/leech.gd" id="2_map8i"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/StateMachine.gd" id="3_yu2il"]
 [ext_resource type="Script" path="res://Gameplay/Enemies/Leech/States/Leech_Locomote.gd" id="4_h6n2r"]
 [ext_resource type="Script" path="res://Gameplay/Enemies/Leech/States/Leech_Idle.gd" id="4_q8c8i"]
 [ext_resource type="Script" path="res://Gameplay/Enemies/Leech/States/Leech_Pursue.gd" id="5_a24nn"]
+[ext_resource type="Script" path="res://Gameplay/Enemies/Leech/States/Leech_Hurt.gd" id="6_wp754"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b55he"]
 
@@ -360,83 +361,94 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_0jhlq")
 nodes/StateMachine/position = Vector2(0, 120)
 node_connections = [&"output", 0, &"StateMachine"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_j3qkj"]
-radius = 30.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_m0amf"]
+radius = 6.37516
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g2yyo"]
+radius = 3.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n1l5p"]
-radius = 1.44117
-height = 3.47741
+radius = 0.351043
+height = 0.810055
 
-[node name="leech" type="CharacterBody3D" node_paths=PackedStringArray("idle_state")]
-transform = Transform3D(0.25, 0, 4.37114e-08, 0, 0.25, 0, -4.37114e-08, 0, 0.25, 0, 0, 0)
+[node name="leech" type="RigidBody3D" node_paths=PackedStringArray("idle_state")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 80.0
+linear_damp = 8.711
 script = ExtResource("2_map8i")
 idle_state = NodePath("StateMachine/Leech_Idle")
 
 [node name="Armature" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.2, 0, -6.51683e-08, 0, 0.2, 0, 6.51683e-08, 0, -0.2, 0, 0, 0)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 bones/0/name = "root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0, -0.0519982)
+bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "bum"
 bones/1/parent = -1
 bones/1/rest = Transform3D(0.9996, 0.0282421, 0.0016883, -0.0161005, 0.518764, 0.854766, 0.0232646, -0.854451, 0.519011, -0.00233794, 1.2617, -1.29552)
 bones/1/enabled = true
-bones/1/position = Vector3(-0.012373, 1.34621, -0.511284)
-bones/1/rotation = Quaternion(-0.316635, -0.0155059, -0.0067231, 0.948397)
+bones/1/position = Vector3(-0.0320941, 1.36045, -1.05571)
+bones/1/rotation = Quaternion(-0.466606, -0.00254636, -0.00823962, 0.884423)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "leg"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.999872, 0.0159715, 0.000585952, 0.0066066, -0.446424, 0.894797, 0.0145529, -0.894679, -0.446472, 1.02906e-16, -7.69979e-08, 1.11486e-07)
 bones/2/enabled = true
 bones/2/position = Vector3(1.02906e-16, -7.69979e-08, 1.11486e-07)
-bones/2/rotation = Quaternion(-0.809708, 0.00350982, 0.00247613, 0.586818)
+bones/2/rotation = Quaternion(-0.819802, -0.0131571, -0.00883892, 0.572427)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "gut"
 bones/3/parent = 1
 bones/3/rest = Transform3D(0.999232, 0.00521701, -0.038822, -0.0369296, -0.204976, -0.97807, -0.0130602, 0.978754, -0.204626, 4.1359e-25, -9.9046e-08, -5.60906e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(4.1359e-25, -9.9046e-08, -5.60906e-08)
-bones/3/rotation = Quaternion(0.838543, -0.0195926, 0.00815369, 0.544421)
+bones/3/rotation = Quaternion(0.735509, -0.0113765, -0.023592, 0.677008)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "torso"
 bones/4/parent = 3
 bones/4/rest = Transform3D(0.999039, -0.0436693, -0.00361837, 0.0130533, 0.375415, -0.926764, 0.0418296, 0.925827, 0.375624, -1.49011e-08, 1.06561, 6.63568e-09)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.49011e-08, 1.06561, 6.63568e-09)
-bones/4/rotation = Quaternion(0.204193, -0.00512194, -0.014602, 0.978808)
+bones/4/rotation = Quaternion(0.617881, -0.0181539, 0.022919, 0.785728)
 bones/4/scale = Vector3(1, 1, 0.999999)
 bones/5/name = "neck"
 bones/5/parent = 4
 bones/5/rest = Transform3D(0.999943, -0.00482883, 0.00944321, 0.00604559, 0.991045, -0.133394, -0.00871451, 0.133444, 0.991018, 1.49012e-08, 1.07597, -6.49188e-08)
 bones/5/enabled = true
 bones/5/position = Vector3(1.49012e-08, 1.07597, -6.49188e-08)
-bones/5/rotation = Quaternion(-0.0012069, 0.00534107, -0.0146957, 0.999877)
+bones/5/rotation = Quaternion(0.00250852, 0.00379958, 8.10199e-05, 0.99999)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "shoulders_pole"
 bones/6/parent = -1
 bones/6/rest = Transform3D(1, 2.84217e-14, -4.76837e-07, -3.69228e-07, 0.632784, -0.774328, 3.01735e-07, 0.774328, 0.632784, -6.17437e-18, 2.84274, 0.183849)
 bones/6/enabled = true
-bones/6/position = Vector3(-6.17437e-18, 2.24202, 1.64903)
+bones/6/position = Vector3(7.31326e-09, 2.81703, 0.12816)
 bones/6/rotation = Quaternion(0.428495, -2.15422e-07, -1.02161e-07, 0.903544)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "foot_back"
 bones/7/parent = -1
 bones/7/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, -1.02906e-16, -5.96046e-08, -1.4)
 bones/7/enabled = true
-bones/7/position = Vector3(-1.02906e-16, -5.96046e-08, -1.452)
+bones/7/position = Vector3(-1.02906e-16, -5.96046e-08, -1.4)
 bones/7/rotation = Quaternion(0.707107, -1.37679e-07, -1.37679e-07, 0.707107)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "mouth"
 bones/8/parent = -1
 bones/8/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, -0.232211, 1.15982, 1.34489)
 bones/8/enabled = true
-bones/8/position = Vector3(-0.244362, 0.982064, 3.58282)
+bones/8/position = Vector3(-0.268243, 1.27973, 1.52106)
 bones/8/rotation = Quaternion(0.707107, -1.37679e-07, -1.37679e-07, 0.707107)
 bones/8/scale = Vector3(1, 1, 1)
 
@@ -456,11 +468,18 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/StateMachine/Locomote/blend_position = 1.02363
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="sight" type="Area3D" parent="Armature"]
+transform = Transform3D(-4, 0, 6.03983e-07, 0, 4, 0, -6.03983e-07, 0, -4, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-shape = SubResource("SphereShape3D_j3qkj")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/sight"]
+transform = Transform3D(1, 0, 8.52651e-14, 0, 1, 0, -8.52651e-14, 0, 1, -1.05699e-06, 0.696813, 2.365)
+shape = SubResource("CylinderShape3D_m0amf")
+
+[node name="TooCloseAttackBox" type="Area3D" parent="Armature"]
+transform = Transform3D(1, 0, 1.13687e-13, 0, 1, 0, -1.13687e-13, 0, 1, 0, 2.53362, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Armature/TooCloseAttackBox"]
+shape = SubResource("SphereShape3D_g2yyo")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_yu2il")
@@ -474,26 +493,39 @@ animTree = NodePath("../../Armature/AnimationTree")
 script = ExtResource("4_h6n2r")
 animTree = NodePath("../../Armature/AnimationTree")
 
-[node name="Leech_Pursue" type="Node" parent="StateMachine" node_paths=PackedStringArray("NavAgent", "animTree")]
+[node name="Leech_Pursue" type="Node" parent="StateMachine" node_paths=PackedStringArray("mesh", "animTree")]
 script = ExtResource("5_a24nn")
-NavAgent = NodePath("../../NavigationAgent3D")
-movement_speed = 2.0
-leech_jump_length = 1.5
+movement_speed = 200.0
+leech_jump_length = 20.0
+mesh = NodePath("../../Armature")
 animTree = NodePath("../../Armature/AnimationTree")
 
 [node name="LeechJumpTimer" type="Timer" parent="StateMachine/Leech_Pursue"]
-wait_time = 0.8
+wait_time = 0.9
 
 [node name="LeechPauseTimer" type="Timer" parent="StateMachine/Leech_Pursue"]
-wait_time = 0.1
+wait_time = 1.3
 one_shot = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75401, -0.776826)
+[node name="Leech_Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+script = ExtResource("6_wp754")
+animTree = NodePath("../../Armature/AnimationTree")
+
+[node name="ResumeTimer" type="Timer" parent="StateMachine/Leech_Hurt"]
+process_callback = 0
+one_shot = true
+
+[node name="hurt_box" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.412806, 0)
 shape = SubResource("CapsuleShape3D_n1l5p")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="GroundCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0634478, 0.00461194)
+target_position = Vector3(0, -0.15, 0)
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_sight_entered"]
+[connection signal="body_entered" from="Armature/sight" to="." method="_on_sight_entered"]
+[connection signal="body_exited" from="Armature/sight" to="." method="_on_sight_exited"]
+[connection signal="body_entered" from="Armature/TooCloseAttackBox" to="." method="_on_too_close_attack_box_body_entered"]
 [connection signal="timeout" from="StateMachine/Leech_Pursue/LeechJumpTimer" to="StateMachine/Leech_Pursue" method="_on_leech_jump_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Leech_Pursue/LeechPauseTimer" to="StateMachine/Leech_Pursue" method="_on_leech_pause_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Leech_Hurt/ResumeTimer" to="StateMachine/Leech_Hurt" method="_on_resume_timer_timeout"]

@@ -15,8 +15,6 @@ func _ready():
 	if(initial_state):
 		initial_state.Enter()
 		current_state = initial_state
-	
-	print(states)
 
 func _process(delta):
 	if(current_state):
@@ -38,5 +36,3 @@ func TransitionTo(new_state_name, extra_data = null):
 	new_state.Enter(extra_data)
 	
 	current_state = new_state
-	
-	print("transitioned to " + new_state_name)

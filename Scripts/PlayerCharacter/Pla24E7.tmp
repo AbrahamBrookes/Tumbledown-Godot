@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene load_steps=43 format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_6mn6j"]
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
@@ -120,13 +120,18 @@ nodes/StateMachine/position = Vector2(-120, 100)
 nodes/output/position = Vector2(220, 100)
 node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ygtpg"]
+radius = 0.15
+height = 0.8
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jdej8"]
 height = 0.330131
 radius = 0.672314
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ygtpg"]
-radius = 0.15
-height = 0.8
+[sub_resource type="CylinderMesh" id="CylinderMesh_v3g4s"]
+top_radius = 0.7
+bottom_radius = 0.7
+height = 0.3
 
 [node name="PlayerCharacter" type="RigidBody3D" node_paths=PackedStringArray("animTree")]
 axis_lock_angular_x = true
@@ -219,18 +224,20 @@ parameters/AnimSpeed/scale = 0.0
 parameters/StateMachine/Locomote/blend_position = 0.997925
 parameters/StateMachine/crawling/blend_position = 0.0
 
-[node name="hit_capsule" type="Area3D" parent="SkinnedMesh"]
-transform = Transform3D(-1, 0, 6.28631e-06, 0, 1, 0, -6.28631e-06, 0, -1, 0, 0, 0)
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/hit_capsule"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3832, -0.53121)
-shape = SubResource("CylinderShape3D_jdej8")
-
 [node name="hurt_capsule" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41401, 0)
 shape = SubResource("CapsuleShape3D_ygtpg")
+
+[node name="hit_capsule" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hit_capsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3832, -0.53121)
+shape = SubResource("CylinderShape3D_jdej8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="hit_capsule"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41401, -0.534009)
+mesh = SubResource("CylinderMesh_v3g4s")
+skeleton = NodePath("../../hurt_capsule")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_n6sth")
@@ -283,8 +290,8 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0634478, 0.00461194)
 target_position = Vector3(0, -0.15, 0)
 
-[connection signal="body_entered" from="SkinnedMesh/hit_capsule" to="StateMachine/Slash" method="_on_hit_capsule_body_entered"]
-[connection signal="body_exited" from="SkinnedMesh/hit_capsule" to="StateMachine/Slash" method="_on_hit_capsule_body_exited"]
+[connection signal="body_entered" from="hit_capsule" to="StateMachine/Slash" method="_on_hit_capsule_body_entered"]
+[connection signal="body_exited" from="hit_capsule" to="StateMachine/Slash" method="_on_hit_capsule_body_exited"]
 [connection signal="timeout" from="StateMachine/Slash/SlashAgainTimer" to="StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="StateMachine/Slash/ApplyHurtTimer" to="StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]
 

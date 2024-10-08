@@ -8,27 +8,6 @@ var pushingTimer = 0.0 # how long the player has been pushing into the crate
 var pushTime = 0.5 # how long until the push begins
 var push_dir = Vector2.ZERO # cache the push dir so we can check if it changed
 
-# Add a debug sphere at global location.
-func draw_debug_sphere(location, size = 0.25, color = Color(1, 0, 0)):
-	# Will usually work, but you might need to adjust this.
-	var scene_root = get_tree().root.get_children()[0]
-	# Create sphere with low detail of size.
-	var sphere = SphereMesh.new()
-	sphere.radial_segments = 4
-	sphere.rings = 4
-	sphere.radius = size
-	sphere.height = size * 2
-	# Bright red material (unshaded).
-	var material = StandardMaterial3D.new()
-	material.albedo_color = color
-	material.flags_unshaded = true
-	sphere.surface_set_material(0, material)
-
-	# Add to meshinstance in the right place.
-	var node = MeshInstance3D.new()
-	node.mesh = sphere
-	node.global_transform.origin = location
-	scene_root.add_child(node)
 	
 func Enter(extra_data = null):
 	pass

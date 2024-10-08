@@ -13,4 +13,7 @@ func Update(_delta: float):
 
 
 func Physics_Update(_delta: float):
-	pass 
+	# if the owners pursueable_enemies array has an entry, pursue it
+	if owner.pursueable_enemies.size() > 0:
+		Transitioned.emit("leech_pursue", {"target": owner.pursueable_enemies[0]})
+		return
