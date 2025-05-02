@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://loucnpwy2y52"]
+
+[ext_resource type="Script" path="res://Player/PlayerCharacter.gd" id="1_rf34x"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3afcr"]
+height = 1.2
+radius = 0.3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sha4d"]
+radius = 0.3
+height = 1.5
+
+[node name="PlayerCharacter" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_rf34x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_3afcr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sha4d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 6.29904, 3.25)

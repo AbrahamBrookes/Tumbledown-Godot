@@ -1,16 +1,16 @@
 [gd_scene load_steps=42 format=3 uid="uid://u65ut6h3i0ms"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_6mn6j"]
-[ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/StateMachine.gd" id="3_n6sth"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/EnemyWander.gd" id="4_06l8q"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="5_ph5ji"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="6_et2ma"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/LeaningCrate.gd" id="7_otshi"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/PushingCrate.gd" id="8_hyvrb"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Crouching.gd" id="9_unn3g"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Crawling.gd" id="10_5rovj"]
-[ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="12_haj5d"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/player_character.gd" id="1_fewyx"]
+[ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_u681l"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/StateMachine.gd" id="3_n8t3u"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/EnemyWander.gd" id="4_ko4wq"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/Slash.gd" id="5_do6m5"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/Locomote.gd" id="6_5pq5p"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/LeaningCrate.gd" id="7_l8ld0"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/PushingCrate.gd" id="8_sfnwn"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/Crouching.gd" id="9_74wyt"]
+[ext_resource type="Script" path="res://Scripts/PhysicalPlayerCharacter/States/Crawling.gd" id="10_fjds7"]
+[ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="11_4i27j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xe66j"]
 friction = 500.0
@@ -112,6 +112,7 @@ transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransi
 graph_offset = Vector2(66, -153)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_v7krk"]
+graph_offset = Vector2(-226.455, 40.9091)
 nodes/AnimSpeed/node = SubResource("AnimationNodeTimeScale_alo0e")
 nodes/AnimSpeed/position = Vector2(60, 100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_61bxm")
@@ -133,13 +134,12 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_xe66j")
-continuous_cd = true
 linear_damp = 15.0
 angular_damp = 5000.0
-script = ExtResource("1_6mn6j")
+script = ExtResource("1_fewyx")
 animTree = NodePath("SkinnedMesh/AnimationTree")
 
-[node name="SkinnedMesh" parent="." instance=ExtResource("2_oyuwf")]
+[node name="SkinnedMesh" parent="." instance=ExtResource("2_u681l")]
 transform = Transform3D(-1, 0, -6.28631e-06, 0, 1, 0, 6.28631e-06, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="SkinnedMesh/rig" index="0"]
@@ -232,16 +232,15 @@ shape = SubResource("CylinderShape3D_jdej8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41401, 0)
 shape = SubResource("CapsuleShape3D_ygtpg")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_n6sth")
-initial_state = NodePath("Locomote")
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_n8t3u")
 
 [node name="EnemyWander" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("4_06l8q")
+script = ExtResource("4_ko4wq")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="Slash" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("5_ph5ji")
+script = ExtResource("5_do6m5")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="SlashAgainTimer" type="Timer" parent="StateMachine/Slash"]
@@ -255,29 +254,29 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Locomote" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("6_et2ma")
+script = ExtResource("6_5pq5p")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="LeaningCrate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("7_otshi")
+script = ExtResource("7_l8ld0")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="PushingCrate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("8_hyvrb")
+script = ExtResource("8_sfnwn")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("9_unn3g")
+script = ExtResource("9_74wyt")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="Crawling" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("10_5rovj")
+script = ExtResource("10_fjds7")
 animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.658125, 0.752909, 0, -0.752909, 0.658125, -4.76837e-07, 5.11775, 3.42914)
 
-[node name="Control" parent="Camera3D" instance=ExtResource("12_haj5d")]
+[node name="Control" parent="Camera3D" instance=ExtResource("11_4i27j")]
 visible = false
 
 [node name="GroundCast" type="RayCast3D" parent="."]
