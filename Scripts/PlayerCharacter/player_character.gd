@@ -60,7 +60,7 @@ func _physics_process(state):
 	
 
 # called when we receive a hurt from somewhere
-func hurt(amount:int, origin:Vector3, impulseMultiplier:int = 50):
+func receive_damage(damage:Damage):
 	# only if we're not invincible
 	if INVINCIBLE:
 		return
@@ -75,15 +75,15 @@ func hurt(amount:int, origin:Vector3, impulseMultiplier:int = 50):
 	# animTree.set("parameters/Hit", true)
 	# animTree.set("parameters/Hit", false)
 
-	print("hurt for " + str(amount) + " damage")
+	print("hurasdasdast for " + str(damage.amount) + " damage")
 	
 	# get the vector from the source to us
-	var attackVector = global_transform.origin - origin
+	var attackVector = global_transform.origin - damage.source.global_transform.origin
 	# normalize it
 	var normalizedAttackVector = attackVector.normalized()
 	normalizedAttackVector.y = 0
 	# apply impulse to player character
-#	velocity = normalizedAttackVector * impulseMultiplier
+	apply_impulse(normalizedAttackVector * 4000)
 
 	# flash the players visibility
 	for n in 20:

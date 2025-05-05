@@ -1,5 +1,5 @@
 extends RigidBody3D
-class_name PlayerCharacter
+class_name PhysicalPlayerCharacter
 
 @export var SPEED = 5.0
 @export var LERP_SPEED = 0.35

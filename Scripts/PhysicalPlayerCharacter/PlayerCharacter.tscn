@@ -235,13 +235,15 @@ shape = SubResource("CapsuleShape3D_ygtpg")
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_n8t3u")
 
-[node name="EnemyWander" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="EnemyWander" type="Node" parent="StateMachine"]
 script = ExtResource("4_ko4wq")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
 
-[node name="Slash" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+
+[node name="Slash" type="Node" parent="StateMachine"]
 script = ExtResource("5_do6m5")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
+
 
 [node name="SlashAgainTimer" type="Timer" parent="StateMachine/Slash"]
 process_callback = 0
@@ -253,25 +255,30 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="Locomote" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="Locomote" type="Node" parent="StateMachine"]
 script = ExtResource("6_5pq5p")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
 
-[node name="LeaningCrate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+
+[node name="LeaningCrate" type="Node" parent="StateMachine"]
 script = ExtResource("7_l8ld0")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
 
-[node name="PushingCrate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+
+[node name="PushingCrate" type="Node" parent="StateMachine"]
 script = ExtResource("8_sfnwn")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
 
-[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+
+[node name="Crouching" type="Node" parent="StateMachine"]
 script = ExtResource("9_74wyt")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
 
-[node name="Crawling" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+
+[node name="Crawling" type="Node" parent="StateMachine"]
 script = ExtResource("10_fjds7")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
+animTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","tree_root":SubResource("AnimationNodeBlendTree_v7krk"),"anim_player":NodePath("../AnimationPlayer"),"advance_expression_base_node":NodePath("."),"active":true,"process_callback":1,"audio_max_polyphony":32,"root_motion_track":NodePath(""),"parameters/AnimSpeed/scale":0.0,"parameters/StateMachine/Locomote/blend_position":0.997925,"parameters/StateMachine/crawling/blend_position":0.0,"script":null)
+
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.658125, 0.752909, 0, -0.752909, 0.658125, -4.76837e-07, 5.11775, 3.42914)

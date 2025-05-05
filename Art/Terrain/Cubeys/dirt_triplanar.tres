@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://d3ok3xqslgr6v"]
+
+[ext_resource type="Texture2D" uid="uid://cwbmcy0gc6235" path="res://Art/poly.cam AI generated textures/dirt/albedo.jpg" id="1_lmchc"]
+[ext_resource type="Texture2D" uid="uid://c17g5oct5sukc" path="res://Art/poly.cam AI generated textures/dirt/normals.jpg" id="2_2tfdx"]
+[ext_resource type="Texture2D" uid="uid://cgk3411naao3o" path="res://Art/poly.cam AI generated textures/dirt/roughness.jpg" id="3_x7q2n"]
+
+[resource]
+albedo_color = Color(0.8, 0.772549, 0.647059, 1)
+albedo_texture = ExtResource("1_lmchc")
+roughness_texture = ExtResource("3_x7q2n")
+normal_enabled = true
+normal_texture = ExtResource("2_2tfdx")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true

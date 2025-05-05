@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var can_slash = true
 
 func Enter(extra_data = null):
-	owner.animTree.set("parameters/AnimSpeed/scale", 2.0)
+	animTree.set("parameters/AnimSpeed/scale", 2.0)
 	stateMachine.travel("Locomote")
 
 

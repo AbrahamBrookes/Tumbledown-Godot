@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c17g5oct5sukc"
-path.s3tc="res://.godot/imported/normals.jpg-06478e34276bc88a5212b4a7ff546195.s3tc.ctex"
+uid="uid://c2vphridxjtli"
+path.s3tc="res://.godot/imported/nor.png-98f99550a06f541f34faf020a9dd1082.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Art/poly.cam AI generated textures/dirt/normals.jpg"
-dest_files=["res://.godot/imported/normals.jpg-06478e34276bc88a5212b4a7ff546195.s3tc.ctex"]
+source_file="res://Gameplay/spiky_prickles/nor.png"
+dest_files=["res://.godot/imported/nor.png-98f99550a06f541f34faf020a9dd1082.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://Art/poly.cam AI generated textures/dirt/normals.jpg"
+roughness/src_normal="res://Gameplay/spiky_prickles/nor.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

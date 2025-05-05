@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dqrvsq11okllx"]
+
+[ext_resource type="Texture2D" uid="uid://dbbp3qd7ofwo4" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01_forest_tree_01_DIF-forest_tree_01_ALPHA.png" id="1_j51nv"]
+
+[resource]
+albedo_color = Color(0.788235, 0.788235, 0.788235, 1)
+albedo_texture = ExtResource("1_j51nv")
