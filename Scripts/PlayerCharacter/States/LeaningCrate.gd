@@ -8,7 +8,6 @@ var pushingTimer = 0.0 # how long the player has been pushing into the crate
 var pushTime = 0.5 # how long until the push begins
 var push_dir = Vector2.ZERO # cache the push dir so we can check if it changed
 
-	
 func Enter(extra_data = null):
 	pass
 #	assert(!!extra_data, "we need to be passed a crate to push!")

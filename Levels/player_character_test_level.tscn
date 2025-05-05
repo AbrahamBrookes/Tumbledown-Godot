@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c83jd4qwjt4ge" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.tscn" id="5_fud1c"]
 [ext_resource type="MeshLibrary" uid="uid://c4cbpbkmcdnnd" path="res://Art/Terrain/WorldLedges/Forest_02/forest_02_ledges.tres" id="5_wpg3p"]
 [ext_resource type="PackedScene" uid="uid://y81qe2axsnx" path="res://Gameplay/pushy_crate/pushy_crate.tscn" id="6_7dgp6"]
-[ext_resource type="PackedScene" uid="uid://5oyo75w8bmvq" path="res://Scripts/PlayerCharacter/player_character.tscn" id="8_76it1"]
+[ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="7_ju4nw"]
 [ext_resource type="PackedScene" uid="uid://dpn4hvqg8lsro" path="res://Gameplay/spiky_prickles/spiky_prickles_straight.tscn" id="8_repx0"]
 [ext_resource type="MeshLibrary" uid="uid://dl874xwkvieaf" path="res://Art/Terrain/WorldLedges/Plains_01/Plains_01_meshlib.tres" id="11_ytuyx"]
 
@@ -156,5 +156,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1.5, 1)
 [node name="spiky_prickles2" parent="." instance=ExtResource("8_repx0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, 0)
 
-[node name="Node3D" parent="." instance=ExtResource("8_76it1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+[node name="PlayerCharacter" parent="." instance=ExtResource("7_ju4nw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 6)

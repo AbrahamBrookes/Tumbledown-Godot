@@ -8,7 +8,6 @@ var hittable_enemies : Array = []
 
 func Enter(extra_data = null):
 	owner.animTree.set("parameters/AnimSpeed/scale", 3.0)
-	stateMachine.travel("Slash")
 	can_slash_again = false
 	
 	# set a timer to limit how fast we can slash

@@ -5,8 +5,6 @@ signal Transitioned
 
 # playercharacter is the immediate scene root
 @onready var playerCharacter = owner
-@export var animTree : AnimationTree
-@onready var stateMachine = animTree.get("parameters/StateMachine/playback")
 
 func Enter(extra_data = null):
 	pass

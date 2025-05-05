@@ -1,6 +1,10 @@
 extends Node
 class_name StateMachine
 
+@export var animTree : AnimationTree
+# playback is the engine-level animation tree state machine
+@onready var playback = animTree.get("parameters/StateMachine/playback")
+
 @export var initial_state: State
 
 var states : Dictionary = {}
@@ -29,6 +33,8 @@ func TransitionTo(new_state_name, extra_data = null):
 	if(!new_state):
 		push_error("state " + new_state_name + " not found")
 		return
+
+	playback.travel(new_state_name)
 	
 	if(current_state):
 		current_state.Exit()
@@ -36,3 +42,8 @@ func TransitionTo(new_state_name, extra_data = null):
 	new_state.Enter(extra_data)
 	
 	current_state = new_state
+
+# an alias for TransitionTo
+func travel(new_state_name, extra_data = null):
+	TransitionTo(new_state_name, extra_data)
+

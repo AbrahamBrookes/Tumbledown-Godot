@@ -10,7 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var LERP_SPEED = 0.35
 
 func Enter(_extra_data = null):
-	stateMachine.travel("crawling")
+	# stateMachine.travel("crawling")
+	pass
 
 
 func Exit():

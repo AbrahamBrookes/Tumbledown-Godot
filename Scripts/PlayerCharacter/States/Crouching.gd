@@ -2,7 +2,7 @@ extends State
 class_name Crouch
 
 func Enter(extra_data = null):
-	stateMachine.travel("crouch")
+	pass
 
 
 func Exit():

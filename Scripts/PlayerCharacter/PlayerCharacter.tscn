@@ -1,9 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene load_steps=41 format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_6mn6j"]
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/StateMachine.gd" id="3_n6sth"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/EnemyWander.gd" id="4_06l8q"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="5_ph5ji"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="6_et2ma"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/LeaningCrate.gd" id="7_otshi"]
@@ -232,17 +231,13 @@ shape = SubResource("CylinderShape3D_jdej8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41401, 0)
 shape = SubResource("CapsuleShape3D_ygtpg")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("animTree", "initial_state")]
 script = ExtResource("3_n6sth")
+animTree = NodePath("../SkinnedMesh/AnimationTree")
 initial_state = NodePath("Locomote")
 
-[node name="EnemyWander" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
-script = ExtResource("4_06l8q")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
-
-[node name="Slash" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="Slash" type="Node" parent="StateMachine"]
 script = ExtResource("5_ph5ji")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="SlashAgainTimer" type="Timer" parent="StateMachine/Slash"]
 process_callback = 0
@@ -254,25 +249,20 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="Locomote" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="Locomote" type="Node" parent="StateMachine"]
 script = ExtResource("6_et2ma")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
-[node name="LeaningCrate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="LeaningCrate" type="Node" parent="StateMachine"]
 script = ExtResource("7_otshi")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
-[node name="PushingCrate" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="PushingCrate" type="Node" parent="StateMachine"]
 script = ExtResource("8_hyvrb")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
-[node name="Crouching" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="Crouching" type="Node" parent="StateMachine"]
 script = ExtResource("9_unn3g")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
-[node name="Crawling" type="Node" parent="StateMachine" node_paths=PackedStringArray("animTree")]
+[node name="Crawling" type="Node" parent="StateMachine"]
 script = ExtResource("10_5rovj")
-animTree = NodePath("../../SkinnedMesh/AnimationTree")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.658125, 0.752909, 0, -0.752909, 0.658125, -4.76837e-07, 5.11775, 3.42914)
