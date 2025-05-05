@@ -11,10 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var can_slash = true
 
 func Enter(extra_data = null):
-	# animTree.set("parameters/AnimSpeed/scale", 2.0)
-	# stateMachine.travel("Locomote")
-	pass
-
+	owner.animTree.set("parameters/AnimSpeed/scale", 2.0)
 
 func Exit():
 	pass
@@ -25,7 +22,7 @@ func Update(_delta: float):
 
 
 func Physics_Update(_delta: float):
-	
+	print("Locomote")
 	# if the player presses crouch, crouch
 	if Input.is_action_just_pressed('crouch'):
 		Transitioned.emit('Crouching')
@@ -59,3 +56,8 @@ func input_walk():
 	# rotate $SkinnedMesh to face the direction of movement
 	if input_direction != Vector3.ZERO:
 		owner.get_node('SkinnedMesh').look_at(owner.get_node('SkinnedMesh').global_transform.origin - input_direction, Vector3.UP)
+
+# this is called by the pushy_crate when we bump into it
+func lean_crate(crate: Node3D):
+	# transition via the state machine
+	Transitioned.emit("LeaningCrate", crate)

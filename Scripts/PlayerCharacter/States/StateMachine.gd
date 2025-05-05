@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name StateMachine
 
 @export var animTree : AnimationTree
@@ -33,7 +33,6 @@ func TransitionTo(new_state_name, extra_data = null):
 	if(!new_state):
 		push_error("state " + new_state_name + " not found")
 		return
-
 	playback.travel(new_state_name)
 	
 	if(current_state):
@@ -42,6 +41,7 @@ func TransitionTo(new_state_name, extra_data = null):
 	new_state.Enter(extra_data)
 	
 	current_state = new_state
+	print(new_state_name)
 
 # an alias for TransitionTo
 func travel(new_state_name, extra_data = null):

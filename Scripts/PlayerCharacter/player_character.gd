@@ -91,4 +91,3 @@ func receive_damage(damage:Damage):
 		await get_tree().create_timer(0.05).timeout
 	
 	INVINCIBLE = false
-	

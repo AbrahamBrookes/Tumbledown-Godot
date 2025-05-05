@@ -1,8 +1,9 @@
-[gd_scene load_steps=41 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene load_steps=44 format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_character.gd" id="1_6mn6j"]
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/StateMachine.gd" id="3_n6sth"]
+[ext_resource type="Material" uid="uid://dwxktkcv6hhn3" path="res://Art/Player/Character/kora_mat.tres" id="3_seadm"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="5_ph5ji"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="6_et2ma"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/LeaningCrate.gd" id="7_otshi"]
@@ -15,6 +16,9 @@
 friction = 500.0
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_alo0e"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hbm8"]
+animation = &"leaning_pushable"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_duqcs"]
 animation = &"idle"
@@ -34,6 +38,9 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_biff6")
 blend_point_2/pos = 1.0
 min_space = 0.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4gtf"]
+animation = &"pushing_pushable"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sma0w"]
 resource_local_to_scene = true
 animation = &"slash"
@@ -52,12 +59,6 @@ blend_point_1/pos = 0.5
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qhlp2"]
 animation = &"crouch"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hbm8"]
-animation = &"leaning_pushable"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4gtf"]
-animation = &"pushing_pushable"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gy7fs"]
 advance_mode = 2
@@ -95,22 +96,23 @@ xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_61bxm"]
 allow_transition_to_self = true
+states/LeaningCrate/node = SubResource("AnimationNodeAnimation_4hbm8")
+states/LeaningCrate/position = Vector2(656, -70)
 states/Locomote/node = SubResource("AnimationNodeBlendSpace1D_srys3")
 states/Locomote/position = Vector2(400, 100)
+states/PushingCrate/node = SubResource("AnimationNodeAnimation_g4gtf")
+states/PushingCrate/position = Vector2(672, 39)
 states/Slash/node = SubResource("AnimationNodeAnimation_sma0w")
 states/Slash/position = Vector2(233, -32)
 states/crawling/node = SubResource("AnimationNodeBlendSpace1D_ebfcu")
 states/crawling/position = Vector2(347, -174)
 states/crouch/node = SubResource("AnimationNodeAnimation_qhlp2")
 states/crouch/position = Vector2(406, -70)
-states/leaning_pushable/node = SubResource("AnimationNodeAnimation_4hbm8")
-states/leaning_pushable/position = Vector2(656, -70)
-states/pushing_pushable/node = SubResource("AnimationNodeAnimation_g4gtf")
-states/pushing_pushable/position = Vector2(672, 39)
-transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_gy7fs"), "Locomote", "End", SubResource("AnimationNodeStateMachineTransition_wbke6"), "Slash", "Locomote", SubResource("AnimationNodeStateMachineTransition_eh4ht"), "Locomote", "Slash", SubResource("AnimationNodeStateMachineTransition_2l6ic"), "Locomote", "leaning_pushable", SubResource("AnimationNodeStateMachineTransition_k38qc"), "leaning_pushable", "pushing_pushable", SubResource("AnimationNodeStateMachineTransition_831vp"), "pushing_pushable", "leaning_pushable", SubResource("AnimationNodeStateMachineTransition_epm4v"), "pushing_pushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_3diy6"), "leaning_pushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_uup32"), "Locomote", "crouch", SubResource("AnimationNodeStateMachineTransition_nw37k"), "crouch", "Locomote", SubResource("AnimationNodeStateMachineTransition_e511p"), "crouch", "crawling", SubResource("AnimationNodeStateMachineTransition_sl7d2"), "crawling", "crouch", SubResource("AnimationNodeStateMachineTransition_nedae")]
-graph_offset = Vector2(66, -153)
+transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_gy7fs"), "Locomote", "End", SubResource("AnimationNodeStateMachineTransition_wbke6"), "Slash", "Locomote", SubResource("AnimationNodeStateMachineTransition_eh4ht"), "Locomote", "Slash", SubResource("AnimationNodeStateMachineTransition_2l6ic"), "Locomote", "LeaningCrate", SubResource("AnimationNodeStateMachineTransition_k38qc"), "LeaningCrate", "PushingCrate", SubResource("AnimationNodeStateMachineTransition_831vp"), "PushingCrate", "LeaningCrate", SubResource("AnimationNodeStateMachineTransition_epm4v"), "PushingCrate", "Locomote", SubResource("AnimationNodeStateMachineTransition_3diy6"), "LeaningCrate", "Locomote", SubResource("AnimationNodeStateMachineTransition_uup32"), "Locomote", "crouch", SubResource("AnimationNodeStateMachineTransition_nw37k"), "crouch", "Locomote", SubResource("AnimationNodeStateMachineTransition_e511p"), "crouch", "crawling", SubResource("AnimationNodeStateMachineTransition_sl7d2"), "crawling", "crouch", SubResource("AnimationNodeStateMachineTransition_nedae")]
+graph_offset = Vector2(-164, -113)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_v7krk"]
+graph_offset = Vector2(-371, 79)
 nodes/AnimSpeed/node = SubResource("AnimationNodeTimeScale_alo0e")
 nodes/AnimSpeed/position = Vector2(60, 100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_61bxm")
@@ -126,7 +128,14 @@ radius = 0.672314
 radius = 0.15
 height = 0.8
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjr6x"]
+size = Vector3(0.9, 0.9, 0.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lt837"]
+
 [node name="PlayerCharacter" type="RigidBody3D" node_paths=PackedStringArray("animTree")]
+collision_layer = 2
+collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
@@ -210,6 +219,9 @@ bones/55/scale = Vector3(0.999993, 0.999969, 1.00001)
 bones/56/rotation = Quaternion(-0.615759, 9.80625e-05, 1.92407e-05, 0.787935)
 bones/57/rotation = Quaternion(-0.289441, 3.09041e-05, -0.00179074, 0.957194)
 
+[node name="kora_uv" parent="SkinnedMesh/rig/Skeleton3D" index="1"]
+material_override = ExtResource("3_seadm")
+
 [node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh"]
 tree_root = SubResource("AnimationNodeBlendTree_v7krk")
 anim_player = NodePath("../AnimationPlayer")
@@ -231,12 +243,12 @@ shape = SubResource("CylinderShape3D_jdej8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41401, 0)
 shape = SubResource("CapsuleShape3D_ygtpg")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("animTree", "initial_state")]
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("animTree", "initial_state")]
 script = ExtResource("3_n6sth")
 animTree = NodePath("../SkinnedMesh/AnimationTree")
-initial_state = NodePath("Locomote")
+initial_state = NodePath("")
 
-[node name="Slash" type="Node" parent="StateMachine"]
+[node name="Slash" type="Node3D" parent="StateMachine"]
 script = ExtResource("5_ph5ji")
 
 [node name="SlashAgainTimer" type="Timer" parent="StateMachine/Slash"]
@@ -249,19 +261,38 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="Locomote" type="Node" parent="StateMachine"]
+[node name="Locomote" type="Node3D" parent="StateMachine"]
 script = ExtResource("6_et2ma")
 
-[node name="LeaningCrate" type="Node" parent="StateMachine"]
+[node name="LeaningCrate" type="Node3D" parent="StateMachine"]
 script = ExtResource("7_otshi")
 
-[node name="PushingCrate" type="Node" parent="StateMachine"]
+[node name="destination_check" type="Area3D" parent="StateMachine/LeaningCrate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateMachine/LeaningCrate/destination_check"]
+shape = SubResource("BoxShape3D_tjr6x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StateMachine/LeaningCrate/destination_check"]
+mesh = SubResource("BoxMesh_lt837")
+
+[node name="PushingCrate" type="Node3D" parent="StateMachine"]
 script = ExtResource("8_hyvrb")
 
-[node name="Crouching" type="Node" parent="StateMachine"]
+[node name="destination_block" type="StaticBody3D" parent="StateMachine/PushingCrate"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateMachine/PushingCrate/destination_block"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_tjr6x")
+
+[node name="Crouching" type="Node3D" parent="StateMachine"]
 script = ExtResource("9_unn3g")
 
-[node name="Crawling" type="Node" parent="StateMachine"]
+[node name="Crawling" type="Node3D" parent="StateMachine"]
 script = ExtResource("10_5rovj")
 
 [node name="Camera3D" type="Camera3D" parent="."]
