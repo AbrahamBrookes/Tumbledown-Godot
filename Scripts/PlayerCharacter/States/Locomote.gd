@@ -22,7 +22,6 @@ func Update(_delta: float):
 
 
 func Physics_Update(_delta: float):
-	print("Locomote")
 	# if the player presses crouch, crouch
 	if Input.is_action_just_pressed('crouch'):
 		Transitioned.emit('Crouching')
@@ -51,7 +50,7 @@ func input_walk():
 	if input_direction == Vector3.ZERO:
 		return
 	
-	playerCharacter.apply_central_impulse(input_direction * playerCharacter.move_speed)
+	playerCharacter.apply_central_force(input_direction * playerCharacter.move_speed * 40)
 	
 	# rotate $SkinnedMesh to face the direction of movement
 	if input_direction != Vector3.ZERO:

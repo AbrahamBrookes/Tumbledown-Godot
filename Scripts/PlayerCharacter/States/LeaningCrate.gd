@@ -87,19 +87,19 @@ func Physics_Update(_delta: float):
 	if pushingTimer > pushTime:
 		# finally check if we can push the crate
 		# the destination is the crate's current dest + 1
-		var destination = crate.global_position - Vector3(cardinal_input.x, 0, cardinal_input.y)
+	#	var destination = crate.global_position - Vector3(cardinal_input.x, 0, cardinal_input.y)
 		# move the destination_check Area3D to the destination and check for overlap
-		destination_check.global_position = destination
+	#	destination_check.global_position = destination
 
 		# check if the destination is clear
-		var overlap = destination_check.get_overlapping_bodies()
-		if overlap.size() > 0:
+	#	var overlap = destination_check.get_overlapping_bodies()
+	#	if overlap.size() > 0:
 			# print them
-			for body in overlap:
-				print("overlap with: ", body.name)
+	#		for body in overlap:
+	#			print("overlap with: ", body.name)
 			# if there is something in the way, we can't push
-			Transitioned.emit("LeaningCrate", crate)
-			return
+	#		Transitioned.emit("LeaningCrate", crate)
+	#		return
 
 		Transitioned.emit('PushingCrate', crate)
 		pushingTimer = 0.0

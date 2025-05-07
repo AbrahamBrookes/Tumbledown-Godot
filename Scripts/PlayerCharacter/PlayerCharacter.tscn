@@ -142,6 +142,7 @@ axis_lock_angular_z = true
 mass = 50.0
 physics_material_override = SubResource("PhysicsMaterial_xe66j")
 continuous_cd = true
+freeze_mode = 1
 linear_damp = 15.0
 angular_damp = 5000.0
 script = ExtResource("1_6mn6j")
@@ -243,10 +244,9 @@ shape = SubResource("CylinderShape3D_jdej8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41401, 0)
 shape = SubResource("CapsuleShape3D_ygtpg")
 
-[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("animTree", "initial_state")]
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("animTree")]
 script = ExtResource("3_n6sth")
 animTree = NodePath("../SkinnedMesh/AnimationTree")
-initial_state = NodePath("")
 
 [node name="Slash" type="Node3D" parent="StateMachine"]
 script = ExtResource("5_ph5ji")
@@ -276,18 +276,11 @@ collision_mask = 3
 shape = SubResource("BoxShape3D_tjr6x")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StateMachine/LeaningCrate/destination_check"]
+visible = false
 mesh = SubResource("BoxMesh_lt837")
 
 [node name="PushingCrate" type="Node3D" parent="StateMachine"]
 script = ExtResource("8_hyvrb")
-
-[node name="destination_block" type="StaticBody3D" parent="StateMachine/PushingCrate"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StateMachine/PushingCrate/destination_block"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_tjr6x")
 
 [node name="Crouching" type="Node3D" parent="StateMachine"]
 script = ExtResource("9_unn3g")

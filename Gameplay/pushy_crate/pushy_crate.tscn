@@ -12,11 +12,12 @@ size = Vector3(1, 0.183946, 1)
 [node name="pushy_crate" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 3
-axis_lock_linear_x = true
-axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
+can_sleep = false
+freeze = true
+freeze_mode = 1
 script = ExtResource("1_y36kr")
 
 [node name="mesh" parent="." instance=ExtResource("2_xcw56")]
@@ -29,6 +30,7 @@ shape = SubResource("BoxShape3D_t2tnx")
 [node name="push_area" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="push_area"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.306484, 0)
