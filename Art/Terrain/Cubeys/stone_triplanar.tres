@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cvlunjf7yek0m"]
+
+[ext_resource type="Texture2D" uid="uid://bv6wq7n00vdse" path="res://Art/poly.cam AI generated textures/stone/albedo.jpg" id="1_k1cen"]
+
+[resource]
+albedo_color = Color(0.632, 0.8, 0.688, 1)
+albedo_texture = ExtResource("1_k1cen")
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_triplanar = true
+uv2_world_triplanar = true
