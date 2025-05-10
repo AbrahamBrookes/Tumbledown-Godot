@@ -53,7 +53,7 @@ func _physics_process(state):
 	gravity_scale = 1
 	if not $GroundCast.is_colliding():
 		linear_damp = 0
-		gravity_scale = 10
+		gravity_scale = 8
 
 	# update the animation tree with the real velocity
 	animTree.set("parameters/StateMachine/Locomote/blend_position", linear_velocity.length() / SPEED)

@@ -30,6 +30,13 @@ func Physics_Update(_delta: float):
 	# if the player presses slash, slash
 	if Input.is_action_just_pressed("slash"):
 		Transitioned.emit("Slash")
+		return
+
+	# if the player presses jump, jump
+	if Input.is_action_just_pressed("jump"):
+		if owner.get_node('GroundCast').is_colliding():
+			Transitioned.emit("Jumping")
+			return
 	
 	input_walk()
 
