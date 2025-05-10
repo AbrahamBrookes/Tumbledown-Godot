@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8xdmxp2u5myh"]
+[gd_scene load_steps=7 format=3 uid="uid://b8xdmxp2u5myh"]
 
 [ext_resource type="MeshLibrary" uid="uid://cpb5gxw8v526e" path="res://Art/Terrain/Cubeys/2ubeys.tres" id="1_44h3b"]
 [ext_resource type="PackedScene" uid="uid://ctnuia16y56qa" path="res://Art/Environment/Ruins/ruins_pillar_blocks/base.tscn" id="2_7mbbo"]
 [ext_resource type="PackedScene" uid="uid://dfc2wck5lseqi" path="res://Art/Environment/Ruins/ruins_pillar_blocks/block.tscn" id="3_501oj"]
 [ext_resource type="PackedScene" uid="uid://d2tb1l8878r38" path="res://Art/Environment/Ruins/ruins_pillar_blocks/slab.tscn" id="4_0tlgi"]
 [ext_resource type="PackedScene" uid="uid://drrhik3c57vkr" path="res://Art/Environment/Ruins/ruins_pillar_blocks/broken_base.tscn" id="5_pcrb8"]
+[ext_resource type="PackedScene" uid="uid://bn7vefs63iabd" path="res://Gameplay/Enemies/AngryBug/angrybug.tscn" id="6_ybtfq"]
 
 [node name="Stone Pillars" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -20)
@@ -30,3 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 3.5, -1.5)
 [node name="blockout_001" parent="." instance=ExtResource("5_pcrb8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 1.7, -1.5)
 skeleton = NodePath("../..")
+
+[node name="AngryBug" parent="." instance=ExtResource("6_ybtfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 2.6, 0.9)
