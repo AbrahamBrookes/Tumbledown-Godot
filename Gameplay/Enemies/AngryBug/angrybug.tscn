@@ -1,9 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://bn7vefs63iabd"]
+[gd_scene load_steps=51 format=3 uid="uid://bn7vefs63iabd"]
 
 [ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/AngryBug.gd" id="1_1x555"]
 [ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/StateMachine.gd" id="1_iv4hw"]
 [ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugIdle.gd" id="2_c431i"]
 [ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugLocomote.gd" id="4_vj2y0"]
+[ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugPursue.gd" id="5_stpyp"]
+[ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugAttack.gd" id="6_qsrbl"]
+[ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugAttackCooldown.gd" id="7_cfvwf"]
+[ext_resource type="Script" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugWasAttacked.gd" id="8_dmquj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frgdg"]
 
@@ -126,6 +130,7 @@ albedo_color = Color(0, 0, 0, 1)
 [sub_resource type="Animation" id="Animation_asp1c"]
 resource_name = "attack"
 length = 0.666667
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -252,6 +257,23 @@ tracks/17/path = NodePath("Armature/Skeleton3D:leg.l")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.166667, 1, 1, 1, 1, 0.2, 1, 0.995839, 0.979492, 0.993391, 0.233333, 1, 0.997587, 0.967793, 1.00403, 0.266667, 1, 0.998329, 1.10026, 1.00973, 0.3, 1, 0.997477, 1.15051, 0.869036, 0.333333, 1, 0.997562, 1.11626, 0.878492, 0.366667, 1, 0.99793, 1.09463, 0.923995, 0.4, 1, 1.00012, 1.01784, 0.99388, 0.433333, 1, 1, 1, 1, 0.666667, 1, 1, 1, 1)
+tracks/18/type = "method"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("../StateMachine/AngryBugAttack")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_on_attack_animation_apply_damage"
+}, {
+"args": [],
+"method": &"_on_attack_animation_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_hpspj"]
 resource_name = "idle"
@@ -525,6 +547,12 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_euyt3"]
 animation = &"attack"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pkv4i"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1c72v"]
+animation = &"idle"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oaaus"]
 animation = &"idle"
 
@@ -537,8 +565,21 @@ blend_point_0/pos = 0.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_7ujin")
 blend_point_1/pos = 1.0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_02pnq"]
-xfade_time = 0.3
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fegye"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pi6ln"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qk50t"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_fegye")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_pi6ln")
+blend_point_1/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_miwl3"]
+animation = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ll27p"]
 
@@ -548,30 +589,80 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l5wm4"]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4m183"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rc04a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vcaky"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e5x1j"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j8mhk"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2g286"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_28f6d"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yycpe"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g8yrj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ygpt6"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6auxd"]
 states/AngryBugAttack/node = SubResource("AnimationNodeAnimation_euyt3")
-states/AngryBugAttack/position = Vector2(471, 15)
+states/AngryBugAttack/position = Vector2(468, -7)
+states/AngryBugAttackCooldown/node = SubResource("AnimationNodeAnimation_pkv4i")
+states/AngryBugAttackCooldown/position = Vector2(758, -7)
+states/AngryBugIdle/node = SubResource("AnimationNodeAnimation_1c72v")
+states/AngryBugIdle/position = Vector2(275, 100)
 states/AngryBugLocomote/node = SubResource("AnimationNodeBlendSpace1D_0mquu")
-states/AngryBugLocomote/position = Vector2(440, 106)
-transitions = ["Start", "AngryBugLocomote", SubResource("AnimationNodeStateMachineTransition_02pnq"), "AngryBugLocomote", "End", SubResource("AnimationNodeStateMachineTransition_ll27p"), "AngryBugLocomote", "AngryBugAttack", SubResource("AnimationNodeStateMachineTransition_uh8ws"), "AngryBugAttack", "AngryBugLocomote", SubResource("AnimationNodeStateMachineTransition_l5wm4")]
-graph_offset = Vector2(-25, -58)
+states/AngryBugLocomote/position = Vector2(555, 100)
+states/AngryBugPursue/node = SubResource("AnimationNodeBlendSpace1D_qk50t")
+states/AngryBugPursue/position = Vector2(482, 232)
+states/AngryBugWasAttacked/node = SubResource("AnimationNodeAnimation_miwl3")
+states/AngryBugWasAttacked/position = Vector2(714, 194)
+states/Start/position = Vector2(55, 93)
+transitions = ["AngryBugLocomote", "End", SubResource("AnimationNodeStateMachineTransition_ll27p"), "AngryBugLocomote", "AngryBugAttack", SubResource("AnimationNodeStateMachineTransition_uh8ws"), "AngryBugAttack", "AngryBugLocomote", SubResource("AnimationNodeStateMachineTransition_l5wm4"), "AngryBugLocomote", "AngryBugPursue", SubResource("AnimationNodeStateMachineTransition_4m183"), "AngryBugPursue", "AngryBugLocomote", SubResource("AnimationNodeStateMachineTransition_rc04a"), "Start", "AngryBugIdle", SubResource("AnimationNodeStateMachineTransition_vcaky"), "AngryBugIdle", "AngryBugLocomote", SubResource("AnimationNodeStateMachineTransition_e5x1j"), "AngryBugAttack", "AngryBugIdle", SubResource("AnimationNodeStateMachineTransition_j8mhk"), "AngryBugIdle", "AngryBugAttack", SubResource("AnimationNodeStateMachineTransition_2g286"), "AngryBugAttack", "AngryBugAttackCooldown", SubResource("AnimationNodeStateMachineTransition_28f6d"), "AngryBugAttackCooldown", "AngryBugAttack", SubResource("AnimationNodeStateMachineTransition_yycpe"), "AngryBugAttackCooldown", "AngryBugLocomote", SubResource("AnimationNodeStateMachineTransition_g8yrj"), "AngryBugAttackCooldown", "AngryBugIdle", SubResource("AnimationNodeStateMachineTransition_ygpt6")]
+graph_offset = Vector2(142, 74)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_verpn"]
-graph_offset = Vector2(-340, 30)
+graph_offset = Vector2(-99, 18)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_6auxd")
 nodes/StateMachine/position = Vector2(20, 100)
 node_connections = [&"output", 0, &"StateMachine"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gawu"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1blj"]
+size = Vector3(0.7, 0.5, 0.7)
 
-[node name="AngryBug" type="RigidBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sy4al"]
+radius = 0.8
+height = 2.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_smdbi"]
+height = 0.6
+radius = 5.0
+
+[node name="AngryBug" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 7
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+slide_on_ceiling = false
 script = ExtResource("1_1x555")
 
-[node name="angrybug" type="Node3D" parent="."]
+[node name="SkinnedMesh" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Armature" type="Node3D" parent="angrybug"]
+[node name="Armature" type="Node3D" parent="SkinnedMesh"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="angrybug/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="SkinnedMesh/Armature"]
 bones/0/name = "leg.l.target"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-0.0227209, 0.833439, 0.552145, -0.888856, 0.235965, -0.392755, -0.457624, -0.4997, 0.735445, 0.883013, 4.31254e-09, -0.529423)
@@ -619,15 +710,15 @@ bones/6/parent = 3
 bones/6/rest = Transform3D(-0.784525, -0.596285, -0.170187, 0.619787, -0.745356, -0.245579, 0.0195851, -0.298142, 0.95432, -0.5, 0.5, -0.3)
 bones/6/enabled = true
 bones/6/position = Vector3(-0.5, 0.5, -0.3)
-bones/6/rotation = Quaternion(-0.0403412, -0.145645, 0.933301, 0.325745)
-bones/6/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(-0.0403411, -0.145644, 0.933301, 0.325745)
+bones/6/scale = Vector3(0.999999, 1, 1)
 bones/7/name = "arm.l"
 bones/7/parent = 3
 bones/7/rest = Transform3D(-0.784525, 0.596285, -0.170187, -0.619787, -0.745356, 0.245579, 0.019585, 0.298142, 0.95432, 0.5, 0.5, 0.3)
 bones/7/enabled = true
 bones/7/position = Vector3(0.5, 0.5, 0.3)
-bones/7/rotation = Quaternion(-0.0403412, 0.145645, 0.933301, -0.325745)
-bones/7/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.0403412, 0.145644, 0.933301, -0.325745)
+bones/7/scale = Vector3(0.999999, 1, 1)
 bones/8/name = "head"
 bones/8/parent = 3
 bones/8/rest = Transform3D(1, 2.07927e-17, -1.37283e-16, -1.37283e-16, 0.296125, -0.955149, 2.07927e-17, 0.955149, 0.296125, -1.76044e-16, 0.79283, 0.68712)
@@ -640,7 +731,7 @@ bones/9/parent = 3
 bones/9/rest = Transform3D(-0.796393, -0.556341, 0.237155, 0.604438, -0.745356, 0.281244, 0.0202971, 0.367327, 0.929871, -0.509808, 0.5, 0.283013)
 bones/9/enabled = true
 bones/9/position = Vector3(-0.509808, 0.5, 0.283013)
-bones/9/rotation = Quaternion(0.0690876, 0.174045, 0.931614, 0.311497)
+bones/9/rotation = Quaternion(0.0690877, 0.174045, 0.931614, 0.311497)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "abdomen"
 bones/10/parent = 3
@@ -655,7 +746,7 @@ bones/11/rest = Transform3D(-0.796393, 0.556341, 0.237155, -0.604439, -0.745356,
 bones/11/enabled = true
 bones/11/position = Vector3(0.509808, 0.5, -0.283013)
 bones/11/rotation = Quaternion(0.0690877, -0.174045, 0.931614, -0.311497)
-bones/11/scale = Vector3(1, 1, 1)
+bones/11/scale = Vector3(1, 1, 0.999999)
 bones/12/name = "arm.l.target"
 bones/12/parent = -1
 bones/12/rest = Transform3D(0.00261724, 0.849472, -0.527626, -0.896301, 0.235965, 0.375455, 0.44344, 0.471929, 0.762, 0.9, -4.42824e-08, 0.5)
@@ -664,7 +755,8 @@ bones/12/position = Vector3(0.9, -4.42824e-08, 0.5)
 bones/12/rotation = Quaternion(0.034104, -0.343274, -0.617134, 0.70721)
 bones/12/scale = Vector3(1, 1, 1)
 
-[node name="Sphere" type="MeshInstance3D" parent="angrybug/Armature/Skeleton3D"]
+[node name="Sphere" type="MeshInstance3D" parent="SkinnedMesh/Armature/Skeleton3D"]
+transform = Transform3D(-1, 0, -9.13912e-08, 0, 1, 0, 9.13912e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_42isx")
 skin = SubResource("Skin_cyfhc")
 surface_material_override/0 = SubResource("StandardMaterial3D_jcs8u")
@@ -672,21 +764,30 @@ surface_material_override/1 = SubResource("StandardMaterial3D_dvqjc")
 surface_material_override/2 = SubResource("StandardMaterial3D_qjhqt")
 surface_material_override/3 = SubResource("StandardMaterial3D_80s03")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="angrybug"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SkinnedMesh"]
 libraries = {
 "": SubResource("AnimationLibrary_ufpmt")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="angrybug"]
+[node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh"]
 tree_root = SubResource("AnimationNodeBlendTree_verpn")
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/StateMachine/AngryBugLocomote/blend_position = -0.000921667
+parameters/StateMachine/AngryBugPursue/blend_position = 0.998947
+
+[node name="Bitezone" type="Area3D" parent="SkinnedMesh"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.37114e-08, 0.3, -0.5)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/Bitezone"]
+shape = SubResource("BoxShape3D_w1blj")
 
 [node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("animTree", "initial_state")]
 script = ExtResource("1_iv4hw")
-animTree = NodePath("../angrybug/AnimationTree")
-initial_state = NodePath("AngryBugLocomote")
+animTree = NodePath("../SkinnedMesh/AnimationTree")
+initial_state = NodePath("AngryBugIdle")
 
 [node name="AngryBugIdle" type="Node3D" parent="StateMachine"]
 script = ExtResource("2_c431i")
@@ -694,6 +795,41 @@ script = ExtResource("2_c431i")
 [node name="AngryBugLocomote" type="Node3D" parent="StateMachine"]
 script = ExtResource("4_vj2y0")
 
-[node name="HurtBox" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.7, 0.3)
-shape = SubResource("CapsuleShape3D_0gawu")
+[node name="AngryBugPursue" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("agent", "mesh")]
+script = ExtResource("5_stpyp")
+agent = NodePath("../../NavigationAgent3D")
+mesh = NodePath("../../SkinnedMesh")
+
+[node name="AngryBugAttack" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
+script = ExtResource("6_qsrbl")
+mesh = NodePath("../../SkinnedMesh")
+
+[node name="AngryBugAttackCooldown" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("timer")]
+script = ExtResource("7_cfvwf")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="StateMachine/AngryBugAttackCooldown"]
+one_shot = true
+
+[node name="AngryBugWasAttacked" type="Node3D" parent="StateMachine"]
+script = ExtResource("8_dmquj")
+
+[node name="HurtBox2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0.2, 0.1)
+shape = SubResource("CapsuleShape3D_sy4al")
+
+[node name="Agrozone" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Agrozone"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("CylinderShape3D_smdbi")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[connection signal="body_entered" from="SkinnedMesh/Bitezone" to="StateMachine/AngryBugPursue" method="_on_attackzone_body_entered"]
+[connection signal="body_exited" from="SkinnedMesh/Bitezone" to="StateMachine/AngryBugPursue" method="_on_attackzone_body_exited"]
+[connection signal="timeout" from="StateMachine/AngryBugAttackCooldown/Timer" to="StateMachine/AngryBugAttackCooldown" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Agrozone" to="StateMachine/AngryBugPursue" method="_on_agrozone_body_entered"]
+[connection signal="body_exited" from="Agrozone" to="StateMachine/AngryBugPursue" method="_on_agrozone_body_exited"]
