@@ -1,8 +1,10 @@
-[gd_scene load_steps=62 format=3 uid="uid://coyfudrjihud1"]
+[gd_scene load_steps=65 format=3 uid="uid://coyfudrjihud1"]
 
 [ext_resource type="Material" uid="uid://d3ok3xqslgr6v" path="res://Art/Terrain/Cubeys/dirt_triplanar.tres" id="1_yqbla"]
 [ext_resource type="Material" uid="uid://c6xmpaxgoiuvl" path="res://Art/Terrain/Cubeys/grass_triplanar.tres" id="2_qcv5w"]
 [ext_resource type="Texture2D" uid="uid://bv6wq7n00vdse" path="res://Art/poly.cam AI generated textures/stone/albedo.jpg" id="3_w602o"]
+[ext_resource type="Material" uid="uid://cvlunjf7yek0m" path="res://Art/Terrain/Cubeys/stone_triplanar.tres" id="4_3kbjn"]
+[ext_resource type="Material" uid="uid://wdooi72yi05g" path="res://Art/Materials/Wood/Planks/wood_planks_01/wood_planks_01.tres" id="5_efiqq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0iyo"]
 resource_name = "soil"
@@ -72,6 +74,10 @@ shadow_mesh = SubResource("ArrayMesh_626g5")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_yla0j"]
 data = PackedVector3Array(-1, -0.1, 1, 1, 0, -1, 1, 0, 1, -1, -0.1, 1, -1, -0.1, -1, 1, 0, -1, -1, -1.2, 1, 1, -1.2, -1, -1, -1.2, -1, -1, -1.2, 1, 1, -1.2, 1, 1, -1.2, -1, 1, 0, -1, -1, -1.2, -1, 1, -1.2, -1, 1, 0, -1, -1, -0.1, -1, -1, -1.2, -1, -1, -0.1, 1, 1, -1.2, 1, -1, -1.2, 1, -1, -0.1, 1, 1, 0, 1, 1, -1.2, 1, 1, 0, 1, 1, -1.2, -1, 1, -1.2, 1, 1, 0, 1, 1, 0, -1, 1, -1.2, -1, -1, -0.1, -1, -1, -1.2, 1, -1, -1.2, -1, -1, -0.1, -1, -1, -0.1, 1, -1, -1.2, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8rj8h"]
+vertices = PackedVector3Array(-0.90101, -1.2, 1, -1, -1.2, 0.90101, -1, -1.2, 0.90101, -1, -1.2, -0.90101, -1, -1.2, -0.90101, -0.90101, -1.2, -1, 1, -1.2, 0.90101, 1, -1.2, 0.90101, 0.90101, -1.2, 1, 0.90101, -1.2, -1, 1, -1.2, -0.90101, 1, -1.2, -0.90101, -1, -0.219278, -0.900931, -1, -0.219278, -0.900931, -1, -0.219278, -0.900931, -0.900931, -0.219278, -1, -0.900931, -0.219278, -1, 0.900931, -0.219278, -1, 0.900931, -0.219278, -1, 1, -0.219278, -0.900931, 1, -0.219278, -0.900931, 1, -0.219278, -0.900931, 1, -0.219278, 0.900931, 1, -0.219278, 0.900931, 1, -0.219278, 0.900931, 0.900931, -0.219278, 1, 0.900931, -0.219278, 1, -0.900931, -0.219278, 1, -0.900931, -0.219278, 1, -1, -0.219278, 0.900931, -1, -0.219278, 0.900931, -1, -0.219278, 0.900931, -0.839795, -0.119278, -0.834572, 0.839795, -0.119278, -0.834572, 0.834572, -0.119278, 0.839795, -0.839795, -0.119278, 0.834572, -0.90101, -1.2, 1, -0.90101, -1.2, 1, -1, -1.2, 0.90101, -1, -1.2, 0.90101, -1, -1.2, -0.90101, -1, -1.2, -0.90101, -0.90101, -1.2, -1, 1, -1.2, 0.90101, 1, -1.2, 0.90101, 0.90101, -1.2, 1, 0.90101, -1.2, -1, 0.90101, -1.2, -1, 1, -1.2, -0.90101, 1, -1.2, -0.90101, -1, -0.219278, -0.900931, -1, -0.219278, -0.900931, -1, -0.219278, -0.900931, -0.900931, -0.219278, -1, -0.900931, -0.219278, -1, 1, -0.219278, -0.900931, 1, -0.219278, -0.900931, 1, -0.219278, -0.900931, 1, -0.219278, 0.900931, 1, -0.219278, 0.900931, 1, -0.219278, 0.900931, 0.900931, -0.219278, 1, 0.900931, -0.219278, 1, 0.900931, -0.219278, 1, -1, -0.219278, 0.900931, -1, -0.219278, 0.900931, -1, -0.219278, 0.900931, -1, -0.219278, 0.900931, -1, -0.219278, 0.900931, 0.183405, -0.00119261, 0.816595, 0.183405, -0.00119261, -0.816595, 0.816595, -0.00119261, -0.816595, 0.816595, -0.00119261, 0.816595, 0, -0.519278, -0.900931, 0, -0.519278, -0.900931, 0.0990694, -0.519278, -1, 0.900931, -0.519278, -1, 1, -0.519278, -0.900931, 1, -0.519278, -0.900931, 1, -0.519278, 0.900931, 1, -0.519278, 0.900931, 0.900931, -0.519278, 1, 0.0990694, -0.519278, 1, 0, -0.519278, 0.900931, 0, -0.519278, 0.900931, -0.0543332, -0.282222, 0.955167, -0.0543332, -0.282222, 0.955167, 0.0448327, -0.282222, 1.05433, -0.0543332, -0.282222, -0.955167, -0.0543332, -0.282222, -0.955167, 0.0448327, -0.282222, -1.05433, 0.0448327, -0.282222, -1.05433, 0.955167, -0.282222, -1.05433, 1.05433, -0.282222, -0.955167, 1.05433, -0.282222, -0.955167, 1.05433, -0.282222, 0.955167, 1.05433, -0.282222, 0.955167, 0.955167, -0.282222, 1.05433, 0.955167, -0.282222, 1.05433, 0.0991759, -0.0468079, 1, 0.0991759, -0.0468079, 1, 0, -0.0468079, 0.900824, 0, -0.0468079, 0.900824, 0, -0.0468079, 0.900824, 5.96046e-08, -0.0468079, -0.900824, 5.96046e-08, -0.0468079, -0.900824, 0.0991759, -0.0468079, -1, 0.0991759, -0.0468079, -1, 0.0991759, -0.0468079, -1, 0.900824, -0.0468079, -1, 0.900824, -0.0468079, -1, 1, -0.0468079, -0.900824, 1, -0.0468079, -0.900824, 1, -0.0468079, -0.900824, 1, -0.0468079, 0.900824, 1, -0.0468079, 0.900824, 0.900824, -0.0468079, 1, 0.900824, -0.0468079, 1, 0.900824, -0.0468079, 1, 0.0990694, -0.519278, -1, 0.900931, -0.519278, -1, 0.900931, -0.519278, -1, 1, -0.519278, -0.900931, 1, -0.519278, -0.900931, 1, -0.519278, 0.900931, 0.900931, -0.519278, 1, 0.0990694, -0.519278, 1, 0, -0.519278, 0.900931, 0, -0.519278, 0.900931, -0.0543332, -0.282222, 0.955167, -0.0543332, -0.282222, 0.955167, -0.0543332, -0.282222, -0.955167, -0.0543332, -0.282222, -0.955167, -0.0543332, -0.282222, -0.955167, -0.0543332, -0.282222, -0.955167, 1.05433, -0.282222, -0.955167, 1.05433, -0.282222, -0.955167, 1.05433, -0.282222, 0.955167, 1.05433, -0.282222, 0.955167, 0.0991759, -0.0468079, 1, 0.0991759, -0.0468079, 1, 0, -0.0468079, 0.900824, 0, -0.0468079, 0.900824, 0, -0.0468079, 0.900824, 5.96046e-08, -0.0468079, -0.900824, 5.96046e-08, -0.0468079, -0.900824, 0.0991759, -0.0468079, -1, 0.0991759, -0.0468079, -1, 0.900824, -0.0468079, -1, 0.900824, -0.0468079, -1, 1, -0.0468079, -0.900824, 1, -0.0468079, -0.900824, 1, -0.0468079, -0.900824, 1, -0.0468079, 0.900824, 1, -0.0468079, 0.900824, 0.900824, -0.0468079, 1, 0.900824, -0.0468079, 1)
+polygons = [PackedInt32Array(8, 27, 25), PackedInt32Array(8, 0, 27), PackedInt32Array(11, 22, 21), PackedInt32Array(11, 6, 22), PackedInt32Array(5, 18, 16), PackedInt32Array(5, 9, 18), PackedInt32Array(16, 3, 5), PackedInt32Array(16, 13, 3), PackedInt32Array(20, 9, 10), PackedInt32Array(20, 18, 9), PackedInt32Array(25, 7, 8), PackedInt32Array(25, 23, 7), PackedInt32Array(0, 29, 27), PackedInt32Array(0, 1, 29), PackedInt32Array(2, 14, 31), PackedInt32Array(2, 4, 14), PackedInt32Array(30, 35, 28), PackedInt32Array(24, 33, 19), PackedInt32Array(24, 34, 33), PackedInt32Array(28, 34, 26), PackedInt32Array(28, 35, 34), PackedInt32Array(26, 34, 24), PackedInt32Array(12, 35, 30), PackedInt32Array(12, 32, 35), PackedInt32Array(19, 33, 17), PackedInt32Array(17, 32, 15), PackedInt32Array(17, 33, 32), PackedInt32Array(15, 32, 12), PackedInt32Array(35, 33, 34), PackedInt32Array(35, 32, 33), PackedInt32Array(72, 70, 71), PackedInt32Array(72, 69, 70), PackedInt32Array(75, 92, 90), PackedInt32Array(75, 76, 92), PackedInt32Array(94, 114, 113), PackedInt32Array(94, 95, 114), PackedInt32Array(98, 99, 117), PackedInt32Array(98, 87, 99), PackedInt32Array(90, 110, 107), PackedInt32Array(90, 92, 110), PackedInt32Array(85, 105, 101), PackedInt32Array(85, 89, 105), PackedInt32Array(78, 95, 94), PackedInt32Array(78, 79, 95), PackedInt32Array(83, 89, 85), PackedInt32Array(83, 74, 89), PackedInt32Array(81, 87, 98), PackedInt32Array(81, 82, 87), PackedInt32Array(87, 102, 99), PackedInt32Array(87, 86, 102), PackedInt32Array(90, 73, 75), PackedInt32Array(90, 88, 73), PackedInt32Array(93, 76, 77), PackedInt32Array(93, 92, 76), PackedInt32Array(98, 80, 81), PackedInt32Array(98, 96, 80), PackedInt32Array(82, 86, 87), PackedInt32Array(82, 84, 86), PackedInt32Array(108, 89, 91), PackedInt32Array(108, 105, 89), PackedInt32Array(112, 92, 93), PackedInt32Array(112, 110, 92), PackedInt32Array(116, 95, 97), PackedInt32Array(116, 114, 95), PackedInt32Array(69, 100, 103), PackedInt32Array(70, 104, 106), PackedInt32Array(71, 109, 111), PackedInt32Array(72, 115, 118), PackedInt32Array(69, 104, 70), PackedInt32Array(69, 103, 104), PackedInt32Array(72, 100, 69), PackedInt32Array(72, 118, 100), PackedInt32Array(71, 115, 72), PackedInt32Array(71, 111, 115), PackedInt32Array(70, 109, 71), PackedInt32Array(70, 106, 109)]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2kwx4"]
 _surfaces = [{
@@ -766,6 +772,7 @@ albedo_texture = ExtResource("3_w602o")
 
 [node name="path_edge_straight" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_7tag2")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -776,8 +783,12 @@ surface_material_override/1 = ExtResource("2_qcv5w")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="path_edge_straight/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_yla0j")
 
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="path_edge_straight"]
+navigation_mesh = SubResource("NavigationMesh_8rj8h")
+
 [node name="path_edge_corner_outer" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 0, 9.65599e-07, 0, 0.5, 0, -9.65599e-07, 0, -0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_kurx3")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -791,6 +802,7 @@ shape = SubResource("ConcavePolygonShape3D_v24fj")
 
 [node name="path_edge_corner_inner" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_p6e1a")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -803,6 +815,7 @@ shape = SubResource("ConcavePolygonShape3D_qi1eb")
 
 [node name="dirt_flat" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_17at8")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -814,6 +827,7 @@ shape = SubResource("ConcavePolygonShape3D_17a6u")
 
 [node name="dirt_ramp" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_qhexk")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -825,6 +839,7 @@ shape = SubResource("ConcavePolygonShape3D_euxx3")
 
 [node name="grass_ramp" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0.5, 0, 0.5, 0, -0.5, 0, 0, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_15qa1")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -838,6 +853,7 @@ shape = SubResource("ConcavePolygonShape3D_p7shu")
 
 [node name="grass_flat" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 0.5, 0, 0.5, 0, -0.5, 0, 0, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_v807u")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -851,6 +867,7 @@ shape = SubResource("ConcavePolygonShape3D_8llaj")
 
 [node name="edge_ramp_L" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_stdln")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -863,6 +880,7 @@ shape = SubResource("ConcavePolygonShape3D_876bw")
 
 [node name="edge_ramp_R" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_pt4ab")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("1_yqbla")
@@ -875,6 +893,7 @@ shape = SubResource("ConcavePolygonShape3D_jvngu")
 
 [node name="water" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_2u0ub")
 skeleton = NodePath("")
 
@@ -886,6 +905,7 @@ shape = SubResource("ConcavePolygonShape3D_ltavs")
 
 [node name="coppice_fence_straight_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_g2cxw")
 skeleton = NodePath("")
 
@@ -896,6 +916,7 @@ shape = SubResource("ConcavePolygonShape3D_f114m")
 
 [node name="coppice_fence_corner_outer_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_ahtv2")
 skeleton = NodePath("")
 
@@ -906,6 +927,7 @@ shape = SubResource("ConcavePolygonShape3D_l2xmg")
 
 [node name="coppice_fence_end_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 0, 1.62921e-07, 0, 0.5, 0, -1.62921e-07, 0, -0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_oxvnf")
 skeleton = NodePath("")
 
@@ -916,6 +938,7 @@ shape = SubResource("ConcavePolygonShape3D_pc8m6")
 
 [node name="coppice_fence_end_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 0, 1.62921e-07, 0, 0.5, 0, -1.62921e-07, 0, -0.5, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_msm88")
 skeleton = NodePath("")
 
@@ -926,6 +949,7 @@ shape = SubResource("ConcavePolygonShape3D_4541c")
 
 [node name="coppice_fence_straight_002" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, -0.5, 0, 0.5, 0, 0.5, 0, 0, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_ik83e")
 skeleton = NodePath("")
 
@@ -936,6 +960,7 @@ shape = SubResource("ConcavePolygonShape3D_sguty")
 
 [node name="stair_stone_01" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
 mesh = SubResource("ArrayMesh_1qnto")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_04e6w")
@@ -944,4 +969,30 @@ surface_material_override/0 = SubResource("StandardMaterial3D_04e6w")
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="stair_stone_01/StaticBody3D"]
+visible = false
 shape = SubResource("ConcavePolygonShape3D_p7shu")
+
+[node name="stone_flat" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = ExtResource("4_3kbjn")
+mesh = SubResource("ArrayMesh_17at8")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("4_3kbjn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stone_flat"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stone_flat/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17a6u")
+
+[node name="wood_planks_01" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+visible = false
+material_override = ExtResource("5_efiqq")
+mesh = SubResource("ArrayMesh_17at8")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("5_efiqq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="wood_planks_01"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="wood_planks_01/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_17a6u")
