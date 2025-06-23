@@ -27,6 +27,9 @@ func _on_attack_animation_finished():
 	Transitioned.emit("AngryBugAttackCooldown", target)
 
 func _on_attack_animation_apply_damage():
+	if !target:
+		pass
+	
 	# Check if the body has a receive damage function
 	if target.has_method("receive_damage"):
 
