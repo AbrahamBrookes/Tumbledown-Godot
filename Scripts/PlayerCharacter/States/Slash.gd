@@ -43,17 +43,22 @@ func finish_slashing():
 
 
 func _on_hit_capsule_body_entered(body):
-	if body.has_method('hurt'):
-		print("body has hurt: ", body)
+	if body.has_method('receive_damage'):
 		hittable_enemies.append(body)
 
 
 func _on_hit_capsule_body_exited(body):
-	if body.has_method('hurt'):
+	if body.has_method('receive_damage'):
 		hittable_enemies.erase(body)
 
 
 func _on_apply_hurt_timer_timeout():
 	# loop through enemeies and hurt them
 	for enemy in hittable_enemies:
-		enemy.hurt(1, owner.global_position)
+		# our damage is a special type with a type and amount
+		var damage = Damage.new()
+		damage.type = Damage.DamageType.SPIKY
+		damage.amount = 1
+		damage.source = self
+		# Call the receive damage function on the body
+		enemy.receive_damage(damage)

@@ -7,7 +7,10 @@ class_name PlayerCharacter
 @export var INVINCIBLE : bool = false
 
 @export var animTree : AnimationTree
-@onready var stateMachine = $StateMachine
+@export var stateMachine : StateMachine
+
+# the team this entity is on - 1 = player, 2 = enemy
+var team = 1
 
 func _ready():
 	stateMachine.TransitionTo("Locomote")
@@ -55,9 +58,6 @@ func _physics_process(state):
 		linear_damp = 0
 		gravity_scale = 8
 
-	# update the animation tree with the real velocity
-	animTree.set("parameters/StateMachine/Locomote/blend_position", linear_velocity.length() / SPEED)
-	
 
 # called when we receive a hurt from somewhere
 func receive_damage(damage:Damage):
@@ -74,8 +74,6 @@ func receive_damage(damage:Damage):
 	animTree.set("parameters/BlendSpace1D/blend_position", 0.0)
 	# animTree.set("parameters/Hit", true)
 	# animTree.set("parameters/Hit", false)
-
-	print("hurasdasdast for " + str(damage.amount) + " damage")
 	
 	# get the vector from the source to us
 	var attackVector = global_transform.origin - damage.source.global_transform.origin

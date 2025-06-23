@@ -41,6 +41,8 @@ func Physics_Update(_delta: float):
 	input_walk()
 
 func input_walk():
+	# update the animation tree with the real velocity
+	machine.animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.linear_velocity.length() / SPEED)
 	
 	if not owner.get_node('GroundCast').is_colliding():
 		return
@@ -62,6 +64,8 @@ func input_walk():
 	# rotate $SkinnedMesh to face the direction of movement
 	if input_direction != Vector3.ZERO:
 		owner.get_node('SkinnedMesh').look_at(owner.get_node('SkinnedMesh').global_transform.origin - input_direction, Vector3.UP)
+		
+	
 
 # this is called by the pushy_crate when we bump into it
 func lean_crate(crate: Node3D):
