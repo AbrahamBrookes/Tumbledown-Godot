@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://h15eypvd0v6v"]
+[gd_scene load_steps=7 format=3 uid="uid://h15eypvd0v6v"]
 
 [ext_resource type="PackedScene" uid="uid://cgoyqjlfx43ox" path="res://Levels/Tetchi Woods/submaps/Tellers Bend.tscn" id="1_rtbw0"]
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
 [ext_resource type="PackedScene" uid="uid://t13arqr156fh" path="res://Levels/Tetchi Woods/submaps/Watchetty Wood.tscn" id="3_ojst0"]
+[ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="4_336xh"]
+[ext_resource type="PackedScene" uid="uid://cp6dpii7otbty" path="res://UI/Dialogue/Conversee.tscn" id="5_7b4cp"]
+[ext_resource type="Resource" uid="uid://ckcva8caclvoy" path="res://UI/Dialogue/test_conversation_line.tres" id="6_ykxvq"]
 
 [node name="Tetchi Woods" type="Node3D"]
 
@@ -12,3 +15,12 @@
 
 [node name="submap_base" parent="." instance=ExtResource("3_ojst0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -20)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("4_336xh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1861, 6, -11.4327)
+
+[node name="Conversee" parent="." instance=ExtResource("5_7b4cp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2426, 2.2228, -18.5071)
+firstLine = ExtResource("6_ykxvq")
+
+[editable path="Conversee"]
