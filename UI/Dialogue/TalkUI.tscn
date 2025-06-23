@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://ielnjknv2524"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2i8m"]
+bg_color = Color(0, 0, 0, 0.862745)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+anti_aliasing_size = 0.1
+
+[sub_resource type="LabelSettings" id="LabelSettings_qg884"]
+line_spacing = 0.0
+font_size = 500
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcjum"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+anti_aliasing_size = 0.25
+
+[sub_resource type="LabelSettings" id="LabelSettings_bujga"]
+font_size = 500
+font_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -20.0
+offset_right = -60.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 96.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p2i8m")
+
+[node name="BoxContainer" type="BoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -21.0
+offset_right = 1100.0
+offset_bottom = 779.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/BoxContainer"]
+layout_mode = 2
+text = "talk"
+label_settings = SubResource("LabelSettings_qg884")
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 35.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qcjum")
+
+[node name="Label" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 340.0
+offset_bottom = 685.0
+scale = Vector2(0.04, 0.04)
+text = "A"
+label_settings = SubResource("LabelSettings_bujga")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(200, 40)
+render_target_update_mode = 4

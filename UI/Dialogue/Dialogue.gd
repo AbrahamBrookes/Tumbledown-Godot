@@ -10,6 +10,9 @@ var timer
 # the text node in the scene tree used for showing text content
 var textNode : RichTextLabel
 
+# the body we are conversing with
+var conversee : Conversee
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,22 +21,38 @@ func _ready():
 	textNode = $ColorRect/Text
 	textNode.visible_characters = 0
 	
-	setText("this is my test text")
-	startText()
+	visible = false
 
 # a public method for passing te content in to this node
 func setText(text: String):
-	textContent = text
+	textNode.text = text
 	textNode.visible_characters = 0
 
 # a public method for starting the text roll by kicking off the timer
 func startText():
+	visible = true
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("interact"):
+		if !!conversee:
+			conversee.start_conversation(self)
 	pass
 
 
 func _on_timer_timeout():
 	textNode.visible_characters += 1
+
+# When a body enters the attack range collider, tell it we want to converse
+func _on_conversation_collider_entered(body):
+	if body is Conversee:
+		if !conversee:
+			conversee = body
+			conversee.show_conversation_start()
+
+# When a body enters the attack range collider, tell it we want to converse
+func _on_conversation_collider_exited(body):
+	if body == conversee:
+		body.hide_conversation_start()
+		conversee = null
