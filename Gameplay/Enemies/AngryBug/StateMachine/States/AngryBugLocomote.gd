@@ -3,7 +3,7 @@ class_name AngryBugLocomote
 
 func Enter(extra_data = null):
 	# set anim speed
-	machine.animTree.set("parameters/StateMachine/AngryBugLocomote/blend_position", 2)
+	state_machine.animTree.set("parameters/StateMachine/AngryBugLocomote/blend_position", 2)
 
 func Exit():
 	pass

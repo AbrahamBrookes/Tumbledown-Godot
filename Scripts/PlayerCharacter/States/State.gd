@@ -1,15 +1,18 @@
 extends Node3D
 class_name State
 
-signal Transitioned
+signal Transitioned(new_state_name: String, extra_data)
+
+#some states may want to transition to themselves but usually not
+@export var allow_self_transition: bool = false
 
 # playercharacter is the immediate scene root
 @onready var playerCharacter = owner
 
 # the state machine is always the immediate parent of the state it is managing
-@onready var machine = get_parent()
+var state_machine : StateMachine
 
-func Enter(extra_data = null):
+func Enter(_extra_data = null):
 	pass
 
 

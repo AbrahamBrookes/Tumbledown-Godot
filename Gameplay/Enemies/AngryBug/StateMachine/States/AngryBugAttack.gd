@@ -16,6 +16,11 @@ func Update(_delta: float):
 
 
 func Physics_Update(delta: float):
+	# if we have lost the target, go back to idle
+	if not target:
+		Transitioned.emit("AngryBugIdle")
+		return
+		
 	var look_dir = (target.global_transform.origin - global_transform.origin).normalized()
 	var desired_basis = Basis.looking_at(look_dir, Vector3.UP)
 	var current_basis = mesh.global_transform.basis
@@ -28,7 +33,7 @@ func _on_attack_animation_finished():
 
 func _on_attack_animation_apply_damage():
 	if !target:
-		pass
+		return
 	
 	# Check if the body has a receive damage function
 	if target.has_method("receive_damage"):
@@ -36,7 +41,7 @@ func _on_attack_animation_apply_damage():
 		#check the target is within attack range
 		if global_transform.origin.distance_to(target.global_transform.origin) > owner.ATTACK_RANGE:
 			# Target is out of range, do not apply damage
-			machine.travel("AngryBugPursue", target)
+			state_machine.travel("AngryBugPursue", target)
 			return
 
 		# our damage is a special type with a type and amount

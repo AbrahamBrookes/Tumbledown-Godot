@@ -15,6 +15,7 @@ func Exit():
 
 func Physics_Update(delta):
 	if not target:
+		Transitioned.emit("AngryBugIdle")
 		return
 		
 	# update the target

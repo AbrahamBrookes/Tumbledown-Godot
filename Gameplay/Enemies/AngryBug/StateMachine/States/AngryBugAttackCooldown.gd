@@ -24,4 +24,4 @@ func Physics_Update(_delta: float):
 
 func _on_timer_timeout():
 	# when the timer times out, we can go back to attacking
-	machine.travel("AngryBugAttack", target)
+	state_machine.travel("AngryBugAttack", target)

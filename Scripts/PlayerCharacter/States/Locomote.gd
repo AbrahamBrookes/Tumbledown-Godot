@@ -3,15 +3,16 @@ class_name Locomote
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@export var mass = 10.0
 
-@export var SPEED = 5.0
 @export var LERP_SPEED = 0.35
+@export var acceleration := 10.0
+var target_velocity := Vector3.ZERO
 
 var can_slash = true
 
 func Enter(extra_data = null):
-	owner.animTree.set("parameters/AnimSpeed/scale", 2.0)
+	owner.animTree.set("parameters/AnimSpeed/scale", 3.0)
+
 
 func Exit():
 	pass
@@ -21,7 +22,7 @@ func Update(_delta: float):
 	pass
 
 
-func Physics_Update(_delta: float):
+func Physics_Update(delta: float):
 	# if the player presses crouch, crouch
 	if Input.is_action_just_pressed('crouch'):
 		Transitioned.emit('Crouching')
@@ -38,14 +39,12 @@ func Physics_Update(_delta: float):
 			Transitioned.emit("Jumping")
 			return
 	
-	input_walk()
+	input_walk(delta)
 
-func input_walk():
+
+func input_walk(delta: float):
 	# update the animation tree with the real velocity
-	machine.animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.linear_velocity.length() / SPEED)
-	
-	if not owner.get_node('GroundCast').is_colliding():
-		return
+	state_machine.animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.velocity.length() / playerCharacter.move_speed)
 	
 	var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
 	var input_direction = Vector3(
@@ -56,16 +55,33 @@ func input_walk():
 
 	input_direction = input_direction.normalized() * playerCharacter.move_speed
 	
-	if input_direction == Vector3.ZERO:
+	# Convert input to world direction
+	#move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	if not playerCharacter.is_on_floor():
+		var fall_multiplier := 3.5
+		var max_fall_speed := 50.0  # tweak this
+
+		# Apply gravity
+		playerCharacter.velocity.y = max(playerCharacter.velocity.y - gravity * fall_multiplier * delta, -max_fall_speed)
+
+		# Apply air drag
+		var air_drag := 8.0
+		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, 0.0, air_drag * delta)
+		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, air_drag * delta)
+
+		playerCharacter.move_and_slide()
 		return
 	
-	playerCharacter.apply_central_force(input_direction * playerCharacter.move_speed * 40)
 	
-	# rotate $SkinnedMesh to face the direction of movement
-	if input_direction != Vector3.ZERO:
+	if input_direction.length() > 0.01:
+		# Rotate toward movement direction (top-down, yaw only)
 		owner.get_node('SkinnedMesh').look_at(owner.get_node('SkinnedMesh').global_transform.origin - input_direction, Vector3.UP)
-		
-	
+
+	playerCharacter.velocity.x = input_direction.x
+	playerCharacter.velocity.z = input_direction.z
+	playerCharacter.move_and_slide()
+
 
 # this is called by the pushy_crate when we bump into it
 func lean_crate(crate: Node3D):
