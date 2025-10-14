@@ -1,18 +1,134 @@
-[gd_scene load_steps=42 format=3 uid="uid://5oyo75w8bmvq"]
+[gd_scene load_steps=42 format=3 uid="uid://c5eoj2ew1c24k"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_character_root.gd" id="1_6v30c"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_character.gd" id="2_q7ld7"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="2_2qmth"]
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="3_n4e6q"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/StateMachine.gd" id="4_vd4kp"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/EnemyWander.gd" id="5_87sd3"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="6_afnhe"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="7_x7dml"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/LeaningCrate.gd" id="8_myuww"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/PushingCrate.gd" id="9_xe6gf"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Crouching.gd" id="10_q077h"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/States/Crawling.gd" id="11_3g0di"]
-[ext_resource type="Script" path="res://Scripts/PlayerCharacter/player_camera_pivot.gd" id="12_qm30x"]
+[ext_resource type="Script" uid="uid://cf1k2ydotw064" path="res://Scripts/PlayerCharacter/States/EnemyWander.gd" id="5_87sd3"]
+[ext_resource type="Script" uid="uid://bm7xyyr5k284s" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="6_afnhe"]
+[ext_resource type="Script" uid="uid://cg7tsdk2ofmni" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="7_x7dml"]
+[ext_resource type="Script" uid="uid://r14b1w2ap2jr" path="res://Scripts/PlayerCharacter/States/LeaningCrate.gd" id="8_myuww"]
+[ext_resource type="Script" uid="uid://cso4uel115xs0" path="res://Scripts/PlayerCharacter/States/PushingCrate.gd" id="9_xe6gf"]
+[ext_resource type="Script" uid="uid://dy3ag1l4iwq0g" path="res://Scripts/PlayerCharacter/States/Crouching.gd" id="10_q077h"]
+[ext_resource type="Script" uid="uid://bcle844nc463r" path="res://Scripts/PlayerCharacter/States/Crawling.gd" id="11_3g0di"]
 [ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="13_tr5ml"]
+
+[sub_resource type="GDScript" id="GDScript_fxc0a"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func save():
+	print(\"player_character save\")
+	var save_dict = {
+		\"filename\" : get_scene_file_path(),
+		\"parent\" : get_parent().get_path(),
+		\"pos_x\" : position.x,
+		\"pos_y\" : position.y,
+		\"pos_z\" : position.z
+	}
+	return save_dict
+"
+
+[sub_resource type="GDScript" id="GDScript_wg041"]
+script/source = "extends RigidBody3D
+class_name PlayerCharacter
+
+@export var SPEED = 5.0
+@export var LERP_SPEED = 0.35
+@export var JUMP_VELOCITY = 4.5
+@export var INVINCIBLE : bool = false
+
+@export var animTree : AnimationTree
+@export var stateMachine : StateMachine
+
+# the team this entity is on - 1 = player, 2 = enemy
+var team = 1
+
+func _ready():
+	stateMachine.TransitionTo(\"Locomote\")
+
+func _process(delta):
+	pass
+
+@export var move_speed = 15
+
+
+
+#	# Get the input direction and handle the movement/deceleration.
+#	var input_dir = Input.get_vector(\"walk_west\", \"walk_east\", \"walk_north\", \"walk_south\")
+#	
+#	if input_dir:
+#		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, input_dir.x * SPEED, LERP_SPEED)
+#		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, input_dir.y * SPEED, LERP_SPEED)
+#		
+#		# rotate to face direction
+#		## add the direction to the current position
+#		var lookat_location = playerCharacter.global_transform.origin + Vector3(input_dir.x, 0, input_dir.y)
+#		## lookat that location
+#		playerCharacter.look_at(lookat_location, Vector3.UP)
+#	else:
+#		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, 0.0, LERP_SPEED)
+#		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, LERP_SPEED)
+#	
+#	animTree.set(\"parameters/StateMachine/Locomote/blend_position\", playerCharacter.velocity.length() / SPEED)
+#	
+#	
+#	for i in playerCharacter.get_slide_collision_count():
+#		var collider = playerCharacter.get_slide_collision(i).get_collider()
+#		if(collider.has_method('push')):
+#			# only if we are pushing towards a cardinal direction (no diagonals)
+#			var input = Input.get_vector(\"walk_west\", \"walk_east\", \"walk_north\", \"walk_south\").round()
+#			# one of the values in the vector must be zero
+#			if input.x == 0 or input.y == 0 and input != Vector2.ZERO:
+#				get_parent().TransitionTo(\"LeaningCrate\", collider)
+
+func _physics_process(state):
+	
+	linear_damp = 25
+	gravity_scale = 1
+	if not $GroundCast.is_colliding():
+		linear_damp = 0
+		gravity_scale = 8
+
+
+# called when we receive a hurt from somewhere
+func receive_damage(damage:Damage):
+	# only if we're not invincible
+	if INVINCIBLE:
+		return
+	else:
+		INVINCIBLE = true
+
+	# stop all movement
+#	velocity = Vector3.ZERO
+
+	# play hurt animation
+	animTree.set(\"parameters/BlendSpace1D/blend_position\", 0.0)
+	# animTree.set(\"parameters/Hit\", true)
+	# animTree.set(\"parameters/Hit\", false)
+	
+	# get the vector from the source to us
+	var attackVector = global_transform.origin - damage.source.global_transform.origin
+	# normalize it
+	var normalizedAttackVector = attackVector.normalized()
+	normalizedAttackVector.y = 0
+	# apply impulse to player character
+	apply_impulse(normalizedAttackVector * 4000)
+
+	# flash the players visibility
+	for n in 20:
+		visible = !visible
+		await get_tree().create_timer(0.05).timeout
+	
+	INVINCIBLE = false
+"
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_alo0e"]
 
@@ -109,19 +225,38 @@ transitions = ["Start", "Locomote", SubResource("AnimationNodeStateMachineTransi
 graph_offset = Vector2(-10, -211)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d3hs1"]
+nodes/output/position = Vector2(220, 100)
 nodes/AnimSpeed/node = SubResource("AnimationNodeTimeScale_alo0e")
 nodes/AnimSpeed/position = Vector2(60, 100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_61bxm")
 nodes/StateMachine/position = Vector2(-120, 100)
-nodes/output/position = Vector2(220, 100)
 node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_htfwu"]
 radius = 0.15
 height = 0.8
 
+[sub_resource type="GDScript" id="GDScript_7d1ii"]
+script/source = "class_name PlayerCameraPivot
+extends Node3D
+
+@onready var player = $\"../PlayerCharacter\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	# lock the pivot location to the players location
+	# in the future this can be smoothed or whatever
+	transform.origin = player.transform.origin
+	pass
+"
+
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_6v30c")
+script = SubResource("GDScript_fxc0a")
 
 [node name="PlayerCharacter" type="PlayerCharacter3D" parent="."]
 _import_path = NodePath("")
@@ -130,8 +265,10 @@ process_mode = 0
 process_priority = 0
 process_physics_priority = 0
 process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
 editor_description = ""
-script = ExtResource("2_q7ld7")
+script = SubResource("GDScript_wg041")
 
 [node name="SkinnedMesh" parent="PlayerCharacter" instance=ExtResource("3_n4e6q")]
 transform = Transform3D(-1, 0, -6.28631e-06, 0, 1, 0, 6.28631e-06, 0, -1, 0, 0, 0)
@@ -196,7 +333,6 @@ bones/58/position = Vector3(6.91008e-15, 0.778006, 0.467975)
 [node name="AnimationTree" type="AnimationTree" parent="PlayerCharacter/SkinnedMesh"]
 tree_root = SubResource("AnimationNodeBlendTree_d3hs1")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/AnimSpeed/scale = 1.0
 parameters/StateMachine/Locomote/blend_position = -0.0275049
 parameters/StateMachine/crawling/blend_position = 0.0
@@ -206,7 +342,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
 shape = SubResource("CapsuleShape3D_htfwu")
 
 [node name="StateMachine" type="Node" parent="PlayerCharacter" node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_vd4kp")
+script = ExtResource("2_2qmth")
 initial_state = NodePath("Locomote")
 
 [node name="EnemyWander" type="Node" parent="PlayerCharacter/StateMachine"]
@@ -231,7 +367,7 @@ script = ExtResource("10_q077h")
 script = ExtResource("11_3g0di")
 
 [node name="PlayerCameraPivot" type="Node3D" parent="."]
-script = ExtResource("12_qm30x")
+script = SubResource("GDScript_7d1ii")
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCameraPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.658125, 0.752909, 0, -0.752909, 0.658125, -4.76837e-07, 5.11775, 3.42914)
