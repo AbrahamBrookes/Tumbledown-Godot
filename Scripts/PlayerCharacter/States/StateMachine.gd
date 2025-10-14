@@ -74,4 +74,3 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 # an alias for TransitionTo
 func travel(new_state_name, extra_data = null):
 	TransitionTo(new_state_name, extra_data)
-
