@@ -1,6 +1,18 @@
 extends Node3D
 class_name StateMachine
 
+## The state machine applies only to the player character. In our game the player
+## can be in arange of states, and these states influence things like which animation
+## to run, what the controller does and what states can be transitioned to. For instance
+## the player can climb a ladder, so the left and right inputs can be ignored, they
+## are not able to attack, and they need to use the 'climbing ladder' animation.
+## The state machine is driven by State objects which are children of the StateMachine.
+## Each State object has its own script which defines what happens when the state is entered,
+## exited, and what happens each frame while in that state. States can emit a signal
+## to transition to another state, or the StateMachine can be told to transition to
+## another state by other objects, such as the player controller script.
+## See the StateMachineTest.gd script in test/unit/Scripts/StateMachine
+
 @export var animTree : AnimationTree
 # playback is the engine-level animation tree state machine
 var playback: AnimationNodeStateMachinePlayback
@@ -77,3 +89,12 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 # an alias for TransitionTo
 func travel(new_state_name, extra_data = null):
 	TransitionTo(new_state_name, extra_data)
+
+# allow external scripts to check our current state against a list of states
+func is_in_states(state_names: Array[String]) -> bool:
+	if not current_state:
+		return false
+	for name in state_names:
+		if current_state.name.to_lower() == name.to_lower():
+			return true
+	return false
