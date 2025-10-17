@@ -7,7 +7,7 @@ class_name BehaviourTreeCondition
 ## such as checking if an enemy is in range, if health is above a certain
 ## threshold, or if a specific item is available.
 
-func tick(_blackboard: Dictionary) -> int:
+func tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# Override this method in subclasses to implement specific condition logic.
 	# Return SUCCESS if the condition is met, otherwise return FAILURE.
 	push_error("BehaviourTreeCondition: tick() not implemented!")

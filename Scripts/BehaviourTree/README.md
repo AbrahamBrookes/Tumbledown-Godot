@@ -39,7 +39,7 @@ Enemy (CharacterBody3D)
 ├── BehaviourTree
 │   └── BehaviourTreeSelector (root)
 │       ├── BehaviourTreeSequence (high priority branch)
-│       │   ├── PlayerInRangeCondition
+│       │   ├── CurrentTargetInRangeCondition
 │       │   └── AttackPlayerAction
 │       ├── BehaviourTreeSequence (medium priority branch)
 │       │   ├── PlayerVisibleCondition
@@ -73,11 +73,11 @@ func _physics_process(_delta):
 ### 3. Create Custom Conditions
 ```gdscript
 extends BehaviourTreeCondition
-class_name PlayerInRangeCondition
+class_name CurrentTargetInRangeCondition
 
 @export var range_key: String = "attack_range"
 
-func tick(blackboard: Dictionary) -> int:
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
     var player_distance = blackboard.get("player_distance", INF)
     var attack_range = blackboard.get(range_key, 2.0)
     
@@ -95,7 +95,7 @@ class_name AttackPlayerAction
 var attack_timer: float = 0.0
 @export var attack_duration: float = 1.0
 
-func tick(blackboard: Dictionary) -> int:
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
     var enemy = get_owner()
     
     if attack_timer <= 0:
@@ -144,7 +144,7 @@ Sequence
 ### BehaviourTreeCondition (Leaf Node)
 Override `tick()` to implement condition logic:
 ```gdscript
-func tick(blackboard: Dictionary) -> int:
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
     # Check some game state
     if some_condition():
         return BehaviourTreeResult.Status.SUCCESS
@@ -155,7 +155,7 @@ func tick(blackboard: Dictionary) -> int:
 ### BehaviourTreeAction (Leaf Node)
 Override `tick()` to implement action logic:
 ```gdscript
-func tick(blackboard: Dictionary) -> int:
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
     # For instant actions:
     perform_action()
     return BehaviourTreeResult.Status.SUCCESS
@@ -207,7 +207,7 @@ Selector
 Test individual nodes in isolation:
 ```gdscript
 func test_player_in_range_condition():
-    var condition = PlayerInRangeCondition.new()
+    var condition = CurrentTargetInRangeCondition.new()
     var blackboard = {
         "player_distance": 1.5,
         "attack_range": 2.0
@@ -238,7 +238,7 @@ func test_enemy_attacks_when_player_in_range():
 ### Visual Debugging
 Add debug prints to see tree execution:
 ```gdscript
-func tick(blackboard: Dictionary) -> int:
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
     var result = # ... your logic
     
     if debug_mode:

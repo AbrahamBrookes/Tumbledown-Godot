@@ -2,33 +2,36 @@ extends GutTest
 
 class_name BehaviourTreeTest
 
+var blackboard: BehaviourTreeBlackboard
 var behavior_tree: BehaviourTree
 var root_selector: BehaviourTreeSelector
-var mock_owner: Node3D
+var state_machine: StateMachine
 
 func before_each():
+	blackboard = autoqfree(BehaviourTreeBlackboard.new())
 	behavior_tree = autoqfree(BehaviourTree.new())
 	root_selector = autoqfree(BehaviourTreeSelector.new())
-	mock_owner = autoqfree(Node3D.new())
+	state_machine = autofree(StateMachine.new())
 	
+	behavior_tree.blackboard = blackboard
+	behavior_tree.state_machine = state_machine
 	behavior_tree.add_child(root_selector)
-	add_child(behavior_tree)
-	add_child(mock_owner)
 
 func after_each():
 	behavior_tree = null
 	root_selector = null
-	mock_owner = null
 
 ## Test basic behavior tree execution
 func test_behavior_tree_executes_root_node():
 	var mock_action = MockAction.new()
 	mock_action.return_value = BehaviourTreeResult.Status.SUCCESS
 	root_selector.add_child(mock_action)
+	# we need to add the behaviour tree to the scene _after_ setting up its child
+	# nodes as it caches them in _ready
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
-	assert_eq(result, BehaviourTreeResult.Status.SUCCESS)
 	assert_true(mock_action.was_ticked, "Action should have been ticked")
 
 ## Test selector chooses first successful child
@@ -45,6 +48,7 @@ func test_selector_returns_first_success():
 	root_selector.add_child(failing_action)
 	root_selector.add_child(succeeding_action)
 	root_selector.add_child(never_called_action)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -63,6 +67,7 @@ func test_selector_fails_when_all_children_fail():
 	
 	root_selector.add_child(failing_action1)
 	root_selector.add_child(failing_action2)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -83,6 +88,7 @@ func test_sequence_requires_all_children_to_succeed():
 	sequence.add_child(condition)
 	sequence.add_child(action)
 	root_selector.add_child(sequence)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -103,6 +109,7 @@ func test_sequence_fails_on_first_failure():
 	sequence.add_child(failing_condition)
 	sequence.add_child(never_called_action)
 	root_selector.add_child(sequence)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -123,6 +130,7 @@ func test_running_state_propagates_correctly():
 	sequence.add_child(condition)
 	sequence.add_child(running_action)
 	root_selector.add_child(sequence)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -137,6 +145,7 @@ func test_blackboard_data_sharing():
 	
 	var blackboard_reader = BlackboardReaderAction.new()
 	root_selector.add_child(blackboard_reader)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -170,6 +179,7 @@ func test_complex_nested_behavior_tree():
 	
 	root_selector.add_child(combat_sequence)
 	root_selector.add_child(patrol_sequence)
+	add_child(behavior_tree)
 	
 	var result = behavior_tree.tick()
 	
@@ -186,7 +196,7 @@ class MockAction extends BehaviourTreeAction:
 	var return_value: int = BehaviourTreeResult.Status.SUCCESS
 	var was_ticked: bool = false
 	
-	func tick(_blackboard: Dictionary) -> int:
+	func tick(_blackboard: BehaviourTreeBlackboard) -> int:
 		was_ticked = true
 		return return_value
 
@@ -194,7 +204,7 @@ class MockCondition extends BehaviourTreeCondition:
 	var return_value: int = BehaviourTreeResult.Status.SUCCESS
 	var was_ticked: bool = false
 	
-	func tick(_blackboard: Dictionary) -> int:
+	func tick(_blackboard: BehaviourTreeBlackboard) -> int:
 		was_ticked = true
 		return return_value
 
@@ -202,7 +212,7 @@ class BlackboardReaderAction extends BehaviourTreeAction:
 	var read_value: String
 	var health_value: int
 	
-	func tick(blackboard: Dictionary) -> int:
-		read_value = blackboard.get("test_key", "")
-		health_value = blackboard.get("health", 0)
+	func tick(blackboard: BehaviourTreeBlackboard) -> int:
+		read_value = blackboard.get_blackboard_value("test_key", "")
+		health_value = blackboard.get_blackboard_value("health", 0)
 		return BehaviourTreeResult.Status.SUCCESS

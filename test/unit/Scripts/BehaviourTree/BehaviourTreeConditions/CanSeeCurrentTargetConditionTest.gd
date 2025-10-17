@@ -1,20 +1,26 @@
 extends GutTest
 
-class_name CanSeePlayerConditionTest
+class_name CanSeeCurrentTargetConditionTest
 
+var blackboard: BehaviourTreeBlackboard
 var behaviour_tree: BehaviourTree
-var condition: CanSeePlayerCondition
+var condition: CanSeeCurrentTargetCondition
 var mock_owner: CharacterBody3D
 var mock_head: Node3D
 var mock_target: CharacterBody3D
-var blackboard: Dictionary
+var state_machine: StateMachine
 
 func before_each():
+	blackboard = autoqfree(BehaviourTreeBlackboard.new())
 	mock_owner = autoqfree(CharacterBody3D.new())
 	behaviour_tree = autoqfree(BehaviourTree.new())
-	condition = autoqfree(CanSeePlayerCondition.new())
+	condition = autoqfree(CanSeeCurrentTargetCondition.new())
 	mock_head = autoqfree(Node3D.new())
 	mock_target = autoqfree(CharacterBody3D.new())
+	state_machine = autoqfree(StateMachine.new())
+	
+	behaviour_tree.blackboard = blackboard
+	behaviour_tree.state_machine = state_machine
 	
 	# Set up scene hierarchy
 	behaviour_tree.add_child(condition)
@@ -31,7 +37,7 @@ func before_each():
 	
 	# Set up blackboard
 	behaviour_tree.set_blackboard_value("owner", mock_owner)
-	behaviour_tree.set_blackboard_value("target", mock_target)
+	behaviour_tree.set_blackboard_value("current_target", mock_target)
 	
 	# Position entities
 	mock_owner.global_position = Vector3.ZERO
@@ -40,7 +46,7 @@ func before_each():
 
 ## Test basic functionality
 func test_returns_failure_when_no_target():
-	behaviour_tree.set_blackboard_value("target", null)
+	behaviour_tree.set_blackboard_value("current_target", null)
 	
 	var result = condition.tick(behaviour_tree.blackboard)
 	

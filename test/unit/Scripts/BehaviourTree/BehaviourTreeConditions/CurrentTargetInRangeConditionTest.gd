@@ -1,14 +1,16 @@
 extends GutTest
 
-class_name PlayerInRangeConditionTest
+class_name CurrentTargetInRangeConditionTest
 
-var condition: PlayerInRangeCondition
+var blackboard: BehaviourTreeBlackboard
+var condition: CurrentTargetInRangeCondition
 var mock_owner: CharacterBody3D
 var mock_player: CharacterBody3D
 var behaviour_tree: BehaviourTree
 
 func before_each():
-	condition = autoqfree(PlayerInRangeCondition.new())
+	blackboard = autoqfree(BehaviourTreeBlackboard.new())
+	condition = autoqfree(CurrentTargetInRangeCondition.new())
 	mock_owner = autoqfree(CharacterBody3D.new())
 	mock_player = autoqfree(CharacterBody3D.new())
 	behaviour_tree = autoqfree(BehaviourTree.new())
@@ -17,15 +19,17 @@ func before_each():
 	add_child(mock_owner)
 	add_child(mock_player)
 
+	behaviour_tree.blackboard = blackboard
+
 	mock_owner.add_child(behaviour_tree)
 	behaviour_tree.add_child(condition)
 	
 	# Set default range
-	condition.range = 5.0
+	condition.range_distance = 5.0
 
 	# Set up blackboard
 	behaviour_tree.set_blackboard_value("owner", mock_owner)
-	behaviour_tree.set_blackboard_value("player", mock_player)
+	behaviour_tree.set_blackboard_value("current_target", mock_player)
 	
 	# Default positions
 	mock_owner.global_position = Vector3.ZERO
@@ -39,7 +43,7 @@ func after_each():
 
 ## Test basic functionality
 func test_returns_failure_when_no_player():
-	behaviour_tree.set_blackboard_value("player", null)
+	behaviour_tree.set_blackboard_value("current_target", null)
 
 	var result = condition.tick(behaviour_tree.blackboard)
 	
@@ -53,7 +57,7 @@ func test_returns_failure_when_no_owner():
 	assert_eq(result, BehaviourTreeResult.Status.FAILURE)
 
 func test_returns_failure_when_both_null():
-	behaviour_tree.set_blackboard_value("player", null)
+	behaviour_tree.set_blackboard_value("current_target", null)
 	behaviour_tree.set_blackboard_value("owner", null)
 
 	var result = condition.tick(behaviour_tree.blackboard)
@@ -129,7 +133,7 @@ func test_diagonal_distance_just_outside_range():
 
 ## Test different range values
 func test_works_with_small_range():
-	condition.range = 1.0
+	condition.range_distance = 1.0
 	mock_player.global_position = Vector3(0.5, 0, 0)  # Within small range
 	
 	var result = condition.tick(behaviour_tree.blackboard)
@@ -137,7 +141,7 @@ func test_works_with_small_range():
 	assert_eq(result, BehaviourTreeResult.Status.SUCCESS)
 
 func test_fails_with_small_range():
-	condition.range = 1.0
+	condition.range_distance = 1.0
 	mock_player.global_position = Vector3(1.5, 0, 0)  # Outside small range
 	
 	var result = condition.tick(behaviour_tree.blackboard)
@@ -145,7 +149,7 @@ func test_fails_with_small_range():
 	assert_eq(result, BehaviourTreeResult.Status.FAILURE)
 
 func test_works_with_large_range():
-	condition.range = 100.0
+	condition.range_distance = 100.0
 	mock_player.global_position = Vector3(50, 50, 0)  # ~70.7 units (within 100)
 	
 	var result = condition.tick(behaviour_tree.blackboard)
@@ -153,7 +157,7 @@ func test_works_with_large_range():
 	assert_eq(result, BehaviourTreeResult.Status.SUCCESS)
 
 func test_zero_range_only_works_at_origin():
-	condition.range = 0.0
+	condition.range_distance = 0.0
 	
 	# At origin - should succeed
 	mock_player.global_position = Vector3.ZERO
@@ -195,7 +199,7 @@ func test_handles_negative_positions():
 	assert_eq(result, BehaviourTreeResult.Status.SUCCESS)
 
 func test_very_large_distances():
-	condition.range = 10.0
+	condition.range_distance = 10.0
 	mock_owner.global_position = Vector3.ZERO
 	mock_player.global_position = Vector3(1000, 1000, 1000)  # Very far
 	

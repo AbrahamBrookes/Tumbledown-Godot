@@ -1,6 +1,6 @@
 extends BehaviourTreeCondition
 
-class_name CanSeePlayerCondition
+class_name CanSeeCurrentTargetCondition
 
 ## This condition will periodically check for LOS between the owner and
 ## the target if we have one. This is optimized so it only checks at set
@@ -24,12 +24,12 @@ var thinker: Node3D
 # the target will change but lets make it a property for access
 var target: Node3D
 
-func tick(blackboard: Dictionary) -> int:
+func tick(blackboard: BehaviourTreeBlackboard) -> int:
 	# if we haven't cached the owner yet, do so now
 	if not thinker:
-		thinker = blackboard.get("owner", null)
+		thinker = blackboard.get_blackboard_value("owner", null)
 
-	target = blackboard.get("target", null)
+	target = blackboard.get_blackboard_value("current_target", null)
 
 	if not target or not thinker:
 		# something is wrong, we can't see them
