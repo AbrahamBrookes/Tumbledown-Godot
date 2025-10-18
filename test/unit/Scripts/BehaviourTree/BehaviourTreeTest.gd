@@ -189,30 +189,3 @@ func test_complex_nested_behavior_tree():
 	assert_false(attack_action.was_ticked)  # Combat sequence failed early
 	assert_true(not_at_waypoint.was_ticked)
 	assert_true(move_to_waypoint.was_ticked)
-
-## Mock classes for testing
-
-class MockAction extends BehaviourTreeAction:
-	var return_value: int = BehaviourTreeResult.Status.SUCCESS
-	var was_ticked: bool = false
-	
-	func tick(_blackboard: BehaviourTreeBlackboard) -> int:
-		was_ticked = true
-		return return_value
-
-class MockCondition extends BehaviourTreeCondition:
-	var return_value: int = BehaviourTreeResult.Status.SUCCESS
-	var was_ticked: bool = false
-	
-	func tick(_blackboard: BehaviourTreeBlackboard) -> int:
-		was_ticked = true
-		return return_value
-
-class BlackboardReaderAction extends BehaviourTreeAction:
-	var read_value: String
-	var health_value: int
-	
-	func tick(blackboard: BehaviourTreeBlackboard) -> int:
-		read_value = blackboard.get_blackboard_value("test_key", "")
-		health_value = blackboard.get_blackboard_value("health", 0)
-		return BehaviourTreeResult.Status.SUCCESS

@@ -8,7 +8,6 @@ class_name StateMachineStatesCondition
 @export var states: Array[String] = []
 
 func tick(blackboard: BehaviourTreeBlackboard) -> int:
-	var stateMachine: StateMachine = blackboard.get_blackboard_value("state_machine", null)
-	if stateMachine and stateMachine.is_in_states(states):
+	if blackboard.state_machine and blackboard.state_machine.is_in_states(states):
 		return BehaviourTreeResult.Status.SUCCESS
 	return BehaviourTreeResult.Status.FAILURE

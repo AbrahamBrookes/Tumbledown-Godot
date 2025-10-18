@@ -60,6 +60,7 @@ func _physics_process(delta):
 
 
 func TransitionTo(new_state_name: String, extra_data = null) -> bool:
+		
 	var new_state = states.get(new_state_name.to_lower())
 	if not new_state:
 		push_error("State " + new_state_name + " not found. Available: " + str(states.keys()))
@@ -68,7 +69,7 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 	# Prevent transitioning to same state unless explicitly allowed
 	if current_state == new_state and not new_state.allow_self_transition:
 		return false
-
+		
 	if debug_mode:
 		print("Transitioning: ", current_state.name if current_state else "None", " -> ", new_state_name)
 	
@@ -83,7 +84,6 @@ func TransitionTo(new_state_name: String, extra_data = null) -> bool:
 	new_state.Enter(extra_data)
 	
 	current_state = new_state
-
 	return true
 
 # an alias for TransitionTo

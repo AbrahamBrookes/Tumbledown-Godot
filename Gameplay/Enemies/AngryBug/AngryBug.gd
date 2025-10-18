@@ -1,16 +1,28 @@
 extends CharacterBody3D
 class_name AngryBug
 
-@onready var stateMachine = $StateMachine
 @export var INVINCIBLE : bool = false
 @export var TRAVEL_SPEED = 2.0
 @export var TURN_SPEED := 5.0
 @export var ATTACK_RANGE := 1.5
 @export var ATTACK_COOLDOWN := 0.5
 
+# the behaviour tree is for querying data and making decisions
+@onready var behaviourTree: BehaviourTree = $BehaviourTree
+
+# the state machine is for handling movement and animation states
+@onready var stateMachine: StateMachine = $StateMachine
+
+# the behaviour tree makes decisions and signals the state machine to change states.
+# we can gate transitions in the state machine by using the 'IsInStates' condition.
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# Initialize blackboard with shared data
+	behaviourTree.set_blackboard_value("owner", self)
+	behaviourTree.set_blackboard_value("target", null)
+	behaviourTree.set_blackboard_value("attack_range", ATTACK_RANGE)
+
 	
 func _physics_process(delta):
 	pass
@@ -47,3 +59,13 @@ func receive_damage(damage:Damage):
 		await get_tree().create_timer(0.05).timeout
 	
 	INVINCIBLE = false
+
+func on_DetectionArea_body_entered(body):
+	# when the player enters the detection volume, update the blackboard so we can make decisions
+	if body.has_property("team") && body.team == 1 && behaviourTree.get_blackboard_value("target") == null:
+		behaviourTree.set_blackboard_value("target", body)
+		
+func on_DetectionArea_body_exited(body):
+	# when the player leaves the detection volume, lose sight of the player
+	if body == behaviourTree.get_blackboard_value("target"):
+		behaviourTree.set_blackboard_value("target", null)

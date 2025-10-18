@@ -17,6 +17,9 @@ class_name BehaviourTreeAction
 # up to the StateMachines TravelTo method by the BehaviourTree node
 signal ChangeState(state_name: String, extra_data: Dictionary)
 
+# Actions can update blackboard values by emitting this signal
+signal UpdateBlackboardValue(key: String, value: Variant)
+
 func tick(_blackboard: BehaviourTreeBlackboard) -> int:
 	# Override this method in subclasses to implement specific action logic.
 	# Return SUCCESS if the action completed successfully,

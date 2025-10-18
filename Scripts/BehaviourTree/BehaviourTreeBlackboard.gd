@@ -8,6 +8,14 @@ class_name BehaviourTreeBlackboard
 
 @export var data: Dictionary = {}
 
+# a reference to the state machine we are interacting with
+@export var state_machine: StateMachine
+
+# if we have no state machine assigned, warn on ready
+func _ready():
+	if not state_machine:
+		push_warning("BehaviourTreeBlackboard: No state machine assigned! State changing actions will fail.")
+
 ## Helper methods
 func set_blackboard_value(key: String, value: Variant):
 	data[key] = value
