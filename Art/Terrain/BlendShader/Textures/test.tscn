@@ -1,0 +1,41 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2sfgs6v04hv3"]
+
+[ext_resource type="Shader" uid="uid://5dgnrjjhy72n" path="res://Art/Terrain/BlendShader/Textures/test.gdshader" id="1_0a55t"]
+[ext_resource type="Texture2D" uid="uid://ndsdc120ipbo" path="res://Art/Terrain/BlendShader/Textures/grass_01_dif.png" id="2_5bulj"]
+[ext_resource type="Texture2D" uid="uid://dnkf8mvv6r12r" path="res://Art/Terrain/BlendShader/Textures/dirt_01_dif.png" id="2_de2qf"]
+[ext_resource type="Texture2D" uid="uid://cibcwdnxiqxlh" path="res://Art/Terrain/BlendShader/Textures/dirt_01_nor.png" id="3_kj3ph"]
+[ext_resource type="Texture2D" uid="uid://c5l1rq0siy1tu" path="res://Art/Terrain/BlendShader/Textures/grass edge masks r dirt g grass.png" id="4_sa5xc"]
+[ext_resource type="Texture2D" uid="uid://bg35phso606y1" path="res://Art/Terrain/BlendShader/Blends/grass_edge_dif.png" id="6_sa5xc"]
+[ext_resource type="Texture2D" uid="uid://dt88qwwto52d5" path="res://Art/Terrain/BlendShader/Textures/grass_01_nor.png" id="6_umohq"]
+[ext_resource type="Texture2D" uid="uid://iex4rap0gpki" path="res://Art/Terrain/BlendShader/Blends/grass edge bake nor.png" id="7_umohq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_de2qf"]
+subdivide_width = 32
+subdivide_depth = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bulj"]
+render_priority = 0
+shader = ExtResource("1_0a55t")
+shader_parameter/texture_scale = 1.0
+shader_parameter/grass_dif = ExtResource("2_5bulj")
+shader_parameter/grass_nor = ExtResource("6_umohq")
+shader_parameter/dirt_dif = ExtResource("2_de2qf")
+shader_parameter/dirt_nor = ExtResource("3_kj3ph")
+shader_parameter/edge_mask = ExtResource("4_sa5xc")
+shader_parameter/grass_edge_dif = ExtResource("6_sa5xc")
+shader_parameter/grass_edge_nor = ExtResource("7_umohq")
+
+[node name="Test" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97247684, 1.1920929e-07, 1.537601)
+mesh = SubResource("PlaneMesh_de2qf")
+surface_material_override/0 = SubResource("ShaderMaterial_5bulj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9699588, 1.1920929e-07, 1.537601)
+mesh = SubResource("PlaneMesh_de2qf")
+surface_material_override/0 = SubResource("ShaderMaterial_5bulj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3103936, 0.39126992, -0.2445007)
