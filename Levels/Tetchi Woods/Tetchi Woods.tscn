@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://h15eypvd0v6v"]
+[gd_scene load_steps=9 format=3 uid="uid://h15eypvd0v6v"]
 
 [ext_resource type="PackedScene" uid="uid://cgoyqjlfx43ox" path="res://Levels/Tetchi Woods/submaps/Tellers Bend.tscn" id="1_rtbw0"]
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="4_336xh"]
 [ext_resource type="PackedScene" uid="uid://cp6dpii7otbty" path="res://UI/Dialogue/Conversee.tscn" id="5_7b4cp"]
 [ext_resource type="Resource" uid="uid://ckcva8caclvoy" path="res://UI/Dialogue/test_conversation_line.tres" id="6_ykxvq"]
+[ext_resource type="PackedScene" uid="uid://y81qe2axsnx" path="res://Gameplay/pushy_crate/pushy_crate.tscn" id="7_w2pnj"]
+[ext_resource type="PackedScene" uid="uid://dpn4hvqg8lsro" path="res://Gameplay/spiky_prickles/spiky_prickles_straight.tscn" id="8_0ffjd"]
 
 [node name="Tetchi Woods" type="Node3D"]
 
@@ -21,6 +23,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2426, 2.2228, -18.5071)
 firstLine = ExtResource("6_ykxvq")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_336xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.61, 1.75, -14.38)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21999931, 1.75, 3.5600004)
+
+[node name="pushy_crate" parent="." instance=ExtResource("7_w2pnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.39, 2.33, -14)
+
+[node name="spiky_prickles" parent="." instance=ExtResource("8_0ffjd")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -15, 2, -17)
 
 [editable path="Conversee"]
