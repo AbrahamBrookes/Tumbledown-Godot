@@ -1,3 +1,5 @@
+@icon("res://Scripts/Inventory/PlayerInventory.svg")
+
 extends Node
 
 ## The PlayerInventory holds all of the players collected items. It is a component
