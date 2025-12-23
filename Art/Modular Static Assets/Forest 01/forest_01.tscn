@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnlboe7dwldat"]
+
+[ext_resource type="PackedScene" uid="uid://d2hir56miggmy" path="res://Art/Modular Static Assets/Forest 01/forest_ledges_01_inner_corner_cliff.tscn" id="1_blv3v"]
+[ext_resource type="PackedScene" uid="uid://lh4j7me8brf6" path="res://Art/Modular Static Assets/Forest 01/forest_ledges_01_cliff_top.tscn" id="2_cbfrs"]
+[ext_resource type="PackedScene" uid="uid://w0ey26wwtcjf" path="res://Art/Modular Static Assets/Forest 01/forest_ledges_01_outer_corner_cliff.tscn" id="3_oe6et"]
+[ext_resource type="PackedScene" uid="uid://cfay8vxn5e1qq" path="res://Art/Modular Static Assets/Forest 01/forest_ledges_01_wall.tscn" id="4_qf0g5"]
+[ext_resource type="PackedScene" uid="uid://bki17uu8ycy5b" path="res://Art/Modular Static Assets/Forest 01/forest_ledges_01_outer_corner_wall.tscn" id="5_ysh5i"]
+[ext_resource type="PackedScene" uid="uid://4l3mc4oncyhf" path="res://Art/Modular Static Assets/Forest 01/forest_ledges_01_inner_corner_wall.tscn" id="6_uqpeq"]
+
+[node name="Forest01" type="Node3D"]
+
+[node name="forest_01_pieces" type="Node3D" parent="."]
+
+[node name="forest_ledges_01_inner_corner_cliff" parent="forest_01_pieces" instance=ExtResource("1_blv3v")]
+
+[node name="forest_ledges_01_cliff_top" parent="forest_01_pieces" instance=ExtResource("2_cbfrs")]
+
+[node name="forest_ledges_01_outer_corner_cliff" parent="forest_01_pieces" instance=ExtResource("3_oe6et")]
+
+[node name="forest_ledges_01_wall" parent="forest_01_pieces" instance=ExtResource("4_qf0g5")]
+
+[node name="forest_ledges_01_outer_corner_wall" parent="forest_01_pieces" instance=ExtResource("5_ysh5i")]
+
+[node name="forest_ledges_01_inner_corner_wall" parent="forest_01_pieces" instance=ExtResource("6_uqpeq")]
