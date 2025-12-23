@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddihv4pxvfq00"]
+
+[ext_resource type="Script" uid="uid://ddkwh8125rn3a" path="res://Scripts/Inventory/ItemPickup.gd" id="1_tqyn4"]
+[ext_resource type="Script" uid="uid://br312hn0ai2f2" path="res://Scripts/Inventory/ItemData.gd" id="2_ki6xx"]
+
+[sub_resource type="Resource" id="Resource_e4jdr"]
+script = ExtResource("2_ki6xx")
+id = "test_pickup"
+name = "Test Pickup"
+flavour_text = "yes"
+stackable = true
+stack_count = 1
+metadata/_custom_type_script = "uid://br312hn0ai2f2"
+
+[sub_resource type="SphereMesh" id="SphereMesh_tqyn4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ki6xx"]
+
+[node name="TestPickup" type="Node3D"]
+script = ExtResource("1_tqyn4")
+item_data = SubResource("Resource_e4jdr")
+metadata/_custom_type_script = "uid://ddkwh8125rn3a"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_tqyn4")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_ki6xx")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
