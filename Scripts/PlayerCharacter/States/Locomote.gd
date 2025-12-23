@@ -46,7 +46,6 @@ func input_walk(delta: float):
 	# update the animation tree with the real velocity
 	state_machine.animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.velocity.length() / playerCharacter.move_speed)
 	
-	var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
 	var input_direction = Vector3(
 		Input.get_action_strength("walk_east") - Input.get_action_strength("walk_west"),
 		0,
@@ -56,6 +55,7 @@ func input_walk(delta: float):
 	input_direction = input_direction.normalized() * playerCharacter.move_speed
 	
 	# Convert input to world direction
+	#var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
 	#move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if not playerCharacter.is_on_floor():

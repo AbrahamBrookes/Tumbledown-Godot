@@ -98,3 +98,7 @@ func is_in_states(state_names: Array[String]) -> bool:
 		if current_state.name.to_lower() == name.to_lower():
 			return true
 	return false
+
+# allow callers to get a given state node if they know its name
+func get_state(state_name: String) -> State:
+	return states.get(state_name.to_lower())

@@ -360,6 +360,10 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0429929, 0.00461194)
 target_position = Vector3(0, -0.1, 0)
 
+[node name="DirectlyInFrontCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.44614553, -0.28385466)
+target_position = Vector3(0, -0.25, 0)
+
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/SlashAgainTimer" to="SkinnedMesh/StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/ApplyHurtTimer" to="SkinnedMesh/StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]
 [connection signal="body_entered" from="SkinnedMesh/StateMachine/Slash/Area3D" to="SkinnedMesh/StateMachine/Slash" method="_on_hit_capsule_body_entered"]

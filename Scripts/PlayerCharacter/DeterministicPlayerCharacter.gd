@@ -28,3 +28,6 @@ var target_velocity := Vector3.ZERO
 
 func _ready() -> void:
 	stateMachine.TransitionTo("Locomote")
+
+func receive_damage() -> void:
+	pass
