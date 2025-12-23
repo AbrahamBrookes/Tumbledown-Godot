@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xlfa1ckt04hp"]
+
+[ext_resource type="Script" uid="uid://dwqxg53ittw7m" path="res://Components/CratePusher/CratePusher.gd" id="1_huv5e"]
+
+[node name="CratePusher" type="Node"]
+script = ExtResource("1_huv5e")
+metadata/_custom_type_script = "uid://dwqxg53ittw7m"
+
+[node name="ray" type="RayCast3D" parent="."]

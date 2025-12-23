@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://y81qe2axsnx"]
 
-[ext_resource type="Script" path="res://Gameplay/pushy_crate/pushy_crate.gd" id="1_y36kr"]
+[ext_resource type="Script" uid="uid://coxuac11nholt" path="res://Gameplay/pushy_crate/pushy_crate.gd" id="1_y36kr"]
 [ext_resource type="PackedScene" uid="uid://bst3pf83nx3ht" path="res://Gameplay/pushy_crate/pushy_crate.glb" id="2_xcw56"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2tnx"]

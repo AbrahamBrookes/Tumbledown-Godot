@@ -12,4 +12,3 @@ func _on_push_area_body_entered(body):
 			if child.current_state.has_method("lean_crate"):
 				child.current_state.lean_crate(self)
 				return
-
