@@ -10,8 +10,8 @@ var pouch : KoyinPouch
 var koyin_label : Label
 
 func before_each():
-	pouch = KoyinPouch.new()
-	koyin_label = Label.new()
+	pouch = autoqfree(KoyinPouch.new())
+	koyin_label = autoqfree(Label.new())
 	pouch.label = koyin_label
 
 func test_add_koyins():
