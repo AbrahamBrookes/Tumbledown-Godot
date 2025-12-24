@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dreof5fl2e6cd"]
+[gd_scene load_steps=14 format=3 uid="uid://dreof5fl2e6cd"]
 
 [ext_resource type="Material" uid="uid://djuf0llv76g7c" path="res://Art/poly.cam AI generated textures/grass.tres" id="1_yrcmh"]
 [ext_resource type="PackedScene" uid="uid://c83jd4qwjt4ge" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.tscn" id="5_fud1c"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="7_ju4nw"]
 [ext_resource type="PackedScene" uid="uid://dpn4hvqg8lsro" path="res://Gameplay/spiky_prickles/spiky_prickles_straight.tscn" id="8_repx0"]
 [ext_resource type="PackedScene" uid="uid://ddihv4pxvfq00" path="res://Scripts/Inventory/TestPickup.tscn" id="8_uu8rk"]
+[ext_resource type="PackedScene" uid="uid://dbp44fjjvmjnv" path="res://Gameplay/Koyins/koyin.tscn" id="9_17fcu"]
 [ext_resource type="MeshLibrary" uid="uid://dl874xwkvieaf" path="res://Art/Terrain/WorldLedges/Plains_01/Plains_01_meshlib.tres" id="11_ytuyx"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_jc3fo"]
@@ -162,3 +163,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 6)
 
 [node name="TestPickup" parent="." instance=ExtResource("8_uu8rk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5)
+
+[node name="koyin" parent="." instance=ExtResource("9_17fcu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0848365, 1.8, 5.456299)

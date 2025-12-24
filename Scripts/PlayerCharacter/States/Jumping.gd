@@ -41,7 +41,7 @@ func Physics_Update(_delta: float):
 	
 	# otherwise boost
 	if can_boost:
-		playerCharacter.apply_central_force(launch_direction)
+		#playerCharacter.apply_central_force(launch_direction)
 		return
 	
 	# otherwise check if we have hit the ground so we can land
