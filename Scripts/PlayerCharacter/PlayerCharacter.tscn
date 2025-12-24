@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene load_steps=61 format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" uid="uid://bdfxwv0wcdtyk" path="res://Scripts/PlayerCharacter/DeterministicPlayerCharacter.gd" id="1_p3iwg"]
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="12_haj5d"]
 [ext_resource type="PackedScene" uid="uid://dtyr0l5158u1f" path="res://UI/Dialogue/Dialogue.tscn" id="13_ucqvn"]
 [ext_resource type="Script" uid="uid://dnq0hd0dpa8dx" path="res://Scripts/Inventory/PlayerInventory.gd" id="14_kejb0"]
+[ext_resource type="Script" uid="uid://b4iilueaajuii" path="res://Scripts/Inventory/KoyinPouch.gd" id="15_m3vir"]
+[ext_resource type="Texture2D" uid="uid://crx8mgygeubnk" path="res://Gameplay/Koyins/icon.png" id="16_nvibq"]
+[ext_resource type="FontFile" uid="uid://dhos0jfecis2a" path="res://Fonts/MPLUSRounded1c-Bold.ttf" id="17_gsa12"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_alo0e"]
 
@@ -368,6 +371,57 @@ target_position = Vector3(0, -0.25, 0)
 [node name="PlayerInventory" type="Node" parent="."]
 script = ExtResource("14_kejb0")
 metadata/_custom_type_script = "uid://dnq0hd0dpa8dx"
+
+[node name="KoyinPouch" type="Node" parent="."]
+script = ExtResource("15_m3vir")
+metadata/_custom_type_script = "uid://b4iilueaajuii"
+
+[node name="InGameUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="InGameUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="InGameUI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InGameUI/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("16_nvibq")
+expand_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="InGameUI/Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+
+[node name="KoyinLabel" type="Label" parent="InGameUI/Control/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_gsa12")
+theme_override_font_sizes/font_size = 22
+text = "0"
 
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/SlashAgainTimer" to="SkinnedMesh/StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/ApplyHurtTimer" to="SkinnedMesh/StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]
