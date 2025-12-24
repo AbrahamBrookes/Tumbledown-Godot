@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://2qa8vo754n1s"]
+
+[ext_resource type="Texture2D" uid="uid://cix3k13t15qwl" path="res://Gameplay/Koyins/nor_64.png" id="1_kmjc3"]
+
+[resource]
+albedo_color = Color(1, 0.75686276, 0.1882353, 1)
+metallic = 1.0
+roughness = 0.13
+normal_enabled = true
+normal_texture = ExtResource("1_kmjc3")
