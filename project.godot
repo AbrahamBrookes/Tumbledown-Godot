@@ -24,6 +24,11 @@ DirectionUtils="*res://Scripts/Utils/DirectionUtils.gd"
 
 shapes/collision/shape_color=Color(0, 0.6, 0.701961, 0.94902)
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
