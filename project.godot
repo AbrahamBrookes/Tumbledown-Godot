@@ -85,3 +85,8 @@ interact={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Minions"
 3d_physics/layer_3="Player"
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=1
+anti_aliasing/quality/screen_space_aa=1
