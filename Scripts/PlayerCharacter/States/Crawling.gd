@@ -37,8 +37,8 @@ func Physics_Update(_delta: float):
 #	var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
 #	
 #	if input_dir:
-#		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, input_dir.x * SPEED, LERP_SPEED)
-#		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, input_dir.y * SPEED, LERP_SPEED)
+#		desired_velocity.x = lerp(desired_velocity.x, input_dir.x * SPEED, LERP_SPEED)
+#		desired_velocity.z = lerp(desired_velocity.z, input_dir.y * SPEED, LERP_SPEED)
 #		
 #		# rotate to face direction
 #		## add the direction to the current position
@@ -46,10 +46,10 @@ func Physics_Update(_delta: float):
 #		## lookat that location
 #		playerCharacter.look_at(lookat_location, Vector3.UP)
 #	else:
-#		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, 0.0, LERP_SPEED)
-#		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, LERP_SPEED)
+#		desired_velocity.x = lerp(desired_velocity.x, 0.0, LERP_SPEED)
+#		desired_velocity.z = lerp(desired_velocity.z, 0.0, LERP_SPEED)
 #	
-#	owner.animTree.set("parameters/StateMachine/Crawling/blend_position", playerCharacter.velocity.length() / SPEED)
-#	print(playerCharacter.velocity.length() / SPEED)
+#	owner.animTree.set("parameters/StateMachine/Crawling/blend_position", desired_velocity.length() / SPEED)
+#	print(desired_velocity.length() / SPEED)
 #
 #

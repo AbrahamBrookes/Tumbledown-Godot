@@ -247,7 +247,7 @@ shader_parameter/blur_strength = 2.000000095
 shader_parameter/vignette_strength = 0.09600000456
 shader_parameter/vignette_softness = 0.69400002970512
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health")]
+[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer")]
 collision_layer = 4
 collision_mask = 7
 axis_lock_angular_x = true
@@ -259,6 +259,7 @@ animTree = NodePath("SkinnedMesh/AnimationTree")
 stateMachine = NodePath("SkinnedMesh/StateMachine")
 move_speed = 8.0
 player_health = NodePath("PlayerHealth")
+invincible_timer = NodePath("InvincibilityTimer")
 
 [node name="SkinnedMesh" parent="." instance=ExtResource("2_oyuwf")]
 transform = Transform3D(-1, 0, -6.34988e-06, 0, 1, 0, 6.34988e-06, 0, -1, 0, 0, 0)
@@ -431,6 +432,9 @@ target_position = Vector3(0, -0.25, 0)
 max_health = 12
 current_health = 12
 hearts_container = NodePath("../InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer")
+
+[node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="PlayerInventory" type="Node" parent="."]
 script = ExtResource("14_kejb0")
@@ -705,5 +709,6 @@ expand_mode = 4
 [connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/Area3D" to="SkinnedMesh/StateMachine/Slash" method="_on_hit_capsule_body_exited"]
 [connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/Area3D" to="Camera3D/Dialogue" method="_on_conversation_collider_exited"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Jumping/Timer" to="SkinnedMesh/StateMachine/Jumping" method="_on_timer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 
 [editable path="SkinnedMesh"]
