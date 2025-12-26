@@ -54,6 +54,9 @@ func input_walk(delta: float):
 
 	input_direction = input_direction.normalized() * playerCharacter.move_speed
 	
+	desired_velocity.x = input_direction.x
+	desired_velocity.z = input_direction.z
+	
 	# Convert input to world direction
 	#var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south")
 	#move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -63,24 +66,19 @@ func input_walk(delta: float):
 		var max_fall_speed := 50.0  # tweak this
 
 		# Apply gravity
-		playerCharacter.velocity.y = max(playerCharacter.velocity.y - gravity * fall_multiplier * delta, -max_fall_speed)
+		desired_velocity.y = max(playerCharacter.velocity.y - gravity * fall_multiplier * delta, -max_fall_speed)
 
 		# Apply air drag
 		var air_drag := 8.0
-		playerCharacter.velocity.x = lerp(playerCharacter.velocity.x, 0.0, air_drag * delta)
-		playerCharacter.velocity.z = lerp(playerCharacter.velocity.z, 0.0, air_drag * delta)
+		desired_velocity.x = lerp(desired_velocity.x, 0.0, air_drag * delta)
+		desired_velocity.z = lerp(desired_velocity.z, 0.0, air_drag * delta)
 
-		playerCharacter.move_and_slide()
 		return
-	
-	
-	if input_direction.length() > 0.01:
-		# Rotate toward movement direction (top-down, yaw only)
-		owner.get_node('SkinnedMesh').look_at(owner.get_node('SkinnedMesh').global_transform.origin - input_direction, Vector3.UP)
+	else:
+		desired_velocity.y = 0.0
 
-	playerCharacter.velocity.x = input_direction.x
-	playerCharacter.velocity.z = input_direction.z
-	playerCharacter.move_and_slide()
+	if input_direction.length() > 0.01:
+		owner.get_node('SkinnedMesh').look_at(owner.get_node('SkinnedMesh').global_transform.origin - input_direction, Vector3.UP)
 
 
 # this is called by the pushy_crate when we bump into it
