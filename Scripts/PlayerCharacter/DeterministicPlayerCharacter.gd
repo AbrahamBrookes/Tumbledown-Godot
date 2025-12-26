@@ -21,6 +21,7 @@ var team = 1
 @export var rotation_speed := 10.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@export var player_health: PlayerHealth
 
 var input_dir: Vector2
 var move_dir: Vector3
@@ -29,5 +30,5 @@ var target_velocity := Vector3.ZERO
 func _ready() -> void:
 	stateMachine.TransitionTo("Locomote")
 
-func receive_damage() -> void:
-	pass
+func receive_damage(damage: Damage) -> void:
+	player_health.remove_health(damage.amount)
