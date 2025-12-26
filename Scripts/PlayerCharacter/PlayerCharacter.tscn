@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene load_steps=63 format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" uid="uid://bdfxwv0wcdtyk" path="res://Scripts/PlayerCharacter/DeterministicPlayerCharacter.gd" id="1_p3iwg"]
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
@@ -189,6 +189,62 @@ size = Vector3(0.9, 0.9, 0.9)
 radius = 0.236864
 height = 1.10199
 
+[sub_resource type="Shader" id="Shader_17fcu"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float focus_y : hint_range(0.0, 1.0) = 0.55;
+uniform float focus_band : hint_range(0.0, 0.5) = 0.12;
+uniform float feather : hint_range(0.0, 0.5) = 0.18;
+uniform float blur_strength : hint_range(0.0, 20.0) = 8.0;
+
+// Vignette controls
+uniform float vignette_strength : hint_range(0.0, 1.0) = 0.18;
+uniform float vignette_softness : hint_range(0.1, 2.0) = 0.9;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+vec3 s(vec2 uv) {
+	return texture(SCREEN_TEXTURE, uv).rgb;
+}
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+
+	// ---- Tilt-shift (vertical blur only) ----
+	float dy = abs(uv.y - focus_y);
+	float blur_mask = smoothstep(focus_band, focus_band + feather, dy);
+
+	float px = blur_strength * blur_mask;
+	vec2 texel = 1.0 / vec2(textureSize(SCREEN_TEXTURE, 0));
+	vec2 off = vec2(0.0, texel.y * px);
+
+	vec3 blur =
+		s(uv) * 0.40 +
+		(s(uv + off) + s(uv - off)) * 0.25 +
+		(s(uv + off * 2.0) + s(uv - off * 2.0)) * 0.05;
+
+	vec3 col = mix(s(uv), blur, blur_mask);
+
+	// ---- Vignette ----
+	vec2 centered = uv - vec2(0.5);
+	float dist = length(centered) * 1.414; // normalize to corners
+	float vig = smoothstep(1.0, vignette_softness, dist);
+	col *= mix(1.0, vig, vignette_strength);
+
+	COLOR = vec4(col, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvibq"]
+shader = SubResource("Shader_17fcu")
+shader_parameter/focus_y = 0.514000024415
+shader_parameter/focus_band = 0.150000007125
+shader_parameter/feather = 0.20400000969
+shader_parameter/blur_strength = 2.000000095
+shader_parameter/vignette_strength = 0.09600000456
+shader_parameter/vignette_softness = 0.69400002970512
+
 [node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine")]
 collision_layer = 4
 collision_mask = 7
@@ -376,7 +432,19 @@ metadata/_custom_type_script = "uid://dnq0hd0dpa8dx"
 script = ExtResource("15_m3vir")
 metadata/_custom_type_script = "uid://b4iilueaajuii"
 
+[node name="Tiltshift" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="Tiltshift"]
+material = SubResource("ShaderMaterial_nvibq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="InGameUI" type="CanvasLayer" parent="."]
+layer = 20
 
 [node name="Control" type="Control" parent="InGameUI"]
 layout_mode = 3
