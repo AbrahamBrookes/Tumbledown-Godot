@@ -1,5 +1,6 @@
 extends State
-class_name Idle
+
+class_name DisplayLoot
 
 func Enter(_extra_data = null):
 	pass
