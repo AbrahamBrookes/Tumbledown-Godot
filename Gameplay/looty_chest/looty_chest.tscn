@@ -26,12 +26,15 @@ size = Vector3(0.8, 0.8, 0.8)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j7aq"]
 albedo_texture = ExtResource("2_oep1r")
 
-[node name="looty_chest" node_paths=PackedStringArray("anim") instance=ExtResource("1_ckb4f")]
+[node name="looty_chest" node_paths=PackedStringArray("anim", "interactable") instance=ExtResource("1_ckb4f")]
 script = ExtResource("2_8j7aq")
 loot = SubResource("Resource_henre")
 anim = NodePath("AnimationPlayer")
+interactable = NodePath("Interactable")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="0"]
+collision_layer = 15
+collision_mask = 15
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_oep1r")
@@ -44,6 +47,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8j7aq")
 
 [node name="Interactable" parent="." index="3" instance=ExtResource("3_oep1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-verb = "This is a super long label showing that the thingy has dynamic width"
+verb = "open"
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 ## The LootyChest has an item inside it and can be interacted with via its child
@@ -10,6 +11,11 @@ class_name LootyChest
 ## The animation player so we can play the open animation
 @export var anim: AnimationPlayer
 
-func _on_interactable_interacted(interactor: DeterministicPlayerCharacter) -> void:
-	interactor.stateMachine.travel("OpeningChest")
-	interactor.inventory.add_item(loot)
+## the interactable allowing us to be opened (for disabling)
+@export var interactable: Interactable
+
+func _on_interactable_interacted(interactor: Interactor) -> void:
+	anim.play("opening")
+	interactor.player_character.stateMachine.travel("OpeningChest")
+	interactor.player_character.inventory.add_item(loot)
+	interactable.enabled = false

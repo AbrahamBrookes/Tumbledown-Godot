@@ -7,10 +7,11 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_0af6c"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 
-[node name="Interactable" type="Node3D" node_paths=PackedStringArray("label")]
+[node name="Interactable" type="Node3D" node_paths=PackedStringArray("label", "popup")]
 script = ExtResource("1_32g6i")
 verb = "test meeeee"
 label = NodePath("Sprite3D/SubViewport/InteractablePopup/PanelContainer/MarginContainer/HBoxContainer/Label")
+popup = NodePath("Sprite3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

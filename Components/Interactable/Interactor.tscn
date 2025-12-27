@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://s2b7mbfga4og"]
+
+[ext_resource type="Script" uid="uid://ccc4osan23jqu" path="res://Components/Interactable/Interactor.gd" id="1_lju3l"]
+
+[node name="Interactor" type="Node3D"]
+script = ExtResource("1_lju3l")
+metadata/_custom_type_script = "uid://ccc4osan23jqu"
