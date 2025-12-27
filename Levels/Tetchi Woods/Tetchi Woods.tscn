@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://h15eypvd0v6v"]
+[gd_scene load_steps=14 format=3 uid="uid://h15eypvd0v6v"]
 
 [ext_resource type="PackedScene" uid="uid://cgoyqjlfx43ox" path="res://Levels/Tetchi Woods/submaps/Tellers Bend.tscn" id="1_rtbw0"]
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
@@ -9,8 +9,45 @@
 [ext_resource type="PackedScene" uid="uid://y81qe2axsnx" path="res://Gameplay/pushy_crate/pushy_crate.tscn" id="7_w2pnj"]
 [ext_resource type="PackedScene" uid="uid://dpn4hvqg8lsro" path="res://Gameplay/spiky_prickles/spiky_prickles_straight.tscn" id="8_0ffjd"]
 [ext_resource type="PackedScene" uid="uid://bhrei1j7dv88l" path="res://Levels/Tetchi Woods/submaps/Watchers Grove.tscn" id="9_tcmpw"]
+[ext_resource type="PackedScene" uid="uid://dbgqe5pb6pw5j" path="res://Gameplay/looty_chest/looty_chest.tscn" id="10_tcmpw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1p48"]
+sky_top_color = Color(0.3955152, 0.5201397, 0.6982648, 1)
+sky_curve = 0.48735124
+sky_energy_multiplier = 1.01
+ground_bottom_color = Color(0.13657603, 0.19070438, 0.14304349, 1)
+
+[sub_resource type="Sky" id="Sky_lbn4o"]
+sky_material = SubResource("ProceduralSkyMaterial_w1p48")
+
+[sub_resource type="Environment" id="Environment_4hs3e"]
+background_mode = 2
+sky = SubResource("Sky_lbn4o")
+ambient_light_source = 3
+ambient_light_color = Color(0.036823392, 0.5399887, 0.68499, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.9
+tonemap_white = 0.5
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_bounce_feedback = 1.06
+sdfgi_y_scale = 2
+sdfgi_energy = 1.2
+adjustment_enabled = true
+adjustment_contrast = 1.07
+adjustment_saturation = 1.05
 
 [node name="Tetchi Woods" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4hs3e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8892831, 0.017177494, -0.45703432, -0.45718816, -0.060540553, 0.88730705, -0.012427403, 0.9980179, 0.061691046, 2.03376, 7.67213, 4.25012)
+light_color = Color(0.878431, 0.94902, 0.941176, 1)
+shadow_enabled = true
+shadow_normal_bias = 10.0
+shadow_blur = 0.6
 
 [node name="Tellers Bend" parent="." instance=ExtResource("1_rtbw0")]
 
@@ -35,4 +72,21 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -15, 2, -17)
 [node name="Watchers Grove" parent="." instance=ExtResource("9_tcmpw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -20)
 
+[node name="looty_chest" parent="." instance=ExtResource("10_tcmpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, 2.25, 0.62)
+
+[node name="Persistable" parent="looty_chest" index="0"]
+guid = "d2e388f0-839c-432b-a106-3553e6871ba4"
+data = {
+"is_open": true
+}
+
+[node name="Skeleton3D" parent="looty_chest/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.07838296, -1.1579918e-07, 3.5583504e-08, 0.9969233)
+
+[node name="Interactable" parent="looty_chest" index="4"]
+enabled = false
+
 [editable path="Conversee"]
+[editable path="looty_chest"]
+[editable path="looty_chest/Persistable"]

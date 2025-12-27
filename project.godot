@@ -19,6 +19,9 @@ config/icon="res://icon.svg"
 
 InGameUI="*res://UI/InGameUI.gd"
 DirectionUtils="*res://Scripts/Utils/DirectionUtils.gd"
+uuid_util="*res://addons/uuid/uuid.gd"
+SaveManager="*res://Scripts/SaveManager/SaveManager.gd"
+uuid="*res://addons/uuid/uuid.gd"
 
 [debug]
 
@@ -31,7 +34,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/uuid/plugin.cfg")
 
 [input]
 
@@ -85,6 +88,7 @@ interact={
 3d_physics/layer_1="World"
 3d_physics/layer_2="Minions"
 3d_physics/layer_3="Player"
+3d_physics/layer_4="Interactables"
 
 [rendering]
 

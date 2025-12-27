@@ -11,7 +11,7 @@ var target_velocity := Vector3.ZERO
 var can_slash = true
 
 func Enter(extra_data = null):
-	owner.animTree.set("parameters/AnimSpeed/scale", 3.0)
+	owner.animTree.set("parameters/AnimSpeed/scale", 1.10)
 
 
 func Exit():
@@ -23,6 +23,11 @@ func Update(_delta: float):
 
 
 func Physics_Update(delta: float):
+	# if the player presses interact, interact
+	if Input.is_action_just_pressed('interact'):
+		playerCharacter.interactor.interact()
+		return
+
 	# if the player presses crouch, crouch
 	if Input.is_action_just_pressed('crouch'):
 		Transitioned.emit('Crouching')
