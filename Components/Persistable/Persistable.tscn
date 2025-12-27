@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vlkfbqsfmv3c"]
+
+[ext_resource type="Script" uid="uid://i5ofqv0suwqd" path="res://Components/Persistable/Persistable.gd" id="1_5woc0"]
+
+[node name="Persistable" type="Node"]
+script = ExtResource("1_5woc0")
+metadata/_custom_type_script = "uid://i5ofqv0suwqd"
