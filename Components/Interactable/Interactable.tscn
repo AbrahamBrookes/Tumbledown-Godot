@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c74oy52a8xy4a"]
+
+[ext_resource type="Script" uid="uid://ddes55tt74twf" path="res://Components/Interactable/Interactable.gd" id="1_32g6i"]
+[ext_resource type="Script" uid="uid://xwksuu2rc2xi" path="res://Components/Interactable/InteractableSubViewport.gd" id="2_0af6c"]
+[ext_resource type="PackedScene" uid="uid://bc7kmudbbkjoa" path="res://Components/Interactable/InteractablePopup.tscn" id="3_bn2qg"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0af6c"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Interactable" type="Node3D" node_paths=PackedStringArray("label", "popup")]
+script = ExtResource("1_32g6i")
+verb = "test meeeee"
+label = NodePath("Sprite3D/SubViewport/InteractablePopup/PanelContainer/MarginContainer/HBoxContainer/Label")
+popup = NodePath("Sprite3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+billboard = 1
+double_sided = false
+texture = SubResource("ViewportTexture_0af6c")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D" node_paths=PackedStringArray("panel_container", "label")]
+transparent_bg = true
+size = Vector2i(512, 50)
+render_target_update_mode = 4
+script = ExtResource("2_0af6c")
+panel_container = NodePath("InteractablePopup/PanelContainer")
+label = NodePath("InteractablePopup/PanelContainer/MarginContainer/HBoxContainer/Label")
+
+[node name="InteractablePopup" parent="Sprite3D/SubViewport" instance=ExtResource("3_bn2qg")]
+
+[editable path="Sprite3D/SubViewport/InteractablePopup"]

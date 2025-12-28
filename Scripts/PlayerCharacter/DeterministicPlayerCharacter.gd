@@ -28,9 +28,11 @@ var is_invincible: bool = false
 # the damage pushback velocity gets mixed with the state-managed velocity
 var pushback_velocity: Vector3 = Vector3.ZERO
 
-var input_dir: Vector2
-var move_dir: Vector3
-var target_velocity := Vector3.ZERO
+## expose the inventory so other scripts can access it
+@export var inventory: PlayerInventory
+
+## expose the interactor so other scripts can access it
+@export var interactor: Interactor
 
 func _ready() -> void:
 	stateMachine.TransitionTo("Locomote")
