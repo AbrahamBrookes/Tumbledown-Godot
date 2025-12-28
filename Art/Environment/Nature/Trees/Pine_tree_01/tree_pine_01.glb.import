@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cykdo8ukmtvfw"
-path="res://.godot/imported/pine_tree_01.glb-423ecedc32d096610979f32688d1e120.scn"
+uid="uid://cjualhfp5gn75"
+path="res://.godot/imported/tree_pine_01.glb-4323c2a2518c63826ca7144c36a2006b.scn"
 
 [deps]
 
-source_file="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.glb"
-dest_files=["res://.godot/imported/pine_tree_01.glb-423ecedc32d096610979f32688d1e120.scn"]
+source_file="res://Art/Environment/Nature/Trees/Pine_tree_01/tree_pine_01.glb"
+dest_files=["res://.godot/imported/tree_pine_01.glb-4323c2a2518c63826ca7144c36a2006b.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
@@ -37,18 +37,6 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={
-"meshes": {
-"pine_tree_01_Circle_004": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 20.0,
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.res",
-"save_to_file/path": "uid://b5krgcwqi1jyv"
-}
-}
-}
-gltf/naming_version=0
+_subresources={}
+gltf/naming_version=2
 gltf/embedded_image_handling=1
