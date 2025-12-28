@@ -73,19 +73,10 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -15, 2, -17)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -20)
 
 [node name="looty_chest" parent="." instance=ExtResource("10_tcmpw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.52, 2.25, 0.62)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52, 1.25, 3.62)
 
 [node name="Persistable" parent="looty_chest" index="0"]
 guid = "d2e388f0-839c-432b-a106-3553e6871ba4"
-data = {
-"is_open": true
-}
-
-[node name="Skeleton3D" parent="looty_chest/Armature" index="0"]
-bones/1/rotation = Quaternion(-0.07838296, -1.1579918e-07, 3.5583504e-08, 0.9969233)
-
-[node name="Interactable" parent="looty_chest" index="4"]
-enabled = false
 
 [editable path="Conversee"]
 [editable path="looty_chest"]
