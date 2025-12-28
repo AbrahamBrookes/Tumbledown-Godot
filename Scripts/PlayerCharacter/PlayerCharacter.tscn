@@ -467,7 +467,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.566112, 0)
 shape = SubResource("CapsuleShape3D_30vrr")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.50547695, 0.86284024, 0, -0.86284024, 0.50547695, -4.76837e-07, 5.11775, 2.3291402)
+transform = Transform3D(1, 0, 0, 0, 0.6022289, 0.79832345, 0, -0.79832345, 0.6022289, -4.76837e-07, 4.6677504, 2.6091404)
 
 [node name="Control" parent="Camera3D" instance=ExtResource("12_haj5d")]
 visible = false
