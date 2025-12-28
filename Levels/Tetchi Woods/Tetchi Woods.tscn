@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://h15eypvd0v6v"]
+[gd_scene load_steps=15 format=3 uid="uid://h15eypvd0v6v"]
 
 [ext_resource type="PackedScene" uid="uid://cgoyqjlfx43ox" path="res://Levels/Tetchi Woods/submaps/Tellers Bend.tscn" id="1_rtbw0"]
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dpn4hvqg8lsro" path="res://Gameplay/spiky_prickles/spiky_prickles_straight.tscn" id="8_0ffjd"]
 [ext_resource type="PackedScene" uid="uid://bhrei1j7dv88l" path="res://Levels/Tetchi Woods/submaps/Watchers Grove.tscn" id="9_tcmpw"]
 [ext_resource type="PackedScene" uid="uid://dbgqe5pb6pw5j" path="res://Gameplay/looty_chest/looty_chest.tscn" id="10_tcmpw"]
+[ext_resource type="PackedScene" uid="uid://cg046gmdqgviw" path="res://Gameplay/slashy_grass/SlashyGrass.tscn" id="11_w1p48"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1p48"]
 sky_top_color = Color(0.3955152, 0.5201397, 0.6982648, 1)
@@ -77,6 +78,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.52, 1.25, 3.62)
 
 [node name="Persistable" parent="looty_chest" index="0"]
 guid = "d2e388f0-839c-432b-a106-3553e6871ba4"
+data = {
+"is_open": true
+}
+
+[node name="Skeleton3D" parent="looty_chest/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.07838296, -1.1579918e-07, 3.5583504e-08, 0.9969233)
+
+[node name="Interactable" parent="looty_chest" index="4"]
+enabled = false
+
+[node name="SlashyGrass" parent="." instance=ExtResource("11_w1p48")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.5, 1.25, 3.5)
 
 [editable path="Conversee"]
 [editable path="looty_chest"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg046gmdqgviw"]
+
+[ext_resource type="PackedScene" uid="uid://7pqxwl7ncmm0" path="res://Gameplay/slashy_grass/slashy_grass_pre_cut.glb" id="1_q0ta1"]
+[ext_resource type="Shader" uid="uid://bi8f7l8thcu8a" path="res://Gameplay/slashy_grass/SlashyGrass.gdshader" id="2_i5ctg"]
+[ext_resource type="PackedScene" uid="uid://xsvfrlgntmqr" path="res://Gameplay/slashy_grass/slashy_grass_post_cut.glb" id="3_qm31a"]
+[ext_resource type="Texture2D" uid="uid://146ngd751uxi" path="res://Art/atlas.png" id="3_tyr63"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5ctg"]
+render_priority = 0
+shader = ExtResource("2_i5ctg")
+shader_parameter/albedo_texture = ExtResource("3_tyr63")
+shader_parameter/roughness = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/sway_strength = 0.50000002375
+shader_parameter/sway_speed = 1.0000000475
+shader_parameter/blade_base = 0.0
+shader_parameter/blade_tip = 1.0
+
+[node name="SlashyGrass" type="Node3D"]
+
+[node name="slashy_grass_pre_cut" parent="." instance=ExtResource("1_q0ta1")]
+
+[node name="pre_slash" parent="slashy_grass_pre_cut" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_i5ctg")
+
+[node name="slashy_grass_post_cut" parent="." instance=ExtResource("3_qm31a")]
+visible = false
+
+[editable path="slashy_grass_pre_cut"]
+[editable path="slashy_grass_post_cut"]
