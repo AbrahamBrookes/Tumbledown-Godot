@@ -45,7 +45,8 @@ shadow_normal_bias = 10.0
 shadow_blur = 0.6
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_336xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.889999, 1.75, -18.47)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.49, 1.75, -26.77)
+move_speed = 4.0
 
 [node name="Tellers Bend" parent="." instance=ExtResource("1_rtbw0")]
 
