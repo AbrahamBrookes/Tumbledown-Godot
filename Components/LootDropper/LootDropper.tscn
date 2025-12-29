@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c22qxdspp5d5h"]
+
+[ext_resource type="Script" uid="uid://585r4ftafbxs" path="res://Components/LootDropper/LootDropper.gd" id="1_hd85d"]
+
+[node name="LootDropper" type="Node3D"]
+script = ExtResource("1_hd85d")
+metadata/_custom_type_script = "uid://585r4ftafbxs"
