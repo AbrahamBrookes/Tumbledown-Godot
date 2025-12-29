@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cg046gmdqgviw"]
+[gd_scene load_steps=18 format=4 uid="uid://cg046gmdqgviw"]
 
 [ext_resource type="Script" uid="uid://cmdm6s054t30i" path="res://Gameplay/slashy_grass/SlashyGrass.gd" id="1_tyr63"]
 [ext_resource type="Shader" uid="uid://bi8f7l8thcu8a" path="res://Gameplay/slashy_grass/SlashyGrass.gdshader" id="2_i5ctg"]
@@ -6,6 +6,8 @@
 [ext_resource type="Material" uid="uid://pv5tkoeedxm8" path="res://Art/atlas_mat.tres" id="4_qm31a"]
 [ext_resource type="PackedScene" uid="uid://c3fkoywdqi245" path="res://Components/Slashable/Slashable.tscn" id="6_2h3nx"]
 [ext_resource type="ArrayMesh" uid="uid://kwxm2w6n5cda" path="res://Gameplay/slashy_grass/blade.res" id="6_tyr63"]
+[ext_resource type="PackedScene" uid="uid://c22qxdspp5d5h" path="res://Components/LootDropper/LootDropper.tscn" id="7_2h3nx"]
+[ext_resource type="PackedScene" uid="uid://dbp44fjjvmjnv" path="res://Gameplay/Koyins/koyin.tscn" id="8_kuk5u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmdy4"]
 vertex_color_use_as_albedo = true
@@ -94,11 +96,12 @@ _limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0.0036231875, -112.65997), 0.0, -528.1253, 0, 0, Vector2(1, -173.25336), 107.58651, 0.0, 0, 0]
 point_count = 2
 
-[node name="SlashyGrass" type="Node3D" node_paths=PackedStringArray("pre_slash_mesh", "post_slash_mesh", "particles", "area")]
+[node name="SlashyGrass" type="Node3D" node_paths=PackedStringArray("pre_slash_mesh", "post_slash_mesh", "particles", "loot_dropper", "area")]
 script = ExtResource("1_tyr63")
 pre_slash_mesh = NodePath("pre_slash")
 post_slash_mesh = NodePath("post_slash")
 particles = NodePath("CPUParticles3D")
+loot_dropper = NodePath("LootDropper")
 area = NodePath("Area3D")
 
 [node name="pre_slash" type="MeshInstance3D" parent="."]
@@ -153,6 +156,12 @@ angle_min = 180.0
 angle_max = 180.0
 scale_amount_min = 0.1
 scale_amount_max = 0.1
+
+[node name="LootDropper" parent="." instance=ExtResource("7_2h3nx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09999999, 0.2)
+available_loot = Dictionary[float, PackedScene]({
+0.1: ExtResource("8_kuk5u")
+})
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

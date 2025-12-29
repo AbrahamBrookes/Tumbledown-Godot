@@ -13,20 +13,19 @@ class_name SlashyGrass
 # the particle system
 @export var particles: CPUParticles3D
 
+# the loot dropper for when we drop loot
+@export var loot_dropper: LootDropper
+
 # our collision area - for detecting actors and angling the grass toward them slightly
 @export var area: Area3D
 
 # the characterbody we are angling toward
 var target_characterbody: CharacterBody3D = null
 
-# the position we are in originally, for resetting
-var original_position: Vector3
-
 # set up in ready
 func _ready():
 	pre_slash_mesh.visible = true
 	post_slash_mesh.visible = false
-	original_position = global_transform.origin
 
 # when the slashable component is slashed, run our mesh swapout and spawn code
 func _on_slashable_slashed(damage: Damage) -> void:
@@ -42,6 +41,7 @@ func _on_slashable_slashed(damage: Damage) -> void:
 		# run the particles if the pr
 		particles.emitting = true
 		particles.restart()
+		loot_dropper.drop()
 
 # when a CharacterBody3d enters the collision area angle self towards it a little
 func _on_area_3d_body_entered(body: Node3D) -> void:
