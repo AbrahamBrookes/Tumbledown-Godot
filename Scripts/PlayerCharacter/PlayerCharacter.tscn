@@ -406,7 +406,7 @@ one_shot = true
 [node name="SlashablesDetectionArea" type="Area3D" parent="SkinnedMesh/StateMachine/Slash"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.393901, -0.696701)
 collision_layer = 0
-collision_mask = 65535
+collision_mask = 18
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea"]
 transform = Transform3D(0.8838835, 0, 0.8838832, 0, 1.25, 0, -0.8838832, 0, 0.8838835, 0.22097081, 0, 0.22097087)
