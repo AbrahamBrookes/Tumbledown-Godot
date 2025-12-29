@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3fkoywdqi245"]
+
+[ext_resource type="Script" uid="uid://b2npwe20wk1s2" path="res://Components/Slashable/Slashable.gd" id="1_oltak"]
+
+[node name="Slashable" type="Node"]
+script = ExtResource("1_oltak")
+metadata/_custom_type_script = "uid://b2npwe20wk1s2"

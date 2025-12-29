@@ -15,18 +15,193 @@ dest_files=["res://.godot/imported/2ubeys.glb-1f3033326535a3ef9ec45304df4b2d7f.s
 
 nodes/root_type="Node3D"
 nodes/root_name="Scene Root"
+nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
 meshes/ensure_tangents=true
 meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"meshes": {
+"2ubeys_Cube_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/edge_ramp_r.res",
+"save_to_file/path": "uid://db4jl10vi0hdr"
+},
+"2ubeys_Cube_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/grass_ramp.res",
+"save_to_file/path": "uid://cearbtgdowt4d"
+},
+"2ubeys_Cube_016": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/dirt_flat.res",
+"save_to_file/path": "uid://dist3eiy48agt"
+},
+"2ubeys_Cube_025": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/edge_ramp_l.res",
+"save_to_file/path": "uid://bikqdn83x57cl"
+},
+"2ubeys_Cube_029": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/path_edge_straight.res",
+"save_to_file/path": "uid://cx1vw3j6v8v4k"
+},
+"2ubeys_Cube_032": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/grass_flat.res",
+"save_to_file/path": "uid://cq4f0kec07fm7"
+},
+"2ubeys_Cube_033": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/dirt_ramp.res",
+"save_to_file/path": "uid://dfyshnu4b8opb"
+},
+"2ubeys_Cube_035": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/path_edge_corner_outer.res",
+"save_to_file/path": "uid://df70vlrhyrkt4"
+},
+"2ubeys_Cube_037": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/path_edge_corner_inner.res",
+"save_to_file/path": "uid://djji4xtjlvhop"
+},
+"2ubeys_Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/grass_flat_phy.res",
+"save_to_file/path": "uid://pmj3jpqu3q12"
+},
+"2ubeys_Plane_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/grass_ramp_phy.res",
+"save_to_file/path": "uid://cj2h2jeelhqx3"
+},
+"2ubeys_Plane_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/edge_ramp_l_phy.res",
+"save_to_file/path": "uid://cfe8066gd8xfx"
+},
+"2ubeys_Plane_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/dirt_ramp_phy.res",
+"save_to_file/path": "uid://b7jaofdy7t7ix"
+},
+"2ubeys_Plane_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/dirt_flat_phy.res",
+"save_to_file/path": "uid://fj704u16a5ox"
+},
+"2ubeys_Plane_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/path_edge_corner_inner_phy.res",
+"save_to_file/path": "uid://vmlec0w131ja"
+},
+"2ubeys_Plane_006": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/path_edge_corner_outer_phy.res",
+"save_to_file/path": "uid://gfl5pffex3a1"
+},
+"2ubeys_Plane_007": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/path_edge_straight_phy.res",
+"save_to_file/path": "uid://c10wkmvoc7cur"
+},
+"2ubeys_Plane_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Art/Terrain/Cubeys/2ubeys/edge_ramp_r_phy.res",
+"save_to_file/path": "uid://cg88s1wp634ss"
+}
+}
+}
+gltf/naming_version=0
 gltf/embedded_image_handling=1

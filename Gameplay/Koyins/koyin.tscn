@@ -1,69 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbp44fjjvmjnv"]
+[gd_scene load_steps=5 format=3 uid="uid://dbp44fjjvmjnv"]
 
 [ext_resource type="PackedScene" uid="uid://pnhw8dg34yjn" path="res://Gameplay/Koyins/koyin.glb" id="2_drh6p"]
 [ext_resource type="Script" uid="uid://i8gp1luae6ta" path="res://Gameplay/Koyins/koyin.gd" id="2_kqm07"]
 [ext_resource type="Material" uid="uid://2qa8vo754n1s" path="res://Gameplay/Koyins/koyin.tres" id="2_suf5r"]
-
-[sub_resource type="Animation" id="Animation_drh6p"]
-resource_name = "rotate_bob"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Circle:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(-2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0.38, 0), Vector3(0, 0.31, 0), Vector3(0, 0.38, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Circle:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1.5707964, 0, 0), Vector3(1.5707964, 3.1415927, 0), Vector3(1.5707964, 6.2831855, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_suf5r"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Circle:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0.08, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Circle:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1.5707964, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqm07"]
-_data = {
-&"RESET": SubResource("Animation_suf5r"),
-&"rotate_bob": SubResource("Animation_drh6p")
-}
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_drh6p"]
 
@@ -71,20 +10,19 @@ _data = {
 script = ExtResource("2_kqm07")
 
 [node name="Circle" parent="." index="0"]
-transform = Transform3D(2.2, 0, 0, 0, -9.616505e-08, -2.2, 0, 2.2, -9.616505e-08, 0, 0.08, 0)
+transform = Transform3D(2.2, 0, 0, 0, 1.0999999, -1.9052559, 0, 1.9052559, 1.0999999, 0, 0.08, 0)
 surface_material_override/0 = ExtResource("2_suf5r")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
-libraries = {
-&"": SubResource("AnimationLibrary_kqm07")
-}
-autoplay = "rotate_bob"
-
-[node name="Area3D" type="Area3D" parent="." index="2"]
+[node name="Area3D" type="Area3D" parent="." index="1"]
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("SphereShape3D_drh6p")
 
+[node name="CanPickUpTimer" type="Timer" parent="." index="2"]
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="CanPickUpTimer" to="." method="_on_can_pick_up_timer_timeout"]

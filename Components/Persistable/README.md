@@ -36,4 +36,3 @@ The upshot of this is that whenever you are placing a scene that has a Persistab
  - Right click it and select "Editable Children"
  - Set the GUID (probs just click the "Generate Guid" button) - this makes the instance uniquely persistable
  - That's it! Nifty
-

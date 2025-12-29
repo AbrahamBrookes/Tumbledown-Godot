@@ -3,10 +3,10 @@ class_name Slash
 
 var can_slash_again: bool
 
-# an array of enemies entering and exiting our hit radius
-var hittable_enemies : Array = []
+# an array of slashables able to be slashed
+var slashables: Array = []
 
-func Enter(extra_data = null):
+func Enter(_extra_data = null):
 	owner.animTree.set("parameters/AnimSpeed/scale", 3.0)
 	can_slash_again = false
 	
@@ -19,14 +19,12 @@ func Enter(extra_data = null):
 func Exit():
 	pass
 
-
 func Update(_delta: float):
 	pass
 	# hack because I can't get the animation function track to work
 	var current_animation = owner.animTree.get("parameters/StateMachine/playback").get_current_node()
 	if not current_animation == "Slash":
 		Transitioned.emit("Locomote")
-
 
 func Physics_Update(_delta: float):
 	# if the player presses slash while slashing, slash
@@ -41,24 +39,25 @@ func slash():
 func finish_slashing():
 	can_slash_again = true
 
+func _on_slash_detection_area_entered(body):
+	var slashable = body.owner.get_node_or_null("Slashable")
+	if slashable and slashable is Slashable: 
+		slashables.append(slashable)
 
-func _on_hit_capsule_body_entered(body):
-	if body.has_method('receive_damage'):
-		hittable_enemies.append(body)
+func _on_slash_detection_area_exited(body):
+	var slashable = body.owner.get_node_or_null("Slashable")
+	if slashable and slashable is Slashable: 
+		slashables.erase(slashable)
 
-
-func _on_hit_capsule_body_exited(body):
-	if body.has_method('receive_damage'):
-		hittable_enemies.erase(body)
-
-
+# We don't want to slash at the start of the animation or it looks wonky
 func _on_apply_hurt_timer_timeout():
-	# loop through enemeies and hurt them
-	for enemy in hittable_enemies:
-		# our damage is a special type with a type and amount
-		var damage = Damage.new()
-		damage.type = Damage.DamageType.SPIKY
-		damage.amount = 1
-		damage.source = self
-		# Call the receive damage function on the body
-		enemy.receive_damage(damage)
+	# our damage is a special type with a type and amount
+	var damage = Damage.new()
+	damage.type = Damage.DamageType.SHARP
+	damage.amount = 1
+	damage.source = self
+	
+	# slash any slashables
+	for slashable in slashables:
+		if slashable is Slashable:
+			slashable.receive_slash(damage)
