@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cg046gmdqgviw"]
+[gd_scene load_steps=19 format=4 uid="uid://cg046gmdqgviw"]
 
 [ext_resource type="Script" uid="uid://cmdm6s054t30i" path="res://Gameplay/slashy_grass/SlashyGrass.gd" id="1_tyr63"]
 [ext_resource type="Shader" uid="uid://bi8f7l8thcu8a" path="res://Gameplay/slashy_grass/SlashyGrass.gdshader" id="2_i5ctg"]
@@ -8,6 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://kwxm2w6n5cda" path="res://Gameplay/slashy_grass/blade.res" id="6_tyr63"]
 [ext_resource type="PackedScene" uid="uid://c22qxdspp5d5h" path="res://Components/LootDropper/LootDropper.tscn" id="7_2h3nx"]
 [ext_resource type="PackedScene" uid="uid://dbp44fjjvmjnv" path="res://Gameplay/Koyins/koyin.tscn" id="8_kuk5u"]
+[ext_resource type="PackedScene" uid="uid://ddihv4pxvfq00" path="res://Scripts/Inventory/TestPickup.tscn" id="9_82j8x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmdy4"]
 vertex_color_use_as_albedo = true
@@ -160,7 +161,8 @@ scale_amount_max = 0.1
 [node name="LootDropper" parent="." instance=ExtResource("7_2h3nx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09999999, 0.2)
 available_loot = Dictionary[float, PackedScene]({
-0.1: ExtResource("8_kuk5u")
+0.1: ExtResource("8_kuk5u"),
+0.5: ExtResource("9_82j8x")
 })
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
