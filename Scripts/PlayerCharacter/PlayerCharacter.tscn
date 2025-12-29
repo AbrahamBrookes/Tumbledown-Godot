@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene load_steps=75 format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" uid="uid://bdfxwv0wcdtyk" path="res://Scripts/PlayerCharacter/DeterministicPlayerCharacter.gd" id="1_p3iwg"]
 [ext_resource type="PackedScene" uid="uid://bquuovixubyt4" path="res://Scripts/Health/PlayerHealth.tscn" id="2_jb5ed"]
@@ -201,13 +201,16 @@ nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_61bxm")
 nodes/StateMachine/position = Vector2(-200, 100)
 node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bwvvd"]
-size = Vector3(1, 0.469729, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ottvh"]
+size = Vector3(0.6, 1, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tjr6x"]
 size = Vector3(0.9, 0.9, 0.9)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lt837"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwvvd"]
+size = Vector3(1, 0.469729, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30vrr"]
 radius = 0.236864
@@ -400,14 +403,14 @@ process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="Area3D" type="Area3D" parent="SkinnedMesh/StateMachine/Slash"]
+[node name="SlashablesDetectionArea" type="Area3D" parent="SkinnedMesh/StateMachine/Slash"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.393901, -0.696701)
 collision_layer = 0
-collision_mask = 2
+collision_mask = 65535
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/Slash/Area3D"]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
-shape = SubResource("BoxShape3D_bwvvd")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea"]
+transform = Transform3D(0.8838835, 0, 0.8838832, 0, 1.25, 0, -0.8838832, 0, 0.8838835, 0.22097081, 0, 0.22097087)
+shape = SubResource("BoxShape3D_ottvh")
 
 [node name="Locomote" type="Node3D" parent="SkinnedMesh/StateMachine"]
 script = ExtResource("6_et2ma")
@@ -758,10 +761,10 @@ expand_mode = 4
 
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/SlashAgainTimer" to="SkinnedMesh/StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/ApplyHurtTimer" to="SkinnedMesh/StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]
-[connection signal="body_entered" from="SkinnedMesh/StateMachine/Slash/Area3D" to="SkinnedMesh/StateMachine/Slash" method="_on_hit_capsule_body_entered"]
-[connection signal="body_entered" from="SkinnedMesh/StateMachine/Slash/Area3D" to="Camera3D/Dialogue" method="_on_conversation_collider_entered"]
-[connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/Area3D" to="SkinnedMesh/StateMachine/Slash" method="_on_hit_capsule_body_exited"]
-[connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/Area3D" to="Camera3D/Dialogue" method="_on_conversation_collider_exited"]
+[connection signal="area_entered" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_entered"]
+[connection signal="area_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_exited"]
+[connection signal="body_entered" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="Camera3D/Dialogue" method="_on_conversation_collider_entered"]
+[connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="Camera3D/Dialogue" method="_on_conversation_collider_exited"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Jumping/Timer" to="SkinnedMesh/StateMachine/Jumping" method="_on_timer_timeout"]
 [connection signal="body_entered" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_entered"]
 [connection signal="body_exited" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_exited"]

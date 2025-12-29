@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhrei1j7dv88l"]
+[gd_scene load_steps=5 format=3 uid="uid://bhrei1j7dv88l"]
 
 [ext_resource type="MeshLibrary" uid="uid://cpb5gxw8v526e" path="res://Art/Terrain/Cubeys/2ubeys.tres" id="1_p7s3e"]
 [ext_resource type="PackedScene" uid="uid://c83jd4qwjt4ge" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.tscn" id="2_c8u54"]
+[ext_resource type="PackedScene" uid="uid://dbgqe5pb6pw5j" path="res://Gameplay/looty_chest/looty_chest.tscn" id="3_v3rqw"]
+[ext_resource type="PackedScene" uid="uid://cg046gmdqgviw" path="res://Gameplay/slashy_grass/SlashyGrass.tscn" id="4_pop2l"]
 
 [node name="Watchers Grove" type="Node3D"]
 
@@ -289,6 +291,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 1)
 [node name="pine_tree_23" parent="trees" instance=ExtResource("2_c8u54")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -1)
 
+[node name="looty_chest" parent="." instance=ExtResource("3_v3rqw")]
+transform = Transform3D(-4.3711378e-08, 0, -0.99999976, 0, 0.99999976, 0, 0.99999976, 0, -4.3711378e-08, 7.000001, 2, -3.0000005)
+
+[node name="Persistable" parent="looty_chest" index="0"]
+guid = "bbb1bc86-5331-4d66-a398-e804992aba44"
+data = {
+"is_open": true
+}
+
+[node name="Skeleton3D" parent="looty_chest/Armature" index="0"]
+bones/1/rotation = Quaternion(-0.07838296, -1.1579918e-07, 3.5583504e-08, 0.9969233)
+
+[node name="Interactable" parent="looty_chest" index="4"]
+enabled = false
+
+[node name="SlashyGrass" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -2.5, 1.75, 2.5)
+
+[node name="SlashyGrass2" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -1.5, 1.75, 2.5)
+
+[node name="SlashyGrass3" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -0.5, 1.75, 2.5)
+
+[node name="SlashyGrass10" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 1.5, 1.75, 4.5)
+
+[node name="SlashyGrass11" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, 1.5, 1.75, 5.5)
+
+[node name="SlashyGrass4" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -1.5, 1.75, 4.5)
+
+[node name="SlashyGrass5" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -2.5, 1.75, 4.5)
+
+[node name="SlashyGrass6" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -3.5, 1.75, 4.5)
+
+[node name="SlashyGrass7" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -4.5, 1.75, 4.5)
+
+[node name="SlashyGrass8" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -4.5, 1.75, 3.5)
+
+[node name="SlashyGrass9" parent="." instance=ExtResource("4_pop2l")]
+transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -5.5, 1.75, 3.5)
+
 [editable path="trees/pine_tree_24"]
 [editable path="trees/pine_tree_24/pine_tree_01"]
 [editable path="trees/pine_tree_24/tree_pine_01_flower_01"]
@@ -337,3 +387,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -1)
 [editable path="trees/pine_tree_20/tree_pine_01_flower_03"]
 [editable path="trees/pine_tree_20/tree_pine_01_flower_04"]
 [editable path="trees/pine_tree_20/tree_pine_01_flower_05"]
+[editable path="looty_chest"]
+[editable path="looty_chest/Persistable"]
