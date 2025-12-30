@@ -45,12 +45,13 @@ shadow_normal_bias = 10.0
 shadow_blur = 0.6
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("4_336xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.49, 1.75, -26.77)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.610001, 1.75, -16.57)
 move_speed = 4.0
 
 [node name="Tellers Bend" parent="." instance=ExtResource("1_rtbw0")]
 
 [node name="Stone Pillars" parent="." instance=ExtResource("2_o0x7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.000001, 0, -20)
 
 [node name="Stonewater Lake" parent="." instance=ExtResource("3_o6bsb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
