@@ -202,7 +202,7 @@ nodes/StateMachine/position = Vector2(-200, 100)
 node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ottvh"]
-size = Vector3(0.6, 1, 0.5)
+size = Vector3(0.6, 0.5, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tjr6x"]
 size = Vector3(0.9, 0.9, 0.9)
@@ -282,7 +282,7 @@ script = ExtResource("1_p3iwg")
 mesh = NodePath("SkinnedMesh")
 animTree = NodePath("SkinnedMesh/AnimationTree")
 stateMachine = NodePath("SkinnedMesh/StateMachine")
-move_speed = 6.0
+move_speed = 50.0
 player_health = NodePath("PlayerHealth")
 invincible_timer = NodePath("InvincibilityTimer")
 inventory = NodePath("PlayerInventory")
@@ -409,11 +409,15 @@ collision_layer = 0
 collision_mask = 18
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea"]
-transform = Transform3D(0.8838835, 0, 0.8838832, 0, 1.25, 0, -0.8838832, 0, 0.8838835, 0.22097081, 0, 0.22097087)
+transform = Transform3D(0.8838835, 0, 0.8838832, 0, 1.25, 0, -0.8838832, 0, 0.8838835, 0.22097081, 0.11059576, 0.22097087)
 shape = SubResource("BoxShape3D_ottvh")
 
-[node name="Locomote" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="Locomote" type="Node3D" parent="SkinnedMesh/StateMachine" node_paths=PackedStringArray("coyote_timer")]
 script = ExtResource("6_et2ma")
+coyote_timer = NodePath("CoyoteTimer")
+
+[node name="CoyoteTimer" type="Timer" parent="SkinnedMesh/StateMachine/Locomote"]
+wait_time = 0.1
 
 [node name="LeaningCrate" type="Node3D" parent="SkinnedMesh/StateMachine"]
 script = ExtResource("7_otshi")
@@ -441,11 +445,10 @@ script = ExtResource("10_5rovj")
 
 [node name="Jumping" type="Node3D" parent="SkinnedMesh/StateMachine"]
 script = ExtResource("11_jxu01")
-jump_power = 12000.0
 lateral_damp = 0.5
 
 [node name="Timer" type="Timer" parent="SkinnedMesh/StateMachine/Jumping"]
-wait_time = 0.05
+wait_time = 0.1
 one_shot = true
 
 [node name="OpenChest" type="Node3D" parent="SkinnedMesh/StateMachine"]
@@ -765,6 +768,7 @@ expand_mode = 4
 [connection signal="area_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_exited"]
 [connection signal="body_entered" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="Camera3D/Dialogue" method="_on_conversation_collider_entered"]
 [connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="Camera3D/Dialogue" method="_on_conversation_collider_exited"]
+[connection signal="timeout" from="SkinnedMesh/StateMachine/Locomote/CoyoteTimer" to="SkinnedMesh/StateMachine/Locomote" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Jumping/Timer" to="SkinnedMesh/StateMachine/Jumping" method="_on_timer_timeout"]
 [connection signal="body_entered" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_entered"]
 [connection signal="body_exited" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_exited"]
