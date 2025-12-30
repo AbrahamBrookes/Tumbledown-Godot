@@ -7,7 +7,7 @@ signal Transitioned(new_state_name: String, extra_data)
 @export var allow_self_transition: bool = false
 
 # playercharacter is the immediate scene root
-@onready var playerCharacter = owner
+@onready var playerCharacter: CharacterBody3D = owner
 
 # the state machine is always the immediate parent of the state it is managing
 var state_machine: StateMachine

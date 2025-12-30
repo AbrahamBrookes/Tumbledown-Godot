@@ -10,6 +10,11 @@ var target_velocity := Vector3.ZERO
 
 var can_slash = true
 
+## we need some coyote time before we prevent jumping
+@export var coyote_timer: Timer
+var in_coyote_time: bool = true
+var was_on_floor = true
+
 func Enter(extra_data = null):
 	owner.animTree.set("parameters/AnimSpeed/scale", 1.10)
 
@@ -38,9 +43,19 @@ func Physics_Update(delta: float):
 		Transitioned.emit("Slash")
 		return
 
+	# handle coyote time
+	var on_floor = playerCharacter.is_on_floor()
+	if was_on_floor and not on_floor:
+		coyote_timer.start()
+		in_coyote_time = true
+	if on_floor:
+		in_coyote_time = true
+		coyote_timer.stop()
+	was_on_floor = on_floor
+	
 	# if the player presses jump, jump
 	if Input.is_action_just_pressed("jump"):
-		if owner.get_node('GroundCast').is_colliding():
+		if in_coyote_time:
 			Transitioned.emit("Jumping")
 			return
 	
@@ -90,3 +105,7 @@ func input_walk(delta: float):
 func lean_crate(crate: Node3D):
 	# transition via the state machine
 	Transitioned.emit("LeaningCrate", crate)
+
+
+func _on_coyote_timer_timeout() -> void:
+	in_coyote_time = false
