@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnw8kf2pe11fy"]
+
+[ext_resource type="Material" uid="uid://pv5tkoeedxm8" path="res://Art/atlas_mat.tres" id="1_a4ng6"]
+[ext_resource type="ArrayMesh" uid="uid://3pfp7h50lhb8" path="res://Art/Modular Static Assets/Ruins 01/ruins_01_straight.res" id="2_a4ng6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a4ng6"]
+size = Vector3(0.6, 2.4, 2.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6mpq7"]
+size = Vector3(0.2, 0.5, 2.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_feult"]
+size = Vector3(0.2, 0.5, 2.4)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="Ruins01Arch" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+material_override = ExtResource("1_a4ng6")
+mesh = ExtResource("2_a4ng6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0.9000001)
+shape = SubResource("BoxShape3D_a4ng6")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40000007, 2.25, 0.9000001)
+shape = SubResource("BoxShape3D_6mpq7")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39999992, 2.25, 0.9000001)
+shape = SubResource("BoxShape3D_feult")
