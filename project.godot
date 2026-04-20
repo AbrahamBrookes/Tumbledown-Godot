@@ -90,6 +90,7 @@ interact={
 3d_physics/layer_3="Player"
 3d_physics/layer_4="Interactables"
 3d_physics/layer_5="Slashables"
+3d_physics/layer_6="Pushables"
 
 [rendering]
 
