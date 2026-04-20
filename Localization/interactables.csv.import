@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://g866udyohus"
+
+[deps]
+
+files=["res://Localization/interactables.en.translation", "res://Localization/interactables.es.translation"]
+
+source_file="res://Localization/interactables.csv"
+dest_files=["res://Localization/interactables.en.translation", "res://Localization/interactables.es.translation"]
+
+[params]
+
+compress=true
+delimiter=0
