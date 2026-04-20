@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://h15eypvd0v6v"]
+[gd_scene format=3 uid="uid://h15eypvd0v6v"]
 
 [ext_resource type="PackedScene" uid="uid://cgoyqjlfx43ox" path="res://Levels/Tetchi Woods/submaps/Tellers Bend.tscn" id="1_rtbw0"]
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
 [ext_resource type="PackedScene" uid="uid://ce52en6yl3hjy" path="res://Levels/Tetchi Woods/submaps/Stonewater Lake.tscn" id="3_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="4_336xh"]
+[ext_resource type="PackedScene" uid="uid://bi7cr08c6ipq" path="res://Gameplay/BasicPushable/BasicPushable.tscn" id="6_wbtck"]
 [ext_resource type="PackedScene" uid="uid://bhrei1j7dv88l" path="res://Levels/Tetchi Woods/submaps/Watchers Grove.tscn" id="9_tcmpw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1p48"]
@@ -32,29 +33,32 @@ adjustment_enabled = true
 adjustment_contrast = 1.07
 adjustment_saturation = 1.05
 
-[node name="Tetchi Woods" type="Node3D"]
+[node name="Tetchi Woods" type="Node3D" unique_id=60571882]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1108235268]
 environment = SubResource("Environment_4hs3e")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=431882933]
 transform = Transform3D(-0.8892831, 0.017177494, -0.45703432, -0.45718816, -0.060540553, 0.88730705, -0.012427403, 0.9980179, 0.061691046, 2.03376, 7.67213, 4.25012)
 light_color = Color(0.878431, 0.94902, 0.941176, 1)
 shadow_enabled = true
 shadow_normal_bias = 10.0
 shadow_blur = 0.6
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("4_336xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.610001, 1.75, -16.57)
+[node name="PlayerCharacter" parent="." unique_id=1893409420 instance=ExtResource("4_336xh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81, 1.75, -24.869999)
 move_speed = 4.0
 
-[node name="Tellers Bend" parent="." instance=ExtResource("1_rtbw0")]
+[node name="Tellers Bend" parent="." unique_id=1869404216 instance=ExtResource("1_rtbw0")]
 
-[node name="Stone Pillars" parent="." instance=ExtResource("2_o0x7v")]
+[node name="Stone Pillars" parent="." unique_id=347567961 instance=ExtResource("2_o0x7v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.000001, 0, -20)
 
-[node name="Stonewater Lake" parent="." instance=ExtResource("3_o6bsb")]
+[node name="Stonewater Lake" parent="." unique_id=26112654 instance=ExtResource("3_o6bsb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 
-[node name="Watchers Grove" parent="." instance=ExtResource("9_tcmpw")]
+[node name="Watchers Grove" parent="." unique_id=357920721 instance=ExtResource("9_tcmpw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -20)
+
+[node name="BasicPushable" parent="." unique_id=1659345474 instance=ExtResource("6_wbtck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2, -23.5)

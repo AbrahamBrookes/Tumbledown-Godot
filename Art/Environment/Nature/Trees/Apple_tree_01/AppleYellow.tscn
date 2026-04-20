@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://0ggndgcsimph"]
+
+[ext_resource type="Material" uid="uid://bjum01dl5ffd1" path="res://Art/Environment/Nature/Trees/Apple_tree_01/apples_mat.tres" id="1_yo4cn"]
+[ext_resource type="ArrayMesh" uid="uid://c63w17umrfx2e" path="res://Art/Environment/Nature/Trees/Apple_tree_01/apple_yellow.res" id="2_610j4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yo4cn"]
+radius = 0.1533534
+
+[node name="AppleYellow" type="RigidBody3D"]
+collision_mask = 5
+mass = 0.2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+material_override = ExtResource("1_yo4cn")
+mesh = ExtResource("2_610j4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_yo4cn")

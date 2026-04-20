@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=105 format=4 uid="uid://cpb5gxw8v526e"]
+[gd_resource type="MeshLibrary" format=4 uid="uid://cpb5gxw8v526e"]
 
 [ext_resource type="Texture2D" uid="uid://bv6wq7n00vdse" path="res://Art/poly.cam AI generated textures/stone/albedo.jpg" id="3_rwq68"]
 [ext_resource type="Material" uid="uid://wdooi72yi05g" path="res://Art/Materials/Wood/Planks/wood_planks_01/wood_planks_01.tres" id="4_1hi1s"]

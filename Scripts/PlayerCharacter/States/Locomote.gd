@@ -104,7 +104,7 @@ func input_walk(delta: float):
 # this is called by the pushy_crate when we bump into it
 func lean_crate(crate: Node3D):
 	# transition via the state machine
-	Transitioned.emit("LeaningCrate", crate)
+	Transitioned.emit("LeaningPushable", crate)
 
 
 func _on_coyote_timer_timeout() -> void:

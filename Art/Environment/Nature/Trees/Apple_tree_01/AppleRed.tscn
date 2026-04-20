@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://yeqw5xwsj0j6"]
+
+[ext_resource type="Material" uid="uid://bjum01dl5ffd1" path="res://Art/Environment/Nature/Trees/Apple_tree_01/apples_mat.tres" id="1_5otvg"]
+[ext_resource type="ArrayMesh" uid="uid://pvvrjmhlvq0m" path="res://Art/Environment/Nature/Trees/Apple_tree_01/apple_red.res" id="2_tb2jm"]
+[ext_resource type="PackedScene" uid="uid://c74oy52a8xy4a" path="res://Components/Interactable/Interactable.tscn" id="3_tb2jm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5otvg"]
+radius = 0.1533534
+
+[node name="AppleRed" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 9
+mass = 0.2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+material_override = ExtResource("1_5otvg")
+mesh = ExtResource("2_tb2jm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5otvg")
+
+[node name="Interactable" parent="." instance=ExtResource("3_tb2jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+verb = "take"

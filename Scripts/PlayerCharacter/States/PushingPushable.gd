@@ -9,7 +9,7 @@ class_name PushingPushable
 ## on the push as well by releasing movement input or walking away.
 
 # the thing we are pushing
-var pushable_object = null
+var pushable_object: Pushable = null
 
 func Enter(pushable = null):
 	# if the pushable can't be pushed, bail out
@@ -24,7 +24,7 @@ func Enter(pushable = null):
 	pushable_object.be_pushed(playerCharacter)
 
 # in physics process, check if we should stop pushing
-func PhysicsProcess(delta: float) -> void:
+func Physics_Update(delta: float) -> void:
 	# if we have no pushable, bail out
 	if not pushable_object:
 		Transitioned.emit("Locomote")
@@ -35,21 +35,21 @@ func PhysicsProcess(delta: float) -> void:
 		0,
 		Input.get_action_strength("walk_south") - Input.get_action_strength("walk_north")
 	).normalized()
+	
+	var move_direction = input_direction * pushable_object.push_speed
+	
+	desired_velocity.x = move_direction.x
+	desired_velocity.z = move_direction.z
 
 	# if there is no input, bail out
-	if input_direction == Vector3.ZERO:
-		Transitioned.emit("Locomote")
+	if input_direction.length() < 0.5:
+		pushable_object.stop_being_pushed()
+		Transitioned.emit("LeaningPushable", pushable_object)
 		return
 
 	# if we have turned away from the pushable, bail out
 	var to_pushable = (pushable_object.global_transform.origin - playerCharacter.global_transform.origin).normalized()
-	if input_direction.dot(to_pushable) < 0.5:
+	if input_direction.dot(to_pushable) < 0.75:
+		pushable_object.stop_being_pushed()
 		Transitioned.emit("Locomote")
 		return
-
-# whenever we exit this state, tell the pushable to stop being pushed -
-# it might keep travelling on its own for a bit still
-func Exit():
-	if pushable_object and pushable_object.has_method("stop_being_pushed"):
-		pushable_object.stop_being_pushed()
-	pushable_object = null

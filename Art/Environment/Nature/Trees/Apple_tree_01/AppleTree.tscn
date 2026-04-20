@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx0gfl855icvr"]
+
+[ext_resource type="ArrayMesh" uid="uid://n5p2g8x7jyu1" path="res://Art/Environment/Nature/Trees/Apple_tree_01/apple_tree_01.res" id="1_b11if"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b11if"]
+radius = 0.2
+
+[node name="AppleTree" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+mesh = ExtResource("1_b11if")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_b11if")

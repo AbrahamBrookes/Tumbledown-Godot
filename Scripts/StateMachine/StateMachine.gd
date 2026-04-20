@@ -27,11 +27,10 @@ var previous_state : State
 
 func _ready():
 	# protect against misconfiguration
-	if not animTree:
+	if animTree:
+		playback = animTree.get("parameters/StateMachine/playback")
+	else:
 		push_error("StateMachine: AnimationTree not assigned!")
-		return
-	
-	playback = animTree.get("parameters/StateMachine/playback")
 	
 	for child in get_children():
 		if child is State:
@@ -98,6 +97,10 @@ func is_in_states(state_names: Array[String]) -> bool:
 		if current_state.name.to_lower() == name.to_lower():
 			return true
 	return false
+
+# allow callers to check for the existence of a state in our tree
+func has_state(state_name: String) -> bool:
+	return !! states.find_key(state_name)
 
 # allow callers to get a given state node if they know its name
 func get_state(state_name: String) -> State:

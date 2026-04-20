@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bjum01dl5ffd1"]
+
+[ext_resource type="Texture2D" uid="uid://w81aqo504o6q" path="res://Art/Environment/Nature/Trees/Apple_tree_01/apple_tree_dif.png" id="1_1ku27"]
+
+[resource]
+resource_name = "apple_tree"
+cull_mode = 2
+albedo_texture = ExtResource("1_1ku27")
+roughness = 0.3

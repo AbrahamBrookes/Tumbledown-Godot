@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://u65ut6h3i0ms"]
+[gd_scene format=3 uid="uid://u65ut6h3i0ms"]
 
 [ext_resource type="Script" uid="uid://bdfxwv0wcdtyk" path="res://Scripts/PlayerCharacter/DeterministicPlayerCharacter.gd" id="1_p3iwg"]
 [ext_resource type="PackedScene" uid="uid://bquuovixubyt4" path="res://Scripts/Health/PlayerHealth.tscn" id="2_jb5ed"]
@@ -8,9 +8,9 @@
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_n6sth"]
 [ext_resource type="Script" uid="uid://bm7xyyr5k284s" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="5_ph5ji"]
 [ext_resource type="Script" uid="uid://cg7tsdk2ofmni" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="6_et2ma"]
-[ext_resource type="Script" uid="uid://r14b1w2ap2jr" path="res://Scripts/PlayerCharacter/States/LeaningCrate.gd" id="7_otshi"]
-[ext_resource type="Script" uid="uid://cso4uel115xs0" path="res://Scripts/PlayerCharacter/States/PushingCrate.gd" id="8_hyvrb"]
+[ext_resource type="Script" uid="uid://r14b1w2ap2jr" path="res://Scripts/PlayerCharacter/States/LeaningPushable.gd" id="7_otshi"]
 [ext_resource type="Script" uid="uid://dy3ag1l4iwq0g" path="res://Scripts/PlayerCharacter/States/Crouching.gd" id="9_unn3g"]
+[ext_resource type="Script" uid="uid://bqmkhn41tdo0e" path="res://Scripts/PlayerCharacter/States/PushingPushable.gd" id="9_xa3l1"]
 [ext_resource type="Script" uid="uid://bcle844nc463r" path="res://Scripts/PlayerCharacter/States/Crawling.gd" id="10_5rovj"]
 [ext_resource type="Script" uid="uid://3w1wbhoushls" path="res://Scripts/PlayerCharacter/States/Jumping.gd" id="11_jxu01"]
 [ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="12_haj5d"]
@@ -21,7 +21,9 @@
 [ext_resource type="Script" uid="uid://b4iilueaajuii" path="res://Scripts/Inventory/KoyinPouch.gd" id="15_m3vir"]
 [ext_resource type="Texture2D" uid="uid://crx8mgygeubnk" path="res://Gameplay/Koyins/icon.png" id="16_nvibq"]
 [ext_resource type="FontFile" uid="uid://dhos0jfecis2a" path="res://Fonts/MPLUSRounded1c-Bold.ttf" id="17_gsa12"]
+[ext_resource type="Script" uid="uid://dwcbbwge02qmg" path="res://Scripts/PlayerCharacter/InputDirectionCast.gd" id="17_xa3l1"]
 [ext_resource type="Texture2D" uid="uid://svdfeftb3nag" path="res://Scripts/Health/heart-full.png" id="18_gsa12"]
+[ext_resource type="Script" uid="uid://dwqxg53ittw7m" path="res://Components/CratePusher/CratePusher.gd" id="24_m2ugw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61hpo"]
 albedo_texture = ExtResource("3_jb5ed")
@@ -175,25 +177,25 @@ states/DisplayLoot/node = SubResource("AnimationNodeAnimation_jb5ed")
 states/DisplayLoot/position = Vector2(910, 200)
 states/Jumping/node = SubResource("AnimationNodeAnimation_nqrec")
 states/Jumping/position = Vector2(492, 178)
-states/LeaningCrate/node = SubResource("AnimationNodeAnimation_4hbm8")
-states/LeaningCrate/position = Vector2(656, -70)
+states/LeaningPushable/node = SubResource("AnimationNodeAnimation_4hbm8")
+states/LeaningPushable/position = Vector2(656, -70)
 states/Locomote/node = SubResource("AnimationNodeBlendSpace1D_srys3")
 states/Locomote/position = Vector2(400, 100)
 states/OpenChest/node = SubResource("AnimationNodeAnimation_61hpo")
 states/OpenChest/position = Vector2(777, 200)
-states/PushingCrate/node = SubResource("AnimationNodeAnimation_g4gtf")
-states/PushingCrate/position = Vector2(672, 39)
+states/PushingPushable/node = SubResource("AnimationNodeAnimation_g4gtf")
+states/PushingPushable/position = Vector2(672, 39)
 states/Slash/node = SubResource("AnimationNodeAnimation_sma0w")
 states/Slash/position = Vector2(233, -32)
 states/crawling/node = SubResource("AnimationNodeBlendSpace1D_ebfcu")
 states/crawling/position = Vector2(347, -174)
 states/crouch/node = SubResource("AnimationNodeAnimation_qhlp2")
 states/crouch/position = Vector2(406, -70)
-transitions = ["Locomote", "End", SubResource("AnimationNodeStateMachineTransition_wbke6"), "Slash", "Locomote", SubResource("AnimationNodeStateMachineTransition_eh4ht"), "Locomote", "Slash", SubResource("AnimationNodeStateMachineTransition_2l6ic"), "Locomote", "LeaningCrate", SubResource("AnimationNodeStateMachineTransition_k38qc"), "LeaningCrate", "PushingCrate", SubResource("AnimationNodeStateMachineTransition_831vp"), "PushingCrate", "LeaningCrate", SubResource("AnimationNodeStateMachineTransition_epm4v"), "PushingCrate", "Locomote", SubResource("AnimationNodeStateMachineTransition_3diy6"), "LeaningCrate", "Locomote", SubResource("AnimationNodeStateMachineTransition_uup32"), "Locomote", "crouch", SubResource("AnimationNodeStateMachineTransition_nw37k"), "crouch", "Locomote", SubResource("AnimationNodeStateMachineTransition_e511p"), "crouch", "crawling", SubResource("AnimationNodeStateMachineTransition_sl7d2"), "crawling", "crouch", SubResource("AnimationNodeStateMachineTransition_nedae"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_x44cg"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_tusl0"), "Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_no18i"), "Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_gy7fs"), "Locomote", "OpenChest", SubResource("AnimationNodeStateMachineTransition_io75w"), "OpenChest", "DisplayLoot", SubResource("AnimationNodeStateMachineTransition_ottvh"), "DisplayLoot", "Locomote", SubResource("AnimationNodeStateMachineTransition_xa3l1")]
-graph_offset = Vector2(70, -22)
+transitions = ["Locomote", "End", SubResource("AnimationNodeStateMachineTransition_wbke6"), "Slash", "Locomote", SubResource("AnimationNodeStateMachineTransition_eh4ht"), "Locomote", "Slash", SubResource("AnimationNodeStateMachineTransition_2l6ic"), "Locomote", "LeaningPushable", SubResource("AnimationNodeStateMachineTransition_k38qc"), "LeaningPushable", "PushingPushable", SubResource("AnimationNodeStateMachineTransition_831vp"), "PushingPushable", "LeaningPushable", SubResource("AnimationNodeStateMachineTransition_epm4v"), "PushingPushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_3diy6"), "LeaningPushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_uup32"), "Locomote", "crouch", SubResource("AnimationNodeStateMachineTransition_nw37k"), "crouch", "Locomote", SubResource("AnimationNodeStateMachineTransition_e511p"), "crouch", "crawling", SubResource("AnimationNodeStateMachineTransition_sl7d2"), "crawling", "crouch", SubResource("AnimationNodeStateMachineTransition_nedae"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_x44cg"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_tusl0"), "Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_no18i"), "Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_gy7fs"), "Locomote", "OpenChest", SubResource("AnimationNodeStateMachineTransition_io75w"), "OpenChest", "DisplayLoot", SubResource("AnimationNodeStateMachineTransition_ottvh"), "DisplayLoot", "Locomote", SubResource("AnimationNodeStateMachineTransition_xa3l1")]
+graph_offset = Vector2(284, -112)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_v7krk"]
-graph_offset = Vector2(-192, 33)
+graph_offset = Vector2(-320, 40)
 nodes/output/position = Vector2(220, 100)
 nodes/AnimSpeed/node = SubResource("AnimationNodeTimeScale_alo0e")
 nodes/AnimSpeed/position = Vector2(60, 100)
@@ -203,11 +205,6 @@ node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ottvh"]
 size = Vector3(0.6, 0.5, 0.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tjr6x"]
-size = Vector3(0.9, 0.9, 0.9)
-
-[sub_resource type="BoxMesh" id="BoxMesh_lt837"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bwvvd"]
 size = Vector3(1, 0.469729, 1)
@@ -272,7 +269,7 @@ shader_parameter/blur_strength = 2.000000095
 shader_parameter/vignette_strength = 0.09600000456
 shader_parameter/vignette_softness = 0.69400002970512
 
-[node name="PlayerCharacter" type="CharacterBody3D" node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "interactor")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1055117701 node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "interactor")]
 collision_layer = 4
 collision_mask = 7
 axis_lock_angular_x = true
@@ -288,96 +285,94 @@ invincible_timer = NodePath("InvincibilityTimer")
 inventory = NodePath("PlayerInventory")
 interactor = NodePath("Interactor")
 
-[node name="Interactor" parent="." node_paths=PackedStringArray("trigger", "player_character") instance=ExtResource("2_ottvh")]
+[node name="Interactor" parent="." unique_id=488824456 node_paths=PackedStringArray("trigger", "player_character") instance=ExtResource("2_ottvh")]
 trigger = NodePath("../SkinnedMesh/InteractableArea3D")
 player_character = NodePath("..")
 
-[node name="SkinnedMesh" parent="." instance=ExtResource("2_oyuwf")]
-transform = Transform3D(-1, 0, -6.34988e-06, 0, 1, 0, 6.34988e-06, 0, -1, 0, 0, 0)
+[node name="SkinnedMesh" parent="." unique_id=1894765079 instance=ExtResource("2_oyuwf")]
 
 [node name="rig" parent="SkinnedMesh" index="0"]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="GeneralSkeleton" parent="SkinnedMesh/rig" index="0"]
-bones/0/position = Vector3(-0.013743054, 0.24513406, -0.006745033)
-bones/0/rotation = Quaternion(0.11180857, -0.011164624, -0.071606934, 0.9910836)
-bones/0/scale = Vector3(1.0000004, 1.0000004, 1)
-bones/1/rotation = Quaternion(-0.10217844, 0.0037032086, 0.036000133, 0.99410766)
-bones/1/scale = Vector3(1, 1.0000001, 0.99999994)
-bones/2/rotation = Quaternion(-0.022711392, 0.010782139, 0.0036676193, 0.9996772)
-bones/2/scale = Vector3(0.99999994, 0.9999995, 0.9999996)
-bones/3/rotation = Quaternion(-0.051753193, 0.026159551, -0.031260327, 0.9978277)
-bones/3/scale = Vector3(0.9999998, 1.0000002, 1.0000001)
-bones/4/rotation = Quaternion(0.43283927, -0.004098775, 0.036077846, 0.9007396)
-bones/4/scale = Vector3(0.99999946, 1.000001, 0.99999976)
-bones/5/rotation = Quaternion(-0.06288302, -6.976681e-05, 4.207356e-06, 0.9980209)
-bones/5/scale = Vector3(1.0000013, 0.99999785, 1.0000015)
-bones/6/rotation = Quaternion(-0.33448648, -0.0053524566, 0.032936838, 0.94180965)
-bones/6/scale = Vector3(0.99999887, 1.0000002, 0.99999994)
-bones/7/rotation = Quaternion(-0.6157067, 9.835427e-05, 1.953698e-05, 0.78797543)
-bones/8/rotation = Quaternion(-0.28943723, 3.0995867e-05, -0.0017906728, 0.9571953)
-bones/9/position = Vector3(6.9100795e-15, 0.77800584, 0.46797514)
-bones/10/position = Vector3(-0.01374305, 0.24513404, -0.0067450292)
-bones/10/rotation = Quaternion(0.020981155, 0.6774544, 0.6254621, -0.38653904)
-bones/10/scale = Vector3(1.0000002, 1, 1.0000004)
-bones/11/position = Vector3(-0.013743057, 0.24513404, -0.006745007)
-bones/11/rotation = Quaternion(0.07325992, 0.6710037, 0.5629346, 0.476961)
-bones/11/scale = Vector3(1.0000002, 1, 1.0000005)
-bones/12/rotation = Quaternion(0.0029029474, 0.27995867, 0.9598926, 0.014867178)
-bones/12/scale = Vector3(1.0061207, 0.98782426, 1.0061699)
-bones/13/rotation = Quaternion(-1.3920946e-05, 0.00025128628, 4.665228e-06, 1)
-bones/13/scale = Vector3(0.9999997, 1, 1)
-bones/14/rotation = Quaternion(0.06706051, 0.9314305, -0.35722142, 0.018249663)
-bones/14/scale = Vector3(1.0091797, 0.97338665, 1.0185163)
-bones/15/rotation = Quaternion(1.4551915e-07, 0.06446706, 0.017769959, 0.99776167)
-bones/16/rotation = Quaternion(0.11777229, 0.45657873, -0.8799577, -0.05779489)
-bones/16/scale = Vector3(0.9865063, 1.000162, 1.0144598)
-bones/17/rotation = Quaternion(0.0030892547, 0.99999523, -3.8743013e-07, 7.590278e-08)
-bones/18/rotation = Quaternion(-0.03386137, -0.26137632, 0.9617774, -0.07429756)
-bones/18/scale = Vector3(1.006044, 0.9879747, 1.0060921)
-bones/19/rotation = Quaternion(0.00045760442, 0.008265133, 0.0001551318, 0.9999657)
-bones/20/rotation = Quaternion(-0.10214196, 0.85260665, -0.5112365, -0.035583485)
-bones/20/scale = Vector3(1.0070225, 0.9739983, 1.0199662)
-bones/21/rotation = Quaternion(2.387387e-07, -0.06613069, -0.018228643, 0.9976444)
-bones/22/rotation = Quaternion(-0.21448234, 0.4636429, -0.85507613, 0.08875521)
-bones/22/scale = Vector3(0.9902957, 0.9994859, 1.0110437)
-bones/23/rotation = Quaternion(1.9361488e-07, 0.87068087, 0.49184862, -2.5897972e-07)
-bones/23/scale = Vector3(0.99999994, 1.0000008, 0.99999976)
-bones/24/position = Vector3(0.029313037, 0.49437603, 0.0003766194)
-bones/24/rotation = Quaternion(0.55583405, 0.51047385, 0.43087327, -0.494786)
-bones/24/scale = Vector3(0.9999998, 1, 1.0000001)
-bones/25/rotation = Quaternion(0.43100238, 0.44905832, -0.7575753, 0.19662979)
-bones/25/scale = Vector3(1.0046644, 0.9970718, 0.9984157)
-bones/26/rotation = Quaternion(0.009495646, 0.033836335, 0.030964226, 0.99890256)
-bones/26/scale = Vector3(1, 1.0000002, 1.0000001)
-bones/27/rotation = Quaternion(0.23178661, -0.79803824, 0.11523094, 0.5441799)
-bones/27/scale = Vector3(0.99400246, 0.9944025, 1.0119839)
-bones/28/rotation = Quaternion(0.0070299953, 0.0069547687, 0.0005864501, 0.99995095)
-bones/29/rotation = Quaternion(0.0406207, 0.64796543, 0.08141362, 0.756216)
-bones/29/scale = Vector3(0.9927801, 1.0026377, 1.0049088)
-bones/30/position = Vector3(0.05742801, 0.41611105, -0.0036590546)
-bones/30/rotation = Quaternion(0.068385415, 0.71027535, 0.7001732, 0.024290167)
-bones/30/scale = Vector3(1.0000001, 0.99999946, 1.0000001)
-bones/31/position = Vector3(-0.006901429, 0.49917647, 0.0026186444)
-bones/31/rotation = Quaternion(-0.5081052, 0.5952318, 0.5547638, 0.28242776)
-bones/31/scale = Vector3(0.99999964, 1.0000001, 1.0000001)
-bones/32/rotation = Quaternion(0.6055502, -0.35055512, 0.65403825, 0.2874964)
-bones/32/scale = Vector3(1.0062585, 0.9961071, 0.99790597)
-bones/33/rotation = Quaternion(-0.052497692, 0.1870659, 0.17118669, 0.965891)
-bones/34/rotation = Quaternion(0.2908404, 0.7346114, 0.5031624, 0.35012236)
-bones/34/scale = Vector3(0.99852675, 0.9986216, 1.0041518)
-bones/35/rotation = Quaternion(0.24818869, -0.24554281, -0.02069041, 0.9368473)
-bones/35/scale = Vector3(1, 0.99999994, 0.9999998)
-bones/36/rotation = Quaternion(-0.12490573, -0.93294275, -0.17981985, 0.2857994)
-bones/36/scale = Vector3(1.0049433, 0.9970708, 0.99860895)
-bones/37/position = Vector3(-0.054641448, 0.4309665, 0.0032791793)
-bones/37/rotation = Quaternion(0.06838541, 0.7102753, 0.70017314, 0.024290169)
-bones/37/scale = Vector3(1.0000001, 0.9999998, 1.0000002)
+bones/0/position = Vector3(-0.0016665946, 0.24342449, -0.016197529)
+bones/0/rotation = Quaternion(0.33352458, -0.011411058, -0.032233622, 0.9421211)
+bones/0/scale = Vector3(1.0000002, 0.9999998, 0.9999999)
+bones/1/rotation = Quaternion(-0.10232645, -2.9254388e-09, -3.5398884e-08, 0.99475086)
+bones/1/scale = Vector3(0.9999998, 1.0000002, 0.9999998)
+bones/2/rotation = Quaternion(-0.11557253, 3.1275228e-08, -3.3494107e-08, 0.9932991)
+bones/2/scale = Vector3(1.0000004, 0.99999917, 1.0000001)
+bones/3/rotation = Quaternion(-0.14472151, 1.12808124e-07, -8.686579e-08, 0.98947245)
+bones/3/scale = Vector3(0.9999997, 1.0000001, 0.9999998)
+bones/4/rotation = Quaternion(0.5540504, -3.592282e-08, 3.3178267e-07, 0.8324832)
+bones/4/scale = Vector3(0.9999999, 1.0000005, 1.0000004)
+bones/5/rotation = Quaternion(-0.0628839, 0.0016358541, -0.000103032544, 0.9980195)
+bones/5/scale = Vector3(0.99999994, 0.9999999, 0.99999994)
+bones/6/rotation = Quaternion(-0.5202408, 0.013394794, 0.028533824, 0.8534377)
+bones/6/scale = Vector3(0.9999999, 1.0000002, 1.0000001)
+bones/7/rotation = Quaternion(-0.63308185, 7.299772e-09, -8.042046e-05, 0.77408487)
+bones/8/rotation = Quaternion(-0.29062557, -1.7023838e-10, -0.0018126636, 0.95683515)
+bones/10/position = Vector3(-0.0016665903, 0.24342448, -0.016197529)
+bones/10/rotation = Quaternion(-0.10535011, 0.5278303, 0.74688405, -0.3904623)
+bones/10/scale = Vector3(1.0000001, 1, 0.99999994)
+bones/11/position = Vector3(-0.0016665973, 0.24342446, -0.01619751)
+bones/11/rotation = Quaternion(0.14117984, 0.51939553, 0.7184501, 0.44059736)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(-0.014859043, -0.21450455, 0.97660947, 0.000974115)
+bones/12/scale = Vector3(0.9991362, 1.0017377, 0.9991288)
+bones/13/rotation = Quaternion(-6.442634e-05, 0.0011633104, 2.1857444e-05, 0.9999994)
+bones/13/scale = Vector3(0.99999994, 0.9999998, 1.0000001)
+bones/14/rotation = Quaternion(-0.0067800162, 0.9993203, 0.036105562, -0.0030451496)
+bones/14/scale = Vector3(0.99877596, 1.0022922, 0.9989379)
+bones/15/rotation = Quaternion(5.9313606e-08, 0.02245801, 0.006190356, 0.9997286)
+bones/16/rotation = Quaternion(0.033456765, 0.5683008, -0.8217596, 0.025022458)
+bones/16/scale = Vector3(1.0020909, 1.0010121, 0.99691546)
+bones/17/rotation = Quaternion(-3.4507487e-08, 1, -3.874301e-07, 8.0808945e-08)
+bones/18/rotation = Quaternion(0.00082443655, -0.13049789, 0.99090075, 0.03294541)
+bones/18/scale = Vector3(1.0054779, 0.9890917, 1.0055215)
+bones/19/rotation = Quaternion(7.106341e-05, 0.0012839608, 2.4046403e-05, 0.9999992)
+bones/20/rotation = Quaternion(-0.06343234, 0.94010115, -0.3344201, -0.018694794)
+bones/20/scale = Vector3(1.0079781, 0.9770823, 1.0157533)
+bones/21/rotation = Quaternion(1.0326039e-07, -0.034793388, -0.009590582, 0.9993485)
+bones/22/rotation = Quaternion(0.07648168, 0.37743345, -0.92249465, -0.026424963)
+bones/22/scale = Vector3(0.98725474, 1.0054721, 1.008171)
+bones/23/rotation = Quaternion(-0.04131701, 0.99706125, 0.06445685, -0.0026713144)
+bones/23/scale = Vector3(0.9999999, 1.0000005, 0.99999994)
+bones/24/position = Vector3(0.03239376, 0.4728496, 0.07082558)
+bones/24/rotation = Quaternion(0.5471832, 0.47567835, 0.58910567, -0.35675636)
+bones/24/scale = Vector3(0.9999999, 0.99999976, 0.9999997)
+bones/25/rotation = Quaternion(0.39221475, -0.20935155, -0.37045458, 0.8155384)
+bones/25/scale = Vector3(0.9811573, 1.0135523, 1.0079114)
+bones/26/rotation = Quaternion(-0.00070801383, -0.0025229754, -0.0023090544, 0.999994)
+bones/26/scale = Vector3(0.99998355, 0.9999849, 0.9999833)
+bones/27/rotation = Quaternion(-0.085106194, -0.6373795, -0.05017975, 0.76419)
+bones/27/scale = Vector3(1.0069144, 1.0065036, 0.98748934)
+bones/28/rotation = Quaternion(0.0068644066, 0.006791024, 0.0005726815, 0.99995327)
+bones/29/rotation = Quaternion(-0.42464256, 0.36617357, 0.6025933, 0.56787056)
+bones/29/scale = Vector3(1.031928, 0.98219126, 0.992226)
+bones/30/position = Vector3(0.065613136, 0.39692113, 0.06285828)
+bones/30/rotation = Quaternion(0.023358416, 0.6827156, 0.72988385, 0.024972145)
+bones/30/scale = Vector3(1.0000001, 0.99999946, 0.99999964)
+bones/31/position = Vector3(-0.0041206293, 0.47535115, 0.07082558)
+bones/31/rotation = Quaternion(-0.51339203, 0.51196486, 0.5633446, 0.39618623)
+bones/31/scale = Vector3(0.9999996, 1.0000001, 0.99999976)
+bones/32/rotation = Quaternion(0.3887165, 0.01731795, 0.25914502, 0.8839929)
+bones/32/scale = Vector3(0.96253234, 1.0299704, 1.0183946)
+bones/33/rotation = Quaternion(-0.0014996827, 0.005343944, 0.004890412, 0.9999727)
+bones/34/rotation = Quaternion(-0.08732699, 0.6392352, 0.051952675, 0.76226854)
+bones/34/scale = Vector3(1.0125319, 1.0118123, 0.97827715)
+bones/35/rotation = Quaternion(-0.09529087, 0.094274595, 0.0079446435, 0.99094343)
+bones/35/scale = Vector3(1.0000001, 1.0000001, 1.0000002)
+bones/36/rotation = Quaternion(-0.3669453, -0.37995878, -0.39818895, 0.74995214)
+bones/36/scale = Vector3(1.0483359, 0.9817693, 0.9941156)
+bones/37/position = Vector3(-0.04738447, 0.40466237, 0.062858336)
+bones/37/rotation = Quaternion(0.023358406, 0.68271565, 0.7298837, 0.024972143)
+bones/37/scale = Vector3(1.0000001, 0.9999998, 0.99999976)
 
 [node name="kora_uv" parent="SkinnedMesh/rig/GeneralSkeleton" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_61hpo")
 
-[node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh"]
+[node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh" unique_id=315901550]
 tree_root = SubResource("AnimationNodeBlendTree_v7krk")
 anim_player = NodePath("../AnimationPlayer")
 parameters/AnimSpeed/scale = 0.0
@@ -385,130 +380,128 @@ parameters/StateMachine/BlendSpace2D/blend_position = Vector2(0.190763, 0.257642
 parameters/StateMachine/Locomote/blend_position = 1.05407
 parameters/StateMachine/crawling/blend_position = 0.0
 
-[node name="StateMachine" type="Node3D" parent="SkinnedMesh" node_paths=PackedStringArray("animTree")]
+[node name="StateMachine" type="Node3D" parent="SkinnedMesh" unique_id=1600379107 node_paths=PackedStringArray("animTree")]
 transform = Transform3D(-1, 0, 6.28631e-06, 0, 1, 0, -6.28631e-06, 0, -1, 0, 0, 0)
 script = ExtResource("3_n6sth")
 animTree = NodePath("../AnimationTree")
 
-[node name="Slash" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="Slash" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1579278651]
 script = ExtResource("5_ph5ji")
 
-[node name="SlashAgainTimer" type="Timer" parent="SkinnedMesh/StateMachine/Slash"]
+[node name="SlashAgainTimer" type="Timer" parent="SkinnedMesh/StateMachine/Slash" unique_id=479492744]
 process_callback = 0
 wait_time = 0.125
 one_shot = true
 
-[node name="ApplyHurtTimer" type="Timer" parent="SkinnedMesh/StateMachine/Slash"]
+[node name="ApplyHurtTimer" type="Timer" parent="SkinnedMesh/StateMachine/Slash" unique_id=1109645961]
 process_callback = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="SlashablesDetectionArea" type="Area3D" parent="SkinnedMesh/StateMachine/Slash"]
+[node name="SlashablesDetectionArea" type="Area3D" parent="SkinnedMesh/StateMachine/Slash" unique_id=291930641]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0.393901, -0.696701)
 collision_layer = 0
 collision_mask = 18
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" unique_id=607485225]
 transform = Transform3D(0.8838835, 0, 0.8838832, 0, 1.25, 0, -0.8838832, 0, 0.8838835, 0.22097081, 0.11059576, 0.22097087)
 shape = SubResource("BoxShape3D_ottvh")
 
-[node name="Locomote" type="Node3D" parent="SkinnedMesh/StateMachine" node_paths=PackedStringArray("coyote_timer")]
+[node name="Locomote" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=990604644 node_paths=PackedStringArray("coyote_timer")]
 script = ExtResource("6_et2ma")
 coyote_timer = NodePath("CoyoteTimer")
 
-[node name="CoyoteTimer" type="Timer" parent="SkinnedMesh/StateMachine/Locomote"]
+[node name="CoyoteTimer" type="Timer" parent="SkinnedMesh/StateMachine/Locomote" unique_id=1867092169]
 wait_time = 0.1
 
-[node name="LeaningCrate" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="LeaningPushable" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1258950386]
 script = ExtResource("7_otshi")
 
-[node name="destination_check" type="Area3D" parent="SkinnedMesh/StateMachine/LeaningCrate"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-collision_layer = 0
-collision_mask = 3
+[node name="PushingPushable" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=177275613]
+script = ExtResource("9_xa3l1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/StateMachine/LeaningCrate/destination_check"]
-shape = SubResource("BoxShape3D_tjr6x")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SkinnedMesh/StateMachine/LeaningCrate/destination_check"]
-visible = false
-mesh = SubResource("BoxMesh_lt837")
-
-[node name="PushingCrate" type="Node3D" parent="SkinnedMesh/StateMachine"]
-script = ExtResource("8_hyvrb")
-
-[node name="Crouching" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="Crouching" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=67801359]
 script = ExtResource("9_unn3g")
 
-[node name="Crawling" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="Crawling" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1347819424]
 script = ExtResource("10_5rovj")
 
-[node name="Jumping" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="Jumping" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=329504137]
 script = ExtResource("11_jxu01")
 lateral_damp = 0.5
 
-[node name="Timer" type="Timer" parent="SkinnedMesh/StateMachine/Jumping"]
+[node name="Timer" type="Timer" parent="SkinnedMesh/StateMachine/Jumping" unique_id=930304436]
 wait_time = 0.1
 one_shot = true
 
-[node name="OpenChest" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="OpenChest" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1510852908]
 script = ExtResource("12_io75w")
 metadata/_custom_type_script = "uid://oj6wnredkch1"
 
-[node name="DisplayLoot" type="Node3D" parent="SkinnedMesh/StateMachine"]
+[node name="DisplayLoot" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=589604626]
 script = ExtResource("13_ottvh")
 metadata/_custom_type_script = "uid://biasrj2wyiwxp"
 
-[node name="InteractableArea3D" type="Area3D" parent="SkinnedMesh"]
+[node name="InteractableArea3D" type="Area3D" parent="SkinnedMesh" unique_id=751135180]
 transform = Transform3D(-0.70710254, 0, 0.7071115, 0, 1, 0, -0.7071115, 0, -0.70710254, -4.4239678e-06, 0.393901, 0.696701)
 collision_layer = 0
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/InteractableArea3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/InteractableArea3D" unique_id=1448405947]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 shape = SubResource("BoxShape3D_bwvvd")
 
-[node name="hurt_capsule" type="CollisionShape3D" parent="."]
+[node name="hurt_capsule" type="CollisionShape3D" parent="." unique_id=54962612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.566112, 0)
 shape = SubResource("CapsuleShape3D_30vrr")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1569348329]
 transform = Transform3D(1, 0, 0, 0, 0.6022289, 0.79832345, 0, -0.79832345, 0.6022289, -4.76837e-07, 4.6677504, 2.6091404)
 
-[node name="Control" parent="Camera3D" instance=ExtResource("12_haj5d")]
+[node name="Control" parent="Camera3D" unique_id=475166252 instance=ExtResource("12_haj5d")]
 visible = false
 
-[node name="Dialogue" parent="Camera3D" instance=ExtResource("13_ucqvn")]
+[node name="Dialogue" parent="Camera3D" unique_id=1493063983 instance=ExtResource("13_ucqvn")]
 
-[node name="GroundCast" type="RayCast3D" parent="."]
+[node name="GroundCast" type="RayCast3D" parent="." unique_id=1248192976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0429929, 0.00461194)
 target_position = Vector3(0, -0.1, 0)
 
-[node name="DirectlyInFrontCast" type="RayCast3D" parent="."]
+[node name="DirectlyInFrontCast" type="RayCast3D" parent="." unique_id=1551521263]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.44614553, -0.28385466)
 target_position = Vector3(0, -0.25, 0)
 
-[node name="PlayerHealth" parent="." node_paths=PackedStringArray("hearts_container") instance=ExtResource("2_jb5ed")]
+[node name="InputDirectionCastParent" type="Node3D" parent="." unique_id=1749475462]
+script = ExtResource("17_xa3l1")
+
+[node name="InputDirectionCast" type="RayCast3D" parent="InputDirectionCastParent" unique_id=1236216860]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.44614553, -0.28385466)
+target_position = Vector3(0, -0.2, 0)
+collision_mask = 33
+debug_shape_custom_color = Color(0.6, 0.08399999, 0.42799994, 1)
+debug_shape_thickness = 4
+
+[node name="PlayerHealth" parent="." unique_id=434863335 node_paths=PackedStringArray("hearts_container") instance=ExtResource("2_jb5ed")]
 max_health = 12
 current_health = 12
 hearts_container = NodePath("../InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer")
 
-[node name="InvincibilityTimer" type="Timer" parent="."]
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1812363404]
 one_shot = true
 
-[node name="PlayerInventory" type="Node" parent="."]
+[node name="PlayerInventory" type="Node" parent="." unique_id=503317180]
 script = ExtResource("14_kejb0")
 metadata/_custom_type_script = "uid://dnq0hd0dpa8dx"
 
-[node name="KoyinPouch" type="Node" parent="." node_paths=PackedStringArray("label")]
+[node name="KoyinPouch" type="Node" parent="." unique_id=1846634035 node_paths=PackedStringArray("label")]
 script = ExtResource("15_m3vir")
 label = NodePath("../InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer/KoyinLabel")
 metadata/_custom_type_script = "uid://b4iilueaajuii"
 
-[node name="Tiltshift" type="CanvasLayer" parent="."]
+[node name="Tiltshift" type="CanvasLayer" parent="." unique_id=895907889]
 layer = 10
 
-[node name="ColorRect" type="ColorRect" parent="Tiltshift"]
+[node name="ColorRect" type="ColorRect" parent="Tiltshift" unique_id=1262661380]
 material = SubResource("ShaderMaterial_nvibq")
 anchors_preset = 15
 anchor_right = 1.0
@@ -516,10 +509,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InGameUI" type="CanvasLayer" parent="."]
+[node name="InGameUI" type="CanvasLayer" parent="." unique_id=442896003]
 layer = 20
 
-[node name="Control" type="Control" parent="InGameUI"]
+[node name="Control" type="Control" parent="InGameUI" unique_id=1011337115]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -527,7 +520,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="KoyinsContainer" type="MarginContainer" parent="InGameUI/Control"]
+[node name="KoyinsContainer" type="MarginContainer" parent="InGameUI/Control" unique_id=534231819]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -541,30 +534,30 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InGameUI/Control/KoyinsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="InGameUI/Control/KoyinsContainer" unique_id=174813021]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/KoyinsContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/KoyinsContainer/HBoxContainer" unique_id=128637911]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 texture = ExtResource("16_nvibq")
 expand_mode = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="InGameUI/Control/KoyinsContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="InGameUI/Control/KoyinsContainer/HBoxContainer" unique_id=322568452]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_constants/margin_left = 10
 
-[node name="KoyinLabel" type="Label" parent="InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer"]
+[node name="KoyinLabel" type="Label" parent="InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer" unique_id=1167078516]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("17_gsa12")
 theme_override_font_sizes/font_size = 22
 text = "0"
 
-[node name="MarginContainer2" type="MarginContainer" parent="InGameUI/Control"]
+[node name="MarginContainer2" type="MarginContainer" parent="InGameUI/Control" unique_id=757772773]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -576,17 +569,17 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InGameUI/Control/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InGameUI/Control/MarginContainer2" unique_id=591966036]
 layout_mode = 2
 
-[node name="HeartsGridContainer" type="GridContainer" parent="InGameUI/Control/MarginContainer2/VBoxContainer"]
+[node name="HeartsGridContainer" type="GridContainer" parent="InGameUI/Control/MarginContainer2/VBoxContainer" unique_id=372725438]
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 columns = 11
 
-[node name="TextureRect12" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect12" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1578194118]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -594,7 +587,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect13" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect13" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1982515714]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -602,7 +595,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect14" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect14" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1971965807]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -610,7 +603,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect15" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect15" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1289945234]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -618,7 +611,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect16" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect16" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1287359255]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -626,7 +619,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect17" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect17" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=90214950]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -634,7 +627,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect18" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect18" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=152077246]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -642,7 +635,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect19" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect19" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=882210270]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -650,7 +643,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect20" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect20" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=534335045]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -658,7 +651,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect21" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect21" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1484314056]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -666,7 +659,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect22" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect22" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1886320889]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -674,7 +667,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1825753995]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -682,7 +675,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect2" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1746665066]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -690,7 +683,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect3" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect3" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1428712807]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -698,7 +691,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect4" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect4" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=206597761]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -706,7 +699,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect5" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect5" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1866880272]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -714,7 +707,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect6" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect6" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=59124738]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -722,7 +715,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect7" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect7" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1079061124]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -730,7 +723,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect8" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect8" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=106133287]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -738,7 +731,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect9" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect9" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=285406267]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -746,7 +739,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect10" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect10" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1641303731]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -754,13 +747,19 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect11" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer"]
+[node name="TextureRect11" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=329517529]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
+
+[node name="CratePusher" type="Node" parent="." unique_id=375119327 node_paths=PackedStringArray("ray", "state_machine")]
+script = ExtResource("24_m2ugw")
+ray = NodePath("../InputDirectionCastParent/InputDirectionCast")
+state_machine = NodePath("../SkinnedMesh/StateMachine")
+metadata/_custom_type_script = "uid://dwqxg53ittw7m"
 
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/SlashAgainTimer" to="SkinnedMesh/StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/ApplyHurtTimer" to="SkinnedMesh/StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]

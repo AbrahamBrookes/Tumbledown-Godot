@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://bi7cr08c6ipq"]
+[gd_scene format=4 uid="uid://bi7cr08c6ipq"]
 
-[ext_resource type="Script" uid="uid://dg41ribig8jgg" path="res://Gameplay/BasicPushable/BasicPushable.gd" id="1_5af1b"]
 [ext_resource type="Texture2D" uid="uid://bu8mlpc68fqr7" path="res://Gameplay/pushy_crate/pushy_crate_pushy_crate_dif.png" id="2_xxjta"]
 [ext_resource type="Script" uid="uid://28ixo7fls5n8" path="res://Components/Pushable/Pushable.gd" id="3_rpwd6"]
+[ext_resource type="Script" uid="uid://bgdpnmflvsr46" path="res://Gameplay/BasicPushable/States/BasicPushableIdle.gd" id="4_rpwd6"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="4_xb86j"]
 [ext_resource type="Script" uid="uid://cybqeyv4mm6v3" path="res://Gameplay/BasicPushable/States/BasicPushableBeingPushed.gd" id="5_rpwd6"]
 
@@ -47,26 +47,27 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_0dsnb")
 
-[node name="BasicPushable" type="CharacterBody3D"]
-script = ExtResource("1_5af1b")
-metadata/_custom_type_script = "uid://dg41ribig8jgg"
+[node name="BasicPushable" type="CharacterBody3D" unique_id=323365840 node_paths=PackedStringArray("state_machine")]
+script = ExtResource("3_rpwd6")
+state_machine = NodePath("StateMachine")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246002791]
 shape = SubResource("BoxShape3D_edq33")
 
-[node name="pushy_crate_ref" type="MeshInstance3D" parent="."]
+[node name="pushy_crate_ref" type="MeshInstance3D" parent="." unique_id=172431867]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_po58k")
 skeleton = NodePath("")
 
-[node name="Pushable" type="Node" parent="."]
-script = ExtResource("3_rpwd6")
-metadata/_custom_type_script = "uid://28ixo7fls5n8"
-
-[node name="StateMachine" type="Node3D" parent="."]
+[node name="StateMachine" type="Node3D" parent="." unique_id=73778683 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_xb86j")
+initial_state = NodePath("BasicPushableIdle")
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
-[node name="BeingPushed" type="Node3D" parent="StateMachine"]
+[node name="BasicPushableIdle" type="Node3D" parent="StateMachine" unique_id=1679072088]
+script = ExtResource("4_rpwd6")
+metadata/_custom_type_script = "uid://bgdpnmflvsr46"
+
+[node name="BasicPushableBeingPushed" type="Node3D" parent="StateMachine" unique_id=1285525898]
 script = ExtResource("5_rpwd6")
 metadata/_custom_type_script = "uid://cybqeyv4mm6v3"
