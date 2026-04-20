@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dreof5fl2e6cd"]
+[gd_scene load_steps=21 format=3 uid="uid://dreof5fl2e6cd"]
 
 [ext_resource type="Material" uid="uid://djuf0llv76g7c" path="res://Art/poly.cam AI generated textures/grass.tres" id="1_yrcmh"]
 [ext_resource type="PackedScene" uid="uid://c83jd4qwjt4ge" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.tscn" id="5_fud1c"]
@@ -8,7 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dpn4hvqg8lsro" path="res://Gameplay/spiky_prickles/spiky_prickles_straight.tscn" id="8_repx0"]
 [ext_resource type="PackedScene" uid="uid://ddihv4pxvfq00" path="res://Scripts/Inventory/TestPickup.tscn" id="8_uu8rk"]
 [ext_resource type="PackedScene" uid="uid://dbp44fjjvmjnv" path="res://Gameplay/Koyins/koyin.tscn" id="9_17fcu"]
+[ext_resource type="PackedScene" uid="uid://bx0gfl855icvr" path="res://Art/Environment/Nature/Trees/Apple_tree_01/AppleTree.tscn" id="10_vpy1o"]
+[ext_resource type="PackedScene" uid="uid://et0iapgxt1xh" path="res://Art/Environment/Nature/Trees/Apple_tree_01/AppleGreen.tscn" id="11_8sg3g"]
 [ext_resource type="MeshLibrary" uid="uid://dl874xwkvieaf" path="res://Art/Terrain/WorldLedges/Plains_01/Plains_01_meshlib.tres" id="11_ytuyx"]
+[ext_resource type="PackedScene" uid="uid://yeqw5xwsj0j6" path="res://Art/Environment/Nature/Trees/Apple_tree_01/AppleRed.tscn" id="12_gj6tm"]
+[ext_resource type="PackedScene" uid="uid://0ggndgcsimph" path="res://Art/Environment/Nature/Trees/Apple_tree_01/AppleYellow.tscn" id="13_s3wrf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_17fcu"]
 sky_top_color = Color(0.3955152, 0.5201397, 0.6982648, 1)
@@ -16,12 +20,12 @@ sky_curve = 0.48735124
 sky_energy_multiplier = 1.01
 ground_bottom_color = Color(0.13657603, 0.19070438, 0.14304349, 1)
 
-[sub_resource type="Sky" id="Sky_rexu4"]
+[sub_resource type="Sky" id="Sky_lbn4o"]
 sky_material = SubResource("ProceduralSkyMaterial_17fcu")
 
 [sub_resource type="Environment" id="Environment_lbn4o"]
 background_mode = 2
-sky = SubResource("Sky_rexu4")
+sky = SubResource("Sky_lbn4o")
 ambient_light_source = 3
 ambient_light_color = Color(0.036823392, 0.5399887, 0.68499, 1)
 tonemap_mode = 3
@@ -195,3 +199,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 5)
 
 [node name="koyin" parent="." instance=ExtResource("9_17fcu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0848365, 1.8, 5.456299)
+
+[node name="AppleTree" parent="." instance=ExtResource("10_vpy1o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3.5, -6)
+
+[node name="AppleGreen" parent="." instance=ExtResource("11_8sg3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5.4, -5.3)
+
+[node name="AppleRed" parent="." instance=ExtResource("12_gj6tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 5.2999997, -5.1)
+
+[node name="AppleYellow" parent="." instance=ExtResource("13_s3wrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8, 5.3999996, -5.6)
