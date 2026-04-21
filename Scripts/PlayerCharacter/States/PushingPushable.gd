@@ -37,30 +37,20 @@ func Physics_Update(_delta: float) -> void:
 
 	# if there is no input, bail out
 	if input_direction.length() < 0.5:
-		print("input")
 		pushable_object.stop_being_pushed()
 		Transitioned.emit("LeaningPushable", pushable_object)
-		return
-
-	# if we have turned away from the pushable, bail out
-	var to_pushable = (pushable_object.global_position - playerCharacter.global_position)
-	if input_direction.dot(to_pushable) < 0.75:
-		print("dot")
-		pushable_object.stop_being_pushed()
-		Transitioned.emit("Locomote")
 		return
 	
 	# if the raycast is no longer intersecting the pushable, bail out
 	if not push_ray.is_colliding():
-		print("no collide")
 		pushable_object.stop_being_pushed()
 		Transitioned.emit("Locomote")
 		return
+	
 	# or if we are colliding but not with the pushable
 	else:
 		var collider = push_ray.get_collider()
 		if not collider == pushable_object:
-			print("not object")
 			pushable_object.stop_being_pushed()
 			Transitioned.emit("Locomote")
 			return
