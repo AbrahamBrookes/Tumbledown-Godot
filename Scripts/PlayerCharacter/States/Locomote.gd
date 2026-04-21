@@ -1,9 +1,6 @@
 extends State
 class_name Locomote
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 @export var LERP_SPEED = 0.35
 @export var acceleration := 10.0
 var target_velocity := Vector3.ZERO
@@ -15,7 +12,7 @@ var can_slash = true
 var in_coyote_time: bool = true
 var was_on_floor = true
 
-func Enter(extra_data = null):
+func Enter(_extra_data = null):
 	owner.animTree.set("parameters/AnimSpeed/scale", 1.10)
 
 
@@ -66,11 +63,7 @@ func input_walk(delta: float):
 	# update the animation tree with the real velocity
 	state_machine.animTree.set("parameters/StateMachine/Locomote/blend_position", playerCharacter.velocity.length() / playerCharacter.move_speed)
 	
-	var input_direction = Vector3(
-		Input.get_action_strength("walk_east") - Input.get_action_strength("walk_west"),
-		0,
-		Input.get_action_strength("walk_south") - Input.get_action_strength("walk_north")
-	)
+	var input_direction = InputUtils.get_stick_input()
 
 	input_direction = input_direction.normalized() * playerCharacter.move_speed
 	
@@ -82,12 +75,6 @@ func input_walk(delta: float):
 	#move_dir = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if not playerCharacter.is_on_floor():
-		var fall_multiplier := 3.5
-		var max_fall_speed := 50.0  # tweak this
-
-		# Apply gravity
-		desired_velocity.y = max(playerCharacter.velocity.y - gravity * fall_multiplier * delta, -max_fall_speed)
-
 		# Apply air drag
 		var air_drag := 8.0
 		desired_velocity.x = lerp(desired_velocity.x, 0.0, air_drag * delta)
@@ -98,7 +85,7 @@ func input_walk(delta: float):
 		desired_velocity.y = 0.0
 
 	if input_direction.length() > 0.01:
-		owner.get_node('SkinnedMesh').look_at(owner.get_node('SkinnedMesh').global_transform.origin - input_direction, Vector3.UP)
+		playerCharacter.mesh.look_at(playerCharacter.mesh.global_transform.origin - input_direction, Vector3.UP)
 
 
 # this is called by the pushy_crate when we bump into it

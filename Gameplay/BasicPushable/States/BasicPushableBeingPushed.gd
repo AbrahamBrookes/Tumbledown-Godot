@@ -8,14 +8,10 @@ class_name BasicPushableBeingPushed
 ## then this state is transitioned out of and the pushable stops moving.
 
 ## During physics update, handle player input
-func Physics_Update(delta: float):
+func Physics_Update(_delta: float):
 	
 	# get the input direction for movement
-	var input_direction = Vector3(
-		Input.get_action_strength("walk_east") - Input.get_action_strength("walk_west"),
-		0,
-		Input.get_action_strength("walk_south") - Input.get_action_strength("walk_north")
-	)
+	var input_direction = InputUtils.get_stick_input()
 
 	# if the player is not holding an input, transition out of this state	
 	if input_direction.length() < 0.5:
@@ -23,9 +19,9 @@ func Physics_Update(delta: float):
 		return
 	
 	# otherwise move with the input
-	input_direction = input_direction.normalized() * owner.push_speed
+	var cardinal_speed = InputUtils.get_cardinal_input() * owner.push_speed * -1
 	
-	owner.velocity.x = input_direction.x
-	owner.velocity.z = input_direction.z
+	owner.velocity.x = cardinal_speed.x
+	owner.velocity.z = cardinal_speed.y
 	
 	owner.move_and_slide()

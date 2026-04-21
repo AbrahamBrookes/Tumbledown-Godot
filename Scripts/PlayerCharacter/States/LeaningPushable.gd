@@ -4,12 +4,9 @@ extends State
 class_name LeaningPushable
 
 var pushable: Pushable # the crate we are pushing
-@onready var destination_check: Area3D = $destination_check # the area we are pushing into
 var pushingTimer: float = 0.0 # how long the player has been pushing into the crate
 var pushTime: float = 0.1 # how long until the push begins
 var initial_push_dir: Vector2 = Vector2.ZERO # cache the push dir so we can check if it changed
-var push_margin: float = 0.82 # how far away from the crate should we put the player
-
 
 func Enter(extra_data = null):
 	assert(!!extra_data, "we need to be passed a crate to push!")
@@ -32,36 +29,13 @@ func Enter(extra_data = null):
 	var dir: Vector2 = Vector2(direction.x, direction.z).normalized()
 	# Get the cardinal direction
 	initial_push_dir = DirectionUtils.get_cardinal_direction(dir)
-	
-	# also lerp the player to the center of the facing side depending on cardinal push direction
-	var destination: Vector3 = Vector3.ZERO
-	match initial_push_dir:
-		Vector2.RIGHT:
-			destination = Vector3(pushable.global_position.x + push_margin, playerCharacter.global_position.y, pushable.global_position.z)
-		Vector2.LEFT:
-			destination = Vector3(pushable.global_position.x - push_margin, playerCharacter.global_position.y, pushable.global_position.z)
-		Vector2.UP:
-			destination = Vector3(pushable.global_position.x, playerCharacter.global_position.y, pushable.global_position.z - push_margin)
-		Vector2.DOWN:
-			destination = Vector3(pushable.global_position.x, playerCharacter.global_position.y, pushable.global_position.z + push_margin)
-		_:
-			destination = Vector3.ZERO
-	# lerp to the destination
-	var tween2 = create_tween()
-	tween2.tween_method(func(value):
-		playerCharacter.global_position = value,
-		playerCharacter.global_position,
-		destination,
-		0.2
-	)
 
 func Physics_Update(_delta: float):
 	# Get the input direction to see if the player is pushing into the crate
-	var input_dir = Input.get_vector("walk_west", "walk_east", "walk_north", "walk_south").round()
-	var cardinal_input = DirectionUtils.get_cardinal_direction(input_dir)
+	var cardinal_input = InputUtils.get_cardinal_input()
 	
 	# If the player is not pushing
-	if input_dir.length() < 0.5:
+	if cardinal_input == Vector2.ZERO:
 		# reset the push timer
 		pushingTimer = 0.0
 		# do nothing
@@ -70,6 +44,14 @@ func Physics_Update(_delta: float):
 	# if the player pushes away from the crate, transition back to locomote
 	if cardinal_input != initial_push_dir:
 		Transitioned.emit('Locomote')
+		return
+	
+	# if the player is not pushing into the pushable at an acceptable angle, bail out
+	var to_pushable = (pushable.global_transform.origin - playerCharacter.global_transform.origin).normalized()
+	var input_direction = InputUtils.get_stick_input()
+	if input_direction.dot(to_pushable) < 0.75:
+		pushable.stop_being_pushed()
+		Transitioned.emit("Locomote")
 		return
 			
 	# if the player pushes into the crate for pushTime, transition to PushingPushable

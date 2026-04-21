@@ -20,10 +20,10 @@ func _ready():
 
 	# and the state machine needs an "Idle" and "BeingPushed" state
 	if not state_machine.has_state("BasicPushableIdle") or not state_machine.has_state("BasicPushableBeingPushed"):
-		push_error("Pushable component requires the StateMachine to have 'BasicPushableIdle' and 'BasicPushableBeingPushed' states.")
+		push_warning("Pushable component requires the StateMachine to have 'BasicPushableIdle' and 'BasicPushableBeingPushed' states.")
 
 # When we get pushed, switch states
-func be_pushed(pushed_by: CharacterBody3D):
+func be_pushed(_pushed_by: CharacterBody3D):
 	state_machine.TransitionTo("BasicPushableBeingPushed")
 
 # When we stop being pushed, simply turn off the flag

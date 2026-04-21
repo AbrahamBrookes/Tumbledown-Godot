@@ -50,6 +50,13 @@ func _physics_process(delta: float) -> void:
 	# use the desired velocity from the current state and mix in pushback
 	var state_desired_velocity = stateMachine.current_state.desired_velocity
 	var combined_velocity = state_desired_velocity + pushback_velocity
+	
+	# unless the current state has negated gravity, apply it
+	if not stateMachine.current_state.ignore_gravity:
+		var fall_multiplier := 3.5
+		var max_fall_speed := 50.0  # tweak this for fall responsiveness
+		combined_velocity.y = max(velocity.y - gravity * fall_multiplier * delta, -max_fall_speed)
+		
 	velocity.x = combined_velocity.x
 	velocity.y = combined_velocity.y
 	velocity.z = combined_velocity.z
