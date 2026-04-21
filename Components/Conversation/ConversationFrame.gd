@@ -20,4 +20,4 @@ class_name ConversationFrame
 
 ## when the frame is entered, run execute on the first child node - it will decide
 ## what to do next when it is done
-func enter()
+#func enter()

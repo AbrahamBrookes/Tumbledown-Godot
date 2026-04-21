@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dua2o166aetkq"]
+[gd_scene format=3 uid="uid://dua2o166aetkq"]
 
 [ext_resource type="PackedScene" uid="uid://bpn2rls3f1qs2" path="res://Art/Environment/Ruins/ruins_pillar_blocks/ruins_pillar_blocks.glb" id="1_kog6b"]
 [ext_resource type="Material" uid="uid://cvlunjf7yek0m" path="res://Art/Terrain/Cubeys/stone_triplanar.tres" id="2_2awgd"]
@@ -15,40 +15,40 @@ data = PackedVector3Array(-0.4838, 0, -0.4838, -0.5, 0.0162, 0.5, -0.4838, 0, 0.
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xixgn"]
 data = PackedVector3Array(-0.3937, -0.095, -0.3592, -0.3592, -0.1295, -0.3592, -0.3592, -0.095, -0.3937, 0.3592, -0.1295, -0.3592, -0.3592, -0.095, -0.3937, -0.3592, -0.1295, -0.3592, 0.3592, -0.1295, -0.3592, 0.3592, -0.095, -0.3937, -0.3592, -0.095, -0.3937, 0.3592, 0.7469, -0.3937, -0.3592, 0.7814, -0.3592, -0.3592, 0.7469, -0.3937, 0.3592, 0.7469, -0.3937, 0.3592, 0.7814, -0.3592, -0.3592, 0.7814, -0.3592, 0.3592, -0.1295, 0.3592, 0.3938, -0.095, -0.3592, 0.3592, -0.1295, -0.3592, 0.3592, -0.1295, 0.3592, 0.3938, -0.095, 0.3592, 0.3938, -0.095, -0.3592, -0.3937, 0.7469, 0.3592, -0.3592, 0.7814, 0.3592, -0.3592, 0.7469, 0.3938, 0.3938, 0.7469, 0.3592, 0.3592, 0.7814, -0.3592, 0.3938, 0.7469, -0.3592, 0.3938, 0.7469, 0.3592, 0.3592, 0.7814, 0.3592, 0.3592, 0.7814, -0.3592, -0.3592, -0.1295, 0.3592, 0.3592, -0.095, 0.3938, 0.3592, -0.1295, 0.3592, -0.3592, -0.1295, 0.3592, -0.3592, -0.095, 0.3938, 0.3592, -0.095, 0.3938, -0.3937, -0.095, -0.3592, -0.3592, 0.7469, -0.3937, -0.3937, 0.7469, -0.3592, -0.3937, -0.095, -0.3592, -0.3592, -0.095, -0.3937, -0.3592, 0.7469, -0.3937, 0.3592, -0.095, 0.3938, 0.3938, -0.095, 0.3592, 0.3592, -0.1295, 0.3592, 0.3938, 0.7469, 0.3592, 0.3938, -0.095, -0.3592, 0.3938, -0.095, 0.3592, 0.3938, 0.7469, 0.3592, 0.3938, 0.7469, -0.3592, 0.3938, -0.095, -0.3592, -0.3937, 0.7469, -0.3592, -0.3937, -0.095, 0.3592, -0.3937, -0.095, -0.3592, -0.3937, 0.7469, -0.3592, -0.3937, 0.7469, 0.3592, -0.3937, -0.095, 0.3592, 0.3938, 0.7469, -0.3592, 0.3592, -0.095, -0.3937, 0.3938, -0.095, -0.3592, 0.3938, 0.7469, -0.3592, 0.3592, 0.7469, -0.3937, 0.3592, -0.095, -0.3937, -0.3592, 0.7814, 0.3592, 0.3592, 0.7814, -0.3592, 0.3592, 0.7814, 0.3592, -0.3592, 0.7814, 0.3592, -0.3592, 0.7814, -0.3592, 0.3592, 0.7814, -0.3592, -0.3937, 0.7469, -0.3592, -0.3592, 0.7814, 0.3592, -0.3937, 0.7469, 0.3592, -0.3937, 0.7469, -0.3592, -0.3592, 0.7814, -0.3592, -0.3592, 0.7814, 0.3592, 0.3938, 0.7469, -0.3592, 0.3592, 0.7814, -0.3592, 0.3592, 0.7469, -0.3937, -0.3592, 0.7469, 0.3938, 0.3592, -0.095, 0.3938, -0.3592, -0.095, 0.3938, -0.3592, 0.7469, 0.3938, 0.3592, 0.7469, 0.3938, 0.3592, -0.095, 0.3938, 0.3938, -0.095, 0.3592, 0.3592, 0.7469, 0.3938, 0.3938, 0.7469, 0.3592, 0.3938, -0.095, 0.3592, 0.3592, -0.095, 0.3938, 0.3592, 0.7469, 0.3938, -0.3937, 0.7469, -0.3592, -0.3592, 0.7469, -0.3937, -0.3592, 0.7814, -0.3592, -0.3592, -0.1295, 0.3592, 0.3592, -0.1295, -0.3592, -0.3592, -0.1295, -0.3592, -0.3592, -0.1295, 0.3592, 0.3592, -0.1295, 0.3592, 0.3592, -0.1295, -0.3592, -0.3592, -0.1295, -0.3592, -0.3937, -0.095, 0.3592, -0.3592, -0.1295, 0.3592, -0.3592, -0.1295, -0.3592, -0.3937, -0.095, -0.3592, -0.3937, -0.095, 0.3592, -0.3937, 0.7469, 0.3592, -0.3592, -0.095, 0.3938, -0.3937, -0.095, 0.3592, -0.3937, 0.7469, 0.3592, -0.3592, 0.7469, 0.3938, -0.3592, -0.095, 0.3938, -0.3937, -0.095, 0.3592, -0.3592, -0.095, 0.3938, -0.3592, -0.1295, 0.3592, 0.3592, 0.7469, -0.3937, -0.3592, -0.095, -0.3937, 0.3592, -0.095, -0.3937, 0.3592, 0.7469, -0.3937, -0.3592, 0.7469, -0.3937, -0.3592, -0.095, -0.3937, 0.3592, 0.7469, 0.3938, 0.3592, 0.7814, 0.3592, 0.3938, 0.7469, 0.3592, -0.3592, 0.7469, 0.3938, 0.3592, 0.7814, 0.3592, 0.3592, 0.7469, 0.3938, -0.3592, 0.7469, 0.3938, -0.3592, 0.7814, 0.3592, 0.3592, 0.7814, 0.3592, 0.3938, -0.095, -0.3592, 0.3592, -0.095, -0.3937, 0.3592, -0.1295, -0.3592)
 
-[node name="ruins_pillar_blocks" instance=ExtResource("1_kog6b")]
+[node name="ruins_pillar_blocks" unique_id=1438965893 instance=ExtResource("1_kog6b")]
 
-[node name="blockout_001" parent="." index="0"]
+[node name="blockout_001" parent="." index="0" unique_id=1643300229]
 transform = Transform3D(0.996, 0, 0, 0, 0.996, 0, 0, 0, 0.996, 0, 0, 0)
 surface_material_override/0 = ExtResource("2_2awgd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="blockout_001" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="blockout_001" index="0" unique_id=534575723]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_001/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_001/StaticBody3D" index="0" unique_id=386507228]
 shape = SubResource("ConcavePolygonShape3D_b3tot")
 
-[node name="blockout_013" parent="." index="1"]
+[node name="blockout_013" parent="." index="1" unique_id=1403028660]
 transform = Transform3D(0.996, 0, 3.24538e-07, 0, 0.996, 0, 3.24538e-07, 0, -0.996, 0, 0, 0)
 surface_material_override/0 = ExtResource("2_2awgd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="blockout_013" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="blockout_013" index="0" unique_id=701620029]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_013/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_013/StaticBody3D" index="0" unique_id=1013712644]
 shape = SubResource("ConcavePolygonShape3D_q651t")
 
-[node name="blockout_015" parent="." index="2"]
+[node name="blockout_015" parent="." index="2" unique_id=402274276]
 transform = Transform3D(0.996, 0, 3.24538e-07, 0, 0.996, 0, 3.24538e-07, 0, -0.996, 0, 0, 0)
 surface_material_override/0 = ExtResource("2_2awgd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="blockout_015" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="blockout_015" index="0" unique_id=210426636]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_015/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_015/StaticBody3D" index="0" unique_id=2124210473]
 shape = SubResource("ConcavePolygonShape3D_hvi2e")
 
-[node name="blockout_016" parent="." index="3"]
+[node name="blockout_016" parent="." index="3" unique_id=1642053652]
 transform = Transform3D(0.996, 0, 3.24538e-07, 0, 0.996, 0, 3.24538e-07, 0, -0.996, 0, 0, 0)
 surface_material_override/0 = ExtResource("2_2awgd")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="blockout_016" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="blockout_016" index="0" unique_id=1156348959]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_016/StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="blockout_016/StaticBody3D" index="0" unique_id=1260949469]
 shape = SubResource("ConcavePolygonShape3D_xixgn")

@@ -6,7 +6,7 @@ extends Node3D
 ## be pushing input away from the crate)
 class_name InputDirectionCast
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var input_direction = Vector3(
 		Input.get_action_strength("walk_east") - Input.get_action_strength("walk_west"),
 		0,

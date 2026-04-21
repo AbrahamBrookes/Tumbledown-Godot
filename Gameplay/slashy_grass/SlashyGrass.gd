@@ -53,7 +53,7 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body == target_characterbody:
 		target_characterbody = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# when we have something moving through us, angle the pre-slash mesh slightly toward it
 	if target_characterbody and pre_slash_mesh.visible:
 		# Get direction to target, ignoring vertical difference
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 			var tilt_strength := 0.2
 			# X and Z tilt: lean toward target, keep Y rotation unchanged
 			var tilt := Vector3(-to_target.z * tilt_strength, pre_slash_mesh.transform.basis.get_euler().y, to_target.x * tilt_strength)
-			var target_rot := Basis().from_euler(tilt)
+			var target_rot := Basis.from_euler(tilt)
 			# Preserve original scale
 			var current_basis := pre_slash_mesh.transform.basis.orthonormalized()
 			var current_scale := pre_slash_mesh.transform.basis.get_scale()

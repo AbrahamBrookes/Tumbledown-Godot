@@ -1,14 +1,6 @@
 extends State
 class_name Crouch
 
-func Enter(extra_data = null):
-	pass
-
-
-func Exit():
-	pass
-
-
 func Update(_delta: float):
 	
 	# if the player releases crouch, stand up

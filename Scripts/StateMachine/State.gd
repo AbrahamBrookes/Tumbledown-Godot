@@ -1,6 +1,7 @@
 extends Node3D
 class_name State
 
+@warning_ignore("unused_signal") # this signal is used in child classes
 signal Transitioned(new_state_name: String, extra_data)
 
 # some states may want to transition to themselves but usually not

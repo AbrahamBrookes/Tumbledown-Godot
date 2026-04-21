@@ -4,11 +4,10 @@ extends Control
 # InGameUI.Dialogue.setText("this is a test")
 # InGameUI.Dialogue.startText()
 # InGameUI.Dialogue.set_visible(true)
-var Dialogue: Dialogue
+var dialogue: Dialogue
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Dialogue = $Dialogue
 	pass # Replace with function body.
 
 

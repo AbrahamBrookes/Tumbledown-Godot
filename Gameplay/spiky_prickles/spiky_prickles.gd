@@ -13,16 +13,12 @@ var tween: Tween = null
 # the timer for waiting until the leaves go back up
 @onready var leaves_back_up_timer: Timer = $leaves_back_up_timer
 
-func _ready():
-	# Create a Tween node and add it as a child
-	tween = create_tween()
-
 # when the close box is entered, rotate the leaves down
 func _on_close_box_body_entered(body):
 	# Check if the body has a receive damage function
 	if body.has_method("receive_damage"):
 		# tween rotate the leaves down
-		var tween = create_tween()
+		tween = create_tween()
 		tween.tween_property(leaves, "rotation_degrees", Vector3(-30, 0, 0), 1.0)
 		# start the timer to go back up
 		leaves_back_up_timer.start()
@@ -42,7 +38,7 @@ func _on_hurt_box_body_entered(body):
 # when the timer is up, rotate the leaves back up
 func _on_leaves_back_up_timer_timeout():
 	# tween rotate the leaves back up
-	var tween = create_tween()
+	tween = create_tween()
 	tween.tween_property(leaves, "rotation_degrees", Vector3(82.5, 0, 0), 1.0)
 	# stop the timer
 	leaves_back_up_timer.stop()

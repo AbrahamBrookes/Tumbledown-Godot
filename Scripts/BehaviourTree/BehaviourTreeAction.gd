@@ -15,9 +15,11 @@ class_name BehaviourTreeAction
 
 # Actions emit a signal with parameters - this is automatically be hooked
 # up to the StateMachines TravelTo method by the BehaviourTree node
+@warning_ignore("unused_signal") # this signal is used in child classes
 signal ChangeState(state_name: String, extra_data: Dictionary)
 
 # Actions can update blackboard values by emitting this signal
+@warning_ignore("unused_signal") # this signal is used in child classes
 signal UpdateBlackboardValue(key: String, value: Variant)
 
 func tick(_blackboard: BehaviourTreeBlackboard) -> int:

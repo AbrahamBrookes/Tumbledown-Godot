@@ -23,14 +23,6 @@ func _ready():
 	behaviourTree.set_blackboard_value("target", null)
 	behaviourTree.set_blackboard_value("attack_range", ATTACK_RANGE)
 
-	
-func _physics_process(delta):
-	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 # called when we receive a hurt from somewhere
 func receive_damage(damage:Damage):
 	# only if we're not invincible
