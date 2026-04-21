@@ -26,6 +26,7 @@ DirectionUtils="*res://Scripts/Utils/DirectionUtils.gd"
 uuid_util="*res://addons/uuid/uuid.gd"
 SaveManager="*res://Scripts/SaveManager/SaveManager.gd"
 uuid="*res://addons/uuid/uuid.gd"
+InputUtils="*uid://du73sevwelhsr"
 
 [debug]
 
