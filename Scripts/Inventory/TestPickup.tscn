@@ -1,24 +1,13 @@
 [gd_scene format=3 uid="uid://ddihv4pxvfq00"]
 
 [ext_resource type="Script" uid="uid://ddkwh8125rn3a" path="res://Scripts/Inventory/ItemPickup.gd" id="1_tqyn4"]
-[ext_resource type="Script" uid="uid://br312hn0ai2f2" path="res://Scripts/Inventory/ItemData.gd" id="2_ki6xx"]
-[ext_resource type="PackedScene" uid="uid://c3juemj0vcbcs" path="res://Gameplay/Koyins/koyin_mesh.tscn" id="3_e4jdr"]
-
-[sub_resource type="Resource" id="Resource_e4jdr"]
-script = ExtResource("2_ki6xx")
-id = "test_pickup"
-name = "Test Pickup"
-flavour_text = "yes"
-stackable = true
-stack_count = 1
-world_object = ExtResource("3_e4jdr")
-metadata/_custom_type_script = "uid://br312hn0ai2f2"
+[ext_resource type="Resource" uid="uid://dd4xseupb0hnf" path="res://Scripts/Inventory/TestItem.tres" id="2_ki6xx"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ki6xx"]
 
 [node name="TestPickup" type="Node3D" unique_id=1992520155]
 script = ExtResource("1_tqyn4")
-item_data = SubResource("Resource_e4jdr")
+item_data = ExtResource("2_ki6xx")
 metadata/_custom_type_script = "uid://ddkwh8125rn3a"
 
 [node name="Area3D" type="Area3D" parent="." unique_id=690911477]

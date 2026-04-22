@@ -66,3 +66,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2, -20.5)
 
 [node name="TestPickup" parent="." unique_id=634016111 instance=ExtResource("7_w2pnj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.900001, 1.8000001, -23.2)
+
+[node name="TestPickup2" parent="." unique_id=1992520155 instance=ExtResource("7_w2pnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.400001, 1.8000001, -23.2)
+
+[node name="TestPickup3" parent="." unique_id=1640537178 instance=ExtResource("7_w2pnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.700001, 1.8000001, -23.2)
+
+[node name="TestPickup4" parent="." unique_id=1048112626 instance=ExtResource("7_w2pnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.100001, 1.8000001, -23.2)
+
+[node name="TestPickup5" parent="." unique_id=1486241854 instance=ExtResource("7_w2pnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.100001, 1.8000001, -23.2)

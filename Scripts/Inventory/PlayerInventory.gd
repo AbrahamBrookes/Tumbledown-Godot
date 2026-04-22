@@ -11,7 +11,7 @@ class_name PlayerInventory
 @export var inventory: Dictionary[String, int] = {}
 
 # the inventory UI is the view we see when we open the inventory
-@export var inventory_ui: Control
+@export var inventory_ui: InventoryUI
 
 ## Add an item to the inventory, returning a bool as to wether or not we did
 func add_item(item: ItemData) -> bool:
@@ -30,5 +30,5 @@ func add_item(item: ItemData) -> bool:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause_menu"):
 		get_viewport().set_input_as_handled()
-		inventory_ui.show()
+		inventory_ui.reveal(self)
 		get_tree().paused = true

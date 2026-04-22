@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dd4xseupb0hnf"]
+
+[ext_resource type="Script" uid="uid://br312hn0ai2f2" path="res://Scripts/Inventory/ItemData.gd" id="1_fmcuc"]
+[ext_resource type="PackedScene" uid="uid://c3juemj0vcbcs" path="res://Gameplay/Koyins/koyin_mesh.tscn" id="2_oqey2"]
+
+[resource]
+script = ExtResource("1_fmcuc")
+id = "test_pickup"
+name = "Test Pickup"
+flavour_text = "yes"
+stackable = true
+stack_count = 1
+world_object = ExtResource("2_oqey2")
+metadata/_custom_type_script = "uid://br312hn0ai2f2"
