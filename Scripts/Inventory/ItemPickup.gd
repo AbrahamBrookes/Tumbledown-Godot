@@ -5,7 +5,7 @@ extends Node3D
 ## itself using the data in that resource. When the player collides with this object
 ## it will be added to their inventory as an ItemData record. When the player drops
 ## that ItemData from their inventory, the ItemData's world_object PackedScene
-## will be instantiated to create a new ItemPickup in the world. So and ItemPickup
+## will be instantiated to create a new ItemPickup in the world. So an ItemPickup
 ## should generally have a reference to an ItemData resource, and that ItemData resource
 ## should have a reference back to the ItemPickup's PackedScene as its world_object.
 ## Each item in the game is a clone of this ItemPickup scene with different ItemData resources.
@@ -17,6 +17,11 @@ class_name ItemPickup
 # can we be picked up yet?
 var can_pick_up: bool = false
 
+func _ready():
+	# if we are already in the scene tree on ready, render
+	if is_inside_tree():
+		render()
+
 # wait a sec before spawning before we can be picked up, so the player can see us
 func _on_can_pick_up_timer_timeout() -> void:
 	can_pick_up = true
@@ -26,10 +31,6 @@ func render() -> void:
 	if item_data and item_data.world_object:
 		var world_object_instance = item_data.world_object.instantiate()
 		add_child(world_object_instance)
-
-# whenever this enters the scene tree, render self
-func _ready() -> void:
-	render()
 
 ## when the player enters the pickup area, pick self up into their inventory
 func _on_body_entered(body: Node) -> void:

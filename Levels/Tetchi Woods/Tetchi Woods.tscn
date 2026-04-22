@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ce52en6yl3hjy" path="res://Levels/Tetchi Woods/submaps/Stonewater Lake.tscn" id="3_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="4_336xh"]
 [ext_resource type="PackedScene" uid="uid://bi7cr08c6ipq" path="res://Gameplay/BasicPushable/BasicPushable.tscn" id="6_wbtck"]
+[ext_resource type="PackedScene" uid="uid://ddihv4pxvfq00" path="res://Scripts/Inventory/TestPickup.tscn" id="7_w2pnj"]
 [ext_resource type="PackedScene" uid="uid://bhrei1j7dv88l" path="res://Levels/Tetchi Woods/submaps/Watchers Grove.tscn" id="9_tcmpw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1p48"]
@@ -61,4 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -20)
 
 [node name="BasicPushable" parent="." unique_id=1659345474 instance=ExtResource("6_wbtck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2, -23.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2, -20.5)
+
+[node name="TestPickup" parent="." unique_id=634016111 instance=ExtResource("7_w2pnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.900001, 1.8000001, -23.2)
