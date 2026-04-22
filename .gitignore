@@ -22,3 +22,6 @@ Thumbs.db
 # Godot 4+ .tmp files
 .tmp/
 *.tmp
+
+# builds
+builds/
