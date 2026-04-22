@@ -20,9 +20,11 @@
 [ext_resource type="Script" uid="uid://dnq0hd0dpa8dx" path="res://Scripts/Inventory/PlayerInventory.gd" id="14_kejb0"]
 [ext_resource type="Script" uid="uid://b4iilueaajuii" path="res://Scripts/Inventory/KoyinPouch.gd" id="15_m3vir"]
 [ext_resource type="Texture2D" uid="uid://crx8mgygeubnk" path="res://Gameplay/Koyins/icon.png" id="16_nvibq"]
+[ext_resource type="PackedScene" uid="uid://ldym6aaevjqa" path="res://UI/Inventory/Inventory.tscn" id="17_534j1"]
 [ext_resource type="FontFile" uid="uid://dhos0jfecis2a" path="res://Fonts/MPLUSRounded1c-Bold.ttf" id="17_gsa12"]
 [ext_resource type="Script" uid="uid://dwcbbwge02qmg" path="res://Scripts/PlayerCharacter/InputDirectionCast.gd" id="17_xa3l1"]
 [ext_resource type="Texture2D" uid="uid://svdfeftb3nag" path="res://Scripts/Health/heart-full.png" id="18_gsa12"]
+[ext_resource type="Script" uid="uid://dqvtrafo7w28d" path="res://UI/Inventory/InventoryUI.gd" id="18_nopci"]
 [ext_resource type="Script" uid="uid://dwqxg53ittw7m" path="res://Components/CratePusher/CratePusher.gd" id="24_m2ugw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61hpo"]
@@ -270,6 +272,7 @@ shader_parameter/vignette_strength = 0.09600000456
 shader_parameter/vignette_softness = 0.69400002970512
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=1055117701 node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "interactor")]
+process_mode = 1
 collision_layer = 4
 collision_mask = 7
 axis_lock_angular_x = true
@@ -466,6 +469,11 @@ visible = false
 
 [node name="Dialogue" parent="Camera3D" unique_id=1493063983 instance=ExtResource("13_ucqvn")]
 
+[node name="Inventory" parent="Camera3D" unique_id=2048016356 instance=ExtResource("17_534j1")]
+process_mode = 2
+visible = false
+script = ExtResource("18_nopci")
+
 [node name="GroundCast" type="RayCast3D" parent="." unique_id=1248192976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0429929, 0.00461194)
 target_position = Vector3(0, -0.1, 0)
@@ -492,8 +500,9 @@ hearts_container = NodePath("../InGameUI/Control/MarginContainer2/VBoxContainer/
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=1812363404]
 one_shot = true
 
-[node name="PlayerInventory" type="Node" parent="." unique_id=503317180]
+[node name="PlayerInventory" type="Node" parent="." unique_id=503317180 node_paths=PackedStringArray("inventory_ui")]
 script = ExtResource("14_kejb0")
+inventory_ui = NodePath("../Camera3D/Inventory")
 metadata/_custom_type_script = "uid://dnq0hd0dpa8dx"
 
 [node name="KoyinPouch" type="Node" parent="." unique_id=1846634035 node_paths=PackedStringArray("label")]
