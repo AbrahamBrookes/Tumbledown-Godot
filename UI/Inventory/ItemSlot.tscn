@@ -3,16 +3,42 @@
 [ext_resource type="Texture2D" uid="uid://tx54cdav22e8" path="res://Scripts/Inventory/PlayerInventory.svg" id="1_d7hos"]
 [ext_resource type="Script" uid="uid://dg8rfasi1mb7m" path="res://UI/Inventory/ItemSlot.gd" id="1_kpyft"]
 
-[node name="ItemSlot" type="AspectRatioContainer" unique_id=1555171068 node_paths=PackedStringArray("image", "qty_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kial5"]
+bg_color = Color(0.1, 0.1, 0.1, 0.7058824)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sy0lk"]
+bg_color = Color(0, 0, 0, 0.3137255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kpyft"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="ItemSlot" type="AspectRatioContainer" unique_id=1555171068 node_paths=PackedStringArray("image", "qty_label", "panel_box")]
 script = ExtResource("1_kpyft")
 image = NodePath("PanelContainer/MarginContainer/TextureRect2")
 qty_label = NodePath("PanelContainer/MarginContainer/Label")
+panel_box = NodePath("PanelContainer")
+style_highlight = SubResource("StyleBoxFlat_kial5")
+style_idle = SubResource("StyleBoxFlat_sy0lk")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=273157748]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_kpyft")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1691472778]
 layout_mode = 2

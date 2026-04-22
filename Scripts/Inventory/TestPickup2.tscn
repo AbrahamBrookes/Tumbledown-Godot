@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c7tdjvh8p7cb2"]
+
+[ext_resource type="Script" uid="uid://ddkwh8125rn3a" path="res://Scripts/Inventory/ItemPickup.gd" id="1_cvobu"]
+[ext_resource type="Resource" uid="uid://c1q02eewsh1df" path="res://Scripts/Inventory/TestItem2.tres" id="2_cvobu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ki6xx"]
+
+[node name="TestPickup" type="Node3D" unique_id=1992520155]
+script = ExtResource("1_cvobu")
+item_data = ExtResource("2_cvobu")
+metadata/_custom_type_script = "uid://ddkwh8125rn3a"
+
+[node name="Area3D" type="Area3D" parent="." unique_id=690911477]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1062361551]
+shape = SubResource("SphereShape3D_ki6xx")
+
+[node name="CanPickUpTimer" type="Timer" parent="." unique_id=763254988]
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="CanPickUpTimer" to="." method="_on_can_pick_up_timer_timeout"]

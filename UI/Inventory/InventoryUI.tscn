@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c51vm228tvj4x" path="res://UI/Inventory/InventoryUI.gd" id="1_uo64e"]
 [ext_resource type="PackedScene" uid="uid://df0s50wfkpmiu" path="res://UI/Inventory/ItemSlot.tscn" id="2_sv8nv"]
+[ext_resource type="Script" uid="uid://yxja7ogvws38" path="res://UI/Inventory/InventoryNavigatorCollectibles.gd" id="3_4r67x"]
 
 [node name="InventoryUI" type="Control" unique_id=1330398592 node_paths=PackedStringArray("grid")]
 process_mode = 2
@@ -52,3 +53,8 @@ layout_mode = 2
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 10
+
+[node name="InventoryNavigatorCollectibles" type="Node" parent="." unique_id=540631096 node_paths=PackedStringArray("grid")]
+script = ExtResource("3_4r67x")
+grid = NodePath("../MarginContainer/Panel/MarginContainer/GridContainer")
+metadata/_custom_type_script = "uid://yxja7ogvws38"
