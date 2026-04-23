@@ -24,11 +24,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
 
-      - name: Publish to Itch
-        uses: Ayowel/butler-to-itch@v1.0.0
-        with:
-          butler_key: ${{secrets.ITCH_IO_API_KEY}}
-          itch_user: brookesy
-          itch_game: tumbledown-prelude
-          version: ${{ github.ref_name }}
-          files: "${{ steps.export.outputs.archive_directory }}/tumbledown-web.zip"
+      - name: Install Butler (reliable)
+        run: |
+          curl --retry 5 --retry-delay 5 -L \
+            https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default \
+            -o butler.zip
+          unzip butler.zip
+          chmod +x butler
+          sudo mv butler /usr/local/bin/
+
+      - name: Push to Itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.ITCH_IO_API_KEY }}
+        run: |
+          butler push \
+            "${{ steps.export.outputs.archive_directory }}/tumbledown-web.zip" \
+            brookesy/tumbledown-prelude:html5 \
+            --userversion "${{ github.sha }}"
