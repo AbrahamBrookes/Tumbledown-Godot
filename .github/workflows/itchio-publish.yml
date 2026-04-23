@@ -2,7 +2,8 @@ name: Publish to Itch.io
 
 on:
   push:
-    branches: ["main"]
+    tags:
+      - "v*"
 
 jobs:
   deploy:
@@ -11,6 +12,10 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
+
+      - name: Get tag name
+        id: tag
+        run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
       - name: Godot Export
         id: export
@@ -40,4 +45,4 @@ jobs:
           butler push \
             "${{ steps.export.outputs.archive_directory }}/tumbledown-web.zip" \
             brookesy/tumbledown-prelude:html5 \
-            --userversion "${{ github.sha }}"
+            --userversion "${{ steps.tag.outputs.TAG }}"
