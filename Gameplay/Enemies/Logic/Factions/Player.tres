@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Faction" format=3 uid="uid://dnmghr1y61884"]
+
+[ext_resource type="Script" uid="uid://w47sbwbgac6n" path="res://Gameplay/Enemies/Logic/Factions/Faction.gd" id="1_be46d"]
+
+[resource]
+script = ExtResource("1_be46d")
+id = "player"
+display_name = "Player"
+metadata/_custom_type_script = "uid://w47sbwbgac6n"

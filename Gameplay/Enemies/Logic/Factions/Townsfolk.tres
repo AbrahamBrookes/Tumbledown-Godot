@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Faction" format=3 uid="uid://b61gunqe0h32p"]
+
+[ext_resource type="Script" uid="uid://w47sbwbgac6n" path="res://Gameplay/Enemies/Logic/Factions/Faction.gd" id="1_iagep"]
+
+[resource]
+script = ExtResource("1_iagep")
+id = "townsfolk"
+display_name = "Townsfolk"
+affinities = Dictionary[String, float]({
+"insects": -1.0,
+"player": 1.0
+})
+metadata/_custom_type_script = "uid://w47sbwbgac6n"

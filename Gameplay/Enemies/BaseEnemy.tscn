@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bv8uk3a4uh4wb"]
+
+[ext_resource type="Script" uid="uid://c32rxxjswxji3" path="res://Gameplay/Enemies/Logic/Brain/EnemyBrain.gd" id="1_ualvr"]
+[ext_resource type="Resource" uid="uid://c8q5jccjvftek" path="res://Gameplay/Enemies/Logic/Factions/Insects.tres" id="2_uiumd"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_uiumd"]
+
+[node name="BaseEnemy" type="Node3D" unique_id=855560199]
+
+[node name="EnemyBrain" type="Node" parent="." unique_id=142682486]
+script = ExtResource("1_ualvr")
+RoleAffinity = Dictionary[int, float]({
+1: 1.0
+})
+BelongsToFaction = ExtResource("2_uiumd")
+metadata/_custom_type_script = "uid://c32rxxjswxji3"
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=791135625]
+script = ExtResource("3_uiumd")
+metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
