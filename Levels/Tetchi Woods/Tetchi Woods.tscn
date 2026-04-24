@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cgoyqjlfx43ox" path="res://Levels/Tetchi Woods/submaps/Tellers Bend.tscn" id="1_rtbw0"]
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
+[ext_resource type="PackedScene" uid="uid://6ive82gsp7pp" path="res://Levels/Tetchi Woods/submaps/Silas Creek East.tscn" id="2_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://ce52en6yl3hjy" path="res://Levels/Tetchi Woods/submaps/Stonewater Lake.tscn" id="3_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="4_336xh"]
 [ext_resource type="PackedScene" uid="uid://bi7cr08c6ipq" path="res://Gameplay/BasicPushable/BasicPushable.tscn" id="6_wbtck"]
@@ -61,6 +62,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
 
 [node name="Watchers Grove" parent="." unique_id=357920721 instance=ExtResource("9_tcmpw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -20)
+
+[node name="Silas Creek East" parent="." unique_id=846307543 instance=ExtResource("2_o6bsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
 
 [node name="BasicPushable" parent="." unique_id=1659345474 instance=ExtResource("6_wbtck")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 2.2, -20.5)
