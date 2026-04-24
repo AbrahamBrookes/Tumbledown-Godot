@@ -41,7 +41,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("walk_east"):
-		print("east")
 		if current_location.x == grid_width - 1 or get_current_index() == grid.get_child_count() - 1:
 			#should_render_cursor = false
 			exit_right.emit()
@@ -50,7 +49,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		render_cursor()
 		
 	if event.is_action_pressed("walk_west"):
-		print("west")
 		if current_location.x == 0:
 			#should_render_cursor = false
 			exit_left.emit()
@@ -59,7 +57,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		render_cursor()
 		
 	if event.is_action_pressed("walk_north"):
-		print("north")
 		if current_location.y == 0:
 			#should_render_cursor = false
 			exit_top.emit()
@@ -68,7 +65,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		render_cursor()
 		
 	if event.is_action_pressed("walk_south"):
-		print("south")
 		if current_location.y == grid_height - 1 or get_current_index() == grid.get_child_count() - 1:
 			#should_render_cursor = false
 			exit_bottom.emit()
@@ -94,8 +90,7 @@ func render_cursor():
 	
 	# get the slot there
 	var slot = grid.get_child(current_index) as ItemSlot
-	print("current_index %d, grid_width %d, %v" % [current_index, grid_width, current_location])
-	print(grid.get_child_count())
+	
 	## we are expecting the slot to be an ItemSlot
 	if slot == null:
 		return
