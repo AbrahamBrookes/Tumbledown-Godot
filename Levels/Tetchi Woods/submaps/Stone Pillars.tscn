@@ -194,7 +194,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2.75, -9)
 
 [node name="MapLoadTrigger" parent="." unique_id=2017449413 instance=ExtResource("13_gxd10")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9, 2.6000001, 6.2000003)
-level = "res://MainMenu/MainMenu.tscn"
+level = "res://Levels/submap_base.tscn"
+location = Vector3(0, 5, 0)
+load_character = true
 
 [node name="CollisionShape3D" parent="MapLoadTrigger" index="0" unique_id=1829885686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099999905, -0.1500001, 0)
