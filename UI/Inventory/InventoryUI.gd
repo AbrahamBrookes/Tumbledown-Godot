@@ -45,3 +45,7 @@ func render(inventory: Dictionary[String, int]):
 		# Pass data into the slot
 		slot.set_item(item_data, quantity)
 		
+
+
+func _on_quit_button_pressed() -> void:
+	Game.load_level("res://MainMenu/MainMenu.tscn", Vector3.ZERO, false)

@@ -15,19 +15,19 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Tumbledown"
-run/main_scene="res://Levels/Tetchi Woods/Tetchi Woods.tscn"
+run/main_scene="uid://crm5qmt50ciwy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-InGameUI="*res://UI/InGameUI.gd"
 DirectionUtils="*res://Scripts/Utils/DirectionUtils.gd"
 uuid_util="*res://addons/uuid/uuid.gd"
 SaveManager="*res://Scripts/SaveManager/SaveManager.gd"
 uuid="*res://addons/uuid/uuid.gd"
 InputUtils="*uid://du73sevwelhsr"
 ItemRegistry="*uid://l5pjweis1jc4"
+Game="*uid://d2rjwmdcyyd03"
 
 [debug]
 

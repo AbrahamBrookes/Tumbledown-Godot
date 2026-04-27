@@ -281,7 +281,7 @@ script = ExtResource("1_p3iwg")
 mesh = NodePath("SkinnedMesh")
 animTree = NodePath("SkinnedMesh/AnimationTree")
 stateMachine = NodePath("SkinnedMesh/StateMachine")
-move_speed = 50.0
+move_speed = 10.0
 player_health = NodePath("PlayerHealth")
 invincible_timer = NodePath("InvincibilityTimer")
 inventory = NodePath("PlayerInventory")
@@ -468,9 +468,6 @@ visible = false
 
 [node name="Dialogue" parent="Camera3D" unique_id=1493063983 instance=ExtResource("13_ucqvn")]
 
-[node name="InventoryUI" parent="Camera3D" unique_id=1330398592 instance=ExtResource("17_534j1")]
-visible = false
-
 [node name="GroundCast" type="RayCast3D" parent="." unique_id=1248192976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0429929, 0.00461194)
 target_position = Vector3(0, -0.1, 0)
@@ -499,7 +496,7 @@ one_shot = true
 
 [node name="PlayerInventory" type="Node" parent="." unique_id=503317180 node_paths=PackedStringArray("inventory_ui")]
 script = ExtResource("14_kejb0")
-inventory_ui = NodePath("../Camera3D/InventoryUI")
+inventory_ui = NodePath("../InGameUI/InventoryUI")
 metadata/_custom_type_script = "uid://dnq0hd0dpa8dx"
 
 [node name="KoyinPouch" type="Node" parent="." unique_id=1846634035 node_paths=PackedStringArray("label")]
@@ -763,6 +760,9 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
+
+[node name="InventoryUI" parent="InGameUI" unique_id=1330398592 instance=ExtResource("17_534j1")]
+visible = false
 
 [node name="CratePusher" type="Node" parent="." unique_id=375119327 node_paths=PackedStringArray("ray", "state_machine")]
 script = ExtResource("24_m2ugw")
