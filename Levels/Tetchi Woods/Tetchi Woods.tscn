@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
 [ext_resource type="PackedScene" uid="uid://6ive82gsp7pp" path="res://Levels/Tetchi Woods/submaps/Silas Creek East.tscn" id="2_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://ce52en6yl3hjy" path="res://Levels/Tetchi Woods/submaps/Stonewater Lake.tscn" id="3_o6bsb"]
-[ext_resource type="PackedScene" uid="uid://u65ut6h3i0ms" path="res://Scripts/PlayerCharacter/PlayerCharacter.tscn" id="4_336xh"]
 [ext_resource type="PackedScene" uid="uid://bi7cr08c6ipq" path="res://Gameplay/BasicPushable/BasicPushable.tscn" id="6_wbtck"]
 [ext_resource type="PackedScene" uid="uid://ddihv4pxvfq00" path="res://Scripts/Inventory/TestPickup.tscn" id="7_w2pnj"]
 [ext_resource type="PackedScene" uid="uid://c7tdjvh8p7cb2" path="res://Scripts/Inventory/TestPickup2.tscn" id="8_0ffjd"]
@@ -47,10 +46,6 @@ light_color = Color(0.878431, 0.94902, 0.941176, 1)
 shadow_enabled = true
 shadow_normal_bias = 10.0
 shadow_blur = 0.6
-
-[node name="PlayerCharacter" parent="." unique_id=1893409420 instance=ExtResource("4_336xh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81, 1.75, -24.869999)
-move_speed = 4.0
 
 [node name="Tellers Bend" parent="." unique_id=1869404216 instance=ExtResource("1_rtbw0")]
 

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bjg8ogoya0pd6"]
+
+[ext_resource type="Script" uid="uid://c7m27y5xlm3hu" path="res://Gameplay/MapLoadTrigger/MapLoadTrigger.gd" id="1_rxybd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rxybd"]
+size = Vector3(2, 1.3000001, 1)
+
+[node name="MapLoadTrigger" type="Area3D" unique_id=2017449413]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_rxybd")
+level = "\"res://MainMenu/MainMenu.tscn\""
+load_character = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1829885686]
+shape = SubResource("BoxShape3D_rxybd")
+
+[connection signal="body_entered" from="." to="." method="_on_area_3d_body_entered"]
