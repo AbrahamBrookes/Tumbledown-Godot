@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b4b4yhlc51nw5"]
+
+[ext_resource type="PackedScene" uid="uid://h15eypvd0v6v" path="res://Levels/Tetchi Woods/Tetchi Woods.tscn" id="1_kycxd"]
+[ext_resource type="PackedScene" uid="uid://dki7u4r2ra6te" path="res://Levels/GrassflowerPlains/GrassflowerPlains.tscn" id="2_pa6j6"]
+
+[node name="World" type="Node3D" unique_id=1911830473]
+
+[node name="Tetchi Woods" parent="." unique_id=60571882 instance=ExtResource("1_kycxd")]
+
+[node name="GrassflowerPlains" parent="." unique_id=529936845 instance=ExtResource("2_pa6j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)

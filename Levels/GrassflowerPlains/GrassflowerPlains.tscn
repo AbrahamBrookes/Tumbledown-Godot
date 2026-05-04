@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dki7u4r2ra6te"]
+
+[ext_resource type="PackedScene" uid="uid://vsx3af86yaj4" path="res://Levels/GrassflowerPlains/submaps/BluefeatherMeadow.tscn" id="1_mh7q4"]
+[ext_resource type="PackedScene" uid="uid://caobg54hlfd5s" path="res://Levels/GrassflowerPlains/submaps/DownersGully.tscn" id="2_niqga"]
+
+[node name="GrassflowerPlains" type="Node3D" unique_id=529936845]
+
+[node name="BluefeatherMeadow" parent="." unique_id=110841723 instance=ExtResource("1_mh7q4")]
+
+[node name="DownersGully" parent="." unique_id=1765801111 instance=ExtResource("2_niqga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 0)
