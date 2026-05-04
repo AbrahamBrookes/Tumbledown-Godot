@@ -207,6 +207,11 @@ node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"
 [sub_resource type="BoxShape3D" id="BoxShape3D_ottvh"]
 size = Vector3(0.6, 0.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_534j1"]
+_limits = [0.0, 20.0, 0.0, 1.0]
+_data = [Vector2(0, 18.016644), 0.0, 0.0, 0, 0, Vector2(0.25850338, 20), 0.0, 0.0, 0, 0, Vector2(0.8367347, 18.377254), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bwvvd"]
 size = Vector3(1, 0.469729, 1)
 
@@ -281,7 +286,8 @@ script = ExtResource("1_p3iwg")
 mesh = NodePath("SkinnedMesh")
 animTree = NodePath("SkinnedMesh/AnimationTree")
 stateMachine = NodePath("SkinnedMesh/StateMachine")
-move_speed = 10.0
+move_speed = 5.0
+gravity = 12.0
 player_health = NodePath("PlayerHealth")
 invincible_timer = NodePath("InvincibilityTimer")
 inventory = NodePath("PlayerInventory")
@@ -433,7 +439,9 @@ script = ExtResource("10_5rovj")
 
 [node name="Jumping" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=329504137]
 script = ExtResource("11_jxu01")
-lateral_damp = 0.5
+jump_power = 4.0
+lateral_damp = 1.0
+gravity_curve = SubResource("Curve_534j1")
 
 [node name="Timer" type="Timer" parent="SkinnedMesh/StateMachine/Jumping" unique_id=930304436]
 wait_time = 0.1
