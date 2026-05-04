@@ -1,18 +1,10 @@
 extends State
 class_name AngryBugIdle
 
-
-func Enter(_extra_data = null):
-	pass
-
-
-func Exit():
-	pass
-
-
-func Update(_delta: float):
-	pass
-
+## a ref to the brain
+@export var brain: EnemyBrain
 
 func Physics_Update(_delta: float):
-	pass 
+	# if we have an enemy in the possible threats, pursue it
+	if brain.PossibleThreats.front():
+		Transitioned.emit("AngryBugPursue", brain.PossibleThreats.front())

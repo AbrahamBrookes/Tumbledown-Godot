@@ -3,6 +3,7 @@ class_name AngryBugPursue
 
 @export var agent: NavigationAgent3D
 @export var mesh: Node3D
+@onready var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var target: Node3D
 
@@ -17,16 +18,16 @@ func Physics_Update(delta):
 	if not target:
 		Transitioned.emit("AngryBugIdle")
 		return
-		
+	
 	# update the target
-	agent.target_position = target.global_transform.origin
-
+	agent.target_position = target.position
+	
 	# get next nav point
 	var next_point = agent.get_next_path_position()
 	var dir = (next_point - global_transform.origin).normalized()
 	# apply gravity + movement
 	owner.velocity = Vector3(dir.x, 0, dir.z) * owner.TRAVEL_SPEED
-	owner.velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
+	owner.velocity.y -= gravity * delta
 
 	# smooth look
 	var look_dir = (

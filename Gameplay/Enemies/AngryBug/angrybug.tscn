@@ -1,21 +1,10 @@
-[gd_scene load_steps=61 format=4 uid="uid://bn7vefs63iabd"]
+[gd_scene format=4 uid="uid://bn7vefs63iabd"]
 
 [ext_resource type="Script" uid="uid://cmbxpdy0b5cfu" path="res://Gameplay/Enemies/AngryBug/AngryBug.gd" id="1_1x555"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="1_iv4hw"]
-[ext_resource type="Script" uid="uid://c28bssdvxad2h" path="res://Scripts/BehaviourTree/BehaviourTree.gd" id="2_65ifx"]
 [ext_resource type="Script" uid="uid://dnacn8bn0xa3a" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugIdle.gd" id="2_c431i"]
-[ext_resource type="Script" uid="uid://bjfgd4244csap" path="res://Scripts/BehaviourTree/BehaviourTreeSelector.gd" id="3_rbcve"]
-[ext_resource type="Script" uid="uid://da8hiin4spe61" path="res://Scripts/BehaviourTree/BehaviourTreeSequence.gd" id="3_vmxbt"]
-[ext_resource type="Script" uid="uid://chperjavqy21i" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/HaveTargetsCondition.gd" id="4_c1x4x"]
-[ext_resource type="Script" uid="uid://dqi5do4e53acs" path="res://Scripts/BehaviourTree/BehaviourTreeActions/GoToStateAction.gd" id="4_nbgob"]
-[ext_resource type="Script" uid="uid://cn7xj52gibn83" path="res://Scripts/BehaviourTree/BehaviourTreeDecorators/InversionDecorator.gd" id="5_5pk2w"]
-[ext_resource type="Script" uid="uid://cvd84fakj0hs1" path="res://Scripts/BehaviourTree/BehaviourTreeBlackboard.gd" id="6_nbgob"]
-[ext_resource type="Script" uid="uid://da1pg43yqext3" path="res://Scripts/BehaviourTree/BehaviourTreeDecorators/BehaviourTreePriorityDecorator.gd" id="6_uvhq5"]
-[ext_resource type="Script" uid="uid://cpt6stlc1xek0" path="res://Scripts/BehaviourTree/BehaviourTreeConditions/StateMachineStatesCondition.gd" id="6_ypxi1"]
-[ext_resource type="Script" uid="uid://cjq5w0648qa8w" path="res://Scripts/BehaviourTree/BehaviourTreePrioritisers/AABBHeightPrioritiser.gd" id="7_uvhq5"]
-[ext_resource type="Script" uid="uid://cvidgxu8dkq2v" path="res://Scripts/BehaviourTree/BehaviourTreeEvaluatorGate.gd" id="8_msqp0"]
-[ext_resource type="Script" uid="uid://b7o3nbmdx1uqu" path="res://Scripts/BehaviourTree/BehaviourTreeEvaluators/DistanceToTargetEvaluator.gd" id="9_gh1ew"]
-[ext_resource type="Script" uid="uid://cja68jrt5xrkx" path="res://Scripts/BehaviourTree/BehaviourTreeActions/GoToStateWithBlackboardValueAction.gd" id="10_msqp0"]
+[ext_resource type="Script" uid="uid://c32rxxjswxji3" path="res://Gameplay/Enemies/Logic/Brain/EnemyBrain.gd" id="6_nbgob"]
+[ext_resource type="Resource" uid="uid://c8q5jccjvftek" path="res://Gameplay/Enemies/Logic/Factions/Insects.tres" id="7_c1x4x"]
 [ext_resource type="Script" uid="uid://b4b1nvqunsi6g" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugAttack.gd" id="14_dncyb"]
 [ext_resource type="Script" uid="uid://b7hebo32xc237" path="res://Gameplay/Enemies/AngryBug/StateMachine/States/AngryBugPursue.gd" id="15_tmod7"]
 
@@ -644,7 +633,7 @@ height = 2.6
 height = 0.6
 radius = 5.0
 
-[node name="AngryBug" type="CharacterBody3D"]
+[node name="AngryBug" type="CharacterBody3D" unique_id=324936090]
 collision_layer = 2
 collision_mask = 7
 axis_lock_angular_x = true
@@ -653,13 +642,13 @@ axis_lock_angular_z = true
 slide_on_ceiling = false
 script = ExtResource("1_1x555")
 
-[node name="SkinnedMesh" type="Node3D" parent="."]
+[node name="SkinnedMesh" type="Node3D" parent="." unique_id=863387851]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Armature" type="Node3D" parent="SkinnedMesh"]
+[node name="Armature" type="Node3D" parent="SkinnedMesh" unique_id=713182266]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 
-[node name="Skeleton3D" type="Skeleton3D" parent="SkinnedMesh/Armature"]
+[node name="Skeleton3D" type="Skeleton3D" parent="SkinnedMesh/Armature" unique_id=1989578568]
 bones/0/name = "leg.l.target"
 bones/0/parent = -1
 bones/0/rest = Transform3D(-0.0227209, 0.833439, 0.552145, -0.888856, 0.235965, -0.392755, -0.457624, -0.4997, 0.735445, 0.883013, 4.31254e-09, -0.529423)
@@ -752,7 +741,7 @@ bones/12/position = Vector3(0.9, -4.42824e-08, 0.5)
 bones/12/rotation = Quaternion(0.034104, -0.343274, -0.617134, 0.70721)
 bones/12/scale = Vector3(1, 1, 1)
 
-[node name="Sphere" type="MeshInstance3D" parent="SkinnedMesh/Armature/Skeleton3D"]
+[node name="Sphere" type="MeshInstance3D" parent="SkinnedMesh/Armature/Skeleton3D" unique_id=814383856]
 transform = Transform3D(-1, 0, -9.13912e-08, 0, 1, 0, 9.13912e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_42isx")
 skin = SubResource("Skin_cyfhc")
@@ -761,144 +750,72 @@ surface_material_override/1 = SubResource("StandardMaterial3D_dvqjc")
 surface_material_override/2 = SubResource("StandardMaterial3D_qjhqt")
 surface_material_override/3 = SubResource("StandardMaterial3D_80s03")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SkinnedMesh"]
-libraries = {
-&"": SubResource("AnimationLibrary_ufpmt")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SkinnedMesh" unique_id=1533600533]
+libraries/ = SubResource("AnimationLibrary_ufpmt")
 
-[node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh"]
+[node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh" unique_id=1345068247]
 tree_root = SubResource("AnimationNodeBlendTree_verpn")
 anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/AngryBugLocomote/blend_position = -0.000921667
 parameters/StateMachine/AngryBugPursue/blend_position = 0.998947
 
-[node name="Bitezone" type="Area3D" parent="SkinnedMesh"]
+[node name="Bitezone" type="Area3D" parent="SkinnedMesh" unique_id=1626786074]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.37114e-08, 0.3, -0.5)
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/Bitezone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/Bitezone" unique_id=1249912437]
 shape = SubResource("BoxShape3D_w1blj")
 
-[node name="HurtBox2" type="CollisionShape3D" parent="."]
+[node name="HurtBox2" type="CollisionShape3D" parent="." unique_id=351813643]
 transform = Transform3D(0.25, 0, 0, 0, -1.09278e-08, -0.25, 0, 0.25, -1.09278e-08, 0, 0.2, 0.1)
 shape = SubResource("CapsuleShape3D_sy4al")
 
-[node name="Agrozone" type="Area3D" parent="."]
+[node name="Agrozone" type="Area3D" parent="." unique_id=1332015360]
 collision_layer = 0
-collision_mask = 6
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Agrozone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Agrozone" unique_id=243502598]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 shape = SubResource("CylinderShape3D_smdbi")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2037201993]
 
-[node name="BehaviourTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "state_machine")]
-script = ExtResource("2_65ifx")
-blackboard = NodePath("../BehaviourTreeBlackboard")
-state_machine = NodePath("../StateMachine")
-metadata/_custom_type_script = "uid://c28bssdvxad2h"
-
-[node name="RootSelector - first to succeed" type="Node" parent="BehaviourTree"]
-script = ExtResource("3_rbcve")
-metadata/_custom_type_script = "uid://bjfgd4244csap"
-
-[node name="ShouldAttackSequence - All must pass" type="Node" parent="BehaviourTree/RootSelector - first to succeed"]
-script = ExtResource("3_vmxbt")
-metadata/_custom_type_script = "uid://da8hiin4spe61"
-
-[node name="InversionDecorator - not already attacking" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass"]
-script = ExtResource("5_5pk2w")
-metadata/_custom_type_script = "uid://cn7xj52gibn83"
-
-[node name="StateMachineStatesCondition" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass/InversionDecorator - not already attacking"]
-script = ExtResource("6_ypxi1")
-states = Array[String](["AngryBugAttack"])
-metadata/_custom_type_script = "uid://cpt6stlc1xek0"
-
-[node name="HasTargetsCondition" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass"]
-script = ExtResource("4_c1x4x")
-metadata/_custom_type_script = "uid://chperjavqy21i"
-
-[node name="SelectATargetByPriorityDecorator - select a target to attack" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass"]
-script = ExtResource("6_uvhq5")
-metadata/_custom_type_script = "uid://da1pg43yqext3"
-
-[node name="AABBHeightPrioritiser - targets tallest to shortest" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass/SelectATargetByPriorityDecorator - select a target to attack"]
-script = ExtResource("7_uvhq5")
-metadata/_custom_type_script = "uid://cjq5w0648qa8w"
-
-[node name="TargetCloseEnoughEvaluatorGate - selected target is within attack range" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass"]
-script = ExtResource("8_msqp0")
-threshold = 1.5
-metadata/_custom_type_script = "uid://cvidgxu8dkq2v"
-
-[node name="DistanceToTargetEvaluator" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass/TargetCloseEnoughEvaluatorGate - selected target is within attack range"]
-script = ExtResource("9_gh1ew")
-metadata/_custom_type_script = "uid://b7o3nbmdx1uqu"
-
-[node name="AttackCurrentTargetAction" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldAttackSequence - All must pass"]
-script = ExtResource("10_msqp0")
-state_name = "AngryBugAttack"
-metadata/_custom_type_script = "uid://cja68jrt5xrkx"
-
-[node name="ShouldPursueSequence - All must pass" type="Node" parent="BehaviourTree/RootSelector - first to succeed"]
-script = ExtResource("3_vmxbt")
-metadata/_custom_type_script = "uid://da8hiin4spe61"
-
-[node name="HasTargetsCondition" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldPursueSequence - All must pass"]
-script = ExtResource("4_c1x4x")
-metadata/_custom_type_script = "uid://chperjavqy21i"
-
-[node name="SelectATargetByPriorityDecorator - select a target to attack" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldPursueSequence - All must pass"]
-script = ExtResource("6_uvhq5")
-metadata/_custom_type_script = "uid://da1pg43yqext3"
-
-[node name="AABBHeightPrioritiser - targets tallest to shortest" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldPursueSequence - All must pass/SelectATargetByPriorityDecorator - select a target to attack"]
-script = ExtResource("7_uvhq5")
-metadata/_custom_type_script = "uid://cjq5w0648qa8w"
-
-[node name="TargetCloseEnoughEvaluatorGate - selected target is within attack range" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldPursueSequence - All must pass"]
-script = ExtResource("8_msqp0")
-threshold = 20.0
-metadata/_custom_type_script = "uid://cvidgxu8dkq2v"
-
-[node name="DistanceToTargetEvaluator" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldPursueSequence - All must pass/TargetCloseEnoughEvaluatorGate - selected target is within attack range"]
-script = ExtResource("9_gh1ew")
-metadata/_custom_type_script = "uid://b7o3nbmdx1uqu"
-
-[node name="PursueCurrentTargetAction" type="Node" parent="BehaviourTree/RootSelector - first to succeed/ShouldPursueSequence - All must pass"]
-script = ExtResource("10_msqp0")
-state_name = "AngryBugPursue"
-metadata/_custom_type_script = "uid://cja68jrt5xrkx"
-
-[node name="GoToIdleAction" type="Node" parent="BehaviourTree/RootSelector - first to succeed"]
-script = ExtResource("4_nbgob")
-state_name = "AngryBugIdle"
-metadata/_custom_type_script = "uid://dqi5do4e53acs"
-
-[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("animTree", "initial_state")]
+[node name="StateMachine" type="Node3D" parent="." unique_id=796421944 node_paths=PackedStringArray("animTree", "initial_state")]
 script = ExtResource("1_iv4hw")
 animTree = NodePath("../SkinnedMesh/AnimationTree")
 initial_state = NodePath("AngryBugIdle")
 debug_mode = true
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
-[node name="AngryBugIdle" type="Node3D" parent="StateMachine"]
+[node name="AngryBugIdle" type="Node3D" parent="StateMachine" unique_id=7407143 node_paths=PackedStringArray("brain")]
 script = ExtResource("2_c431i")
+brain = NodePath("../../EnemyBrain")
 metadata/_custom_type_script = "uid://dnacn8bn0xa3a"
 
-[node name="AngryBugAttack" type="Node3D" parent="StateMachine" node_paths=PackedStringArray("mesh")]
+[node name="AngryBugAttack" type="Node3D" parent="StateMachine" unique_id=200748962 node_paths=PackedStringArray("mesh")]
 script = ExtResource("14_dncyb")
 mesh = NodePath("../../SkinnedMesh")
 metadata/_custom_type_script = "uid://b4b1nvqunsi6g"
 
-[node name="AngryBugPursue" type="Node3D" parent="StateMachine"]
+[node name="AngryBugPursue" type="Node3D" parent="StateMachine" unique_id=368465993 node_paths=PackedStringArray("agent", "mesh")]
 script = ExtResource("15_tmod7")
+agent = NodePath("../../NavigationAgent3D")
+mesh = NodePath("../../SkinnedMesh")
 metadata/_custom_type_script = "uid://b7hebo32xc237"
 
-[node name="BehaviourTreeBlackboard" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
+[node name="EnemyBrain" type="Node" parent="." unique_id=1183309208 node_paths=PackedStringArray("agroZone")]
 script = ExtResource("6_nbgob")
-state_machine = NodePath("../StateMachine")
-metadata/_custom_type_script = "uid://cvd84fakj0hs1"
+agroZone = NodePath("../Agrozone")
+RoleAffinity = Dictionary[int, float]({
+1: 1.0
+})
+BelongsToFaction = ExtResource("7_c1x4x")
+FactionAffinity = Dictionary[String, float]({
+"player": -1.0,
+"townsfolk": -1.0
+})
+metadata/_custom_type_script = "uid://c32rxxjswxji3"
+
+[connection signal="body_entered" from="Agrozone" to="EnemyBrain" method="_on_agrozone_body_entered"]
+[connection signal="body_exited" from="Agrozone" to="EnemyBrain" method="_on_agrozone_body_exited"]

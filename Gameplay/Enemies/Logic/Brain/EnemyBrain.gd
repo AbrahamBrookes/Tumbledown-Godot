@@ -5,7 +5,10 @@ extends Node
 class_name EnemyBrain
 
 ## PossibleThreats are just locations with a score. These are places the enemy wants to investigate
-var PossibleThreats: Dictionary[Vector3, float]
+var PossibleThreats: Array[Node3D]
+
+## A reference to the zone that we monitor to add possibleThreats
+@export var agroZone: Area3D
 
 ## ActiveThreats are things that the enemy wants to attack. The enemy selects a target from this list
 ## and attempts to eliminate the threat. Before being added to this list a node will need to be sniffed
@@ -38,3 +41,11 @@ enum Role {
 ## attacked by some other faction, or maybe go beserk. > 0 means favourable, < 0 mean unfavourable.
 ## If a faction is not on the list then it's 0 (neutral). Overlays the BelongsToFaction.affinites
 @export var FactionAffinity: Dictionary[String, float]
+
+
+func _on_agrozone_body_entered(body: Node3D) -> void:
+	PossibleThreats.append(body)
+
+
+func _on_agrozone_body_exited(body: Node3D) -> void:
+	PossibleThreats.erase(body)
