@@ -2,4 +2,12 @@ extends State
 
 class_name BasicPushableIdle
 
-## This state is for crates and such that slide a given distance then stop
+# Get the gravity from the project settings once
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+## During physics update, just do gravity
+func Physics_Update(_delta: float):
+	owner.velocity.x = 0
+	owner.velocity.y -= gravity
+	owner.velocity.z = 0
+	owner.move_and_slide()

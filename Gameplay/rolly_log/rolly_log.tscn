@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://13vw4kmvwt8j"]
+
+[ext_resource type="PackedScene" uid="uid://blmmsqtg11y0w" path="res://Gameplay/rolly_log/rolly_log.glb" id="1_ra82x"]
+[ext_resource type="Script" uid="uid://28ixo7fls5n8" path="res://Components/Pushable/Pushable.gd" id="1_tkiqj"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_dl2ns"]
+[ext_resource type="Script" uid="uid://bgdpnmflvsr46" path="res://Gameplay/BasicPushable/States/BasicPushableIdle.gd" id="4_dx100"]
+[ext_resource type="Script" uid="uid://vkjnt5ky4h0k" path="res://Gameplay/rolly_log/RollyLogBeingPushed.gd" id="5_ouai2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tkiqj"]
+radius = 0.35
+height = 2.1
+
+[node name="RollyLog" type="CharacterBody3D" unique_id=1025799832 node_paths=PackedStringArray("state_machine")]
+script = ExtResource("1_tkiqj")
+state_machine = NodePath("StateMachine")
+rolling_state_name = "RollyLogBeingPushed"
+metadata/_custom_type_script = "uid://28ixo7fls5n8"
+
+[node name="rolly_log2" parent="." unique_id=1704695312 instance=ExtResource("1_ra82x")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2040912912]
+transform = Transform3D(-4.371139e-08, 0.99999994, 0, -1, -4.3711385e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_tkiqj")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=148805197 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_dl2ns")
+initial_state = NodePath("BasicPushableIdle")
+metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
+
+[node name="BasicPushableIdle" type="Node3D" parent="StateMachine" unique_id=1576826116]
+script = ExtResource("4_dx100")
+metadata/_custom_type_script = "uid://bgdpnmflvsr46"
+
+[node name="RollyLogBeingPushed" type="Node3D" parent="StateMachine" unique_id=1138379275 node_paths=PackedStringArray("mesh")]
+script = ExtResource("5_ouai2")
+mesh = NodePath("../../rolly_log2")
+metadata/_custom_type_script = "uid://cybqeyv4mm6v3"

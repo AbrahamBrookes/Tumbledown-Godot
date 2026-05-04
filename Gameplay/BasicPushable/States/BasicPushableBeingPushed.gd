@@ -7,6 +7,9 @@ class_name BasicPushableBeingPushed
 ## moving the pushable while in this state. If the player releases the input
 ## then this state is transitioned out of and the pushable stops moving.
 
+# Get the gravity from the project settings once
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 ## During physics update, handle player input
 func Physics_Update(_delta: float):
 	
@@ -23,5 +26,6 @@ func Physics_Update(_delta: float):
 	
 	owner.velocity.x = cardinal_speed.x
 	owner.velocity.z = cardinal_speed.y
+	owner.velocity.y -= gravity
 	
 	owner.move_and_slide()
