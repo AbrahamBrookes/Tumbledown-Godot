@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bflp5jntvmqk8"]
+[gd_scene format=3 uid="uid://bflp5jntvmqk8"]
 
-[ext_resource type="Script" path="res://UI/MainMenu/LoadGameButton.gd" id="1_4jkon"]
+[ext_resource type="Script" uid="uid://dppku7gfqtkxk" path="res://UI/MainMenu/LoadGameButton.gd" id="1_4jkon"]
 [ext_resource type="Texture2D" uid="uid://cfiyfjc5e1uh7" path="res://media/Tumbledown_logo.png" id="2_0l83x"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=1997168825]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1229877568]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control" parent="ColorRect"]
+[node name="Control" type="Control" parent="ColorRect" unique_id=1658112143]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -30,7 +30,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Load" type="Button" parent="ColorRect/Control"]
+[node name="Load" type="Button" parent="ColorRect/Control" unique_id=39329191]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,7 +46,7 @@ grow_vertical = 2
 text = "Load"
 script = ExtResource("1_4jkon")
 
-[node name="Quit" type="Button" parent="ColorRect/Control"]
+[node name="Quit" type="Button" parent="ColorRect/Control" unique_id=217736963]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,14 +61,14 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
 
-[node name="New Game" type="Button" parent="ColorRect/Control"]
+[node name="New Game" type="Button" parent="ColorRect/Control" unique_id=868308187]
 layout_mode = 0
 offset_left = -100.0
 offset_right = 100.0
 offset_bottom = 60.0
 text = "New Game"
 
-[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Control"]
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Control" unique_id=181480586]
 position = Vector2(0, -158)
 scale = Vector2(0.349609, 0.349609)
 texture = ExtResource("2_0l83x")

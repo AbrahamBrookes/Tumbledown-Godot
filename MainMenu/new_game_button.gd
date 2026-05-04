@@ -1,7 +1,7 @@
 extends Button
 
 ## on click, load the new game map
-@export var new_game_map: String = "res://Levels/Tetchi Woods/Tetchi Woods.tscn"
+@export var new_game_map: String = "res://Levels/world.tscn"
 
 
 func _on_pressed() -> void:
