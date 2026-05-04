@@ -103,6 +103,10 @@ pause_menu={
 3d_physics/layer_5="Slashables"
 3d_physics/layer_6="Pushables"
 
+[physics]
+
+3d/default_gravity=1.0
+
 [rendering]
 
 anti_aliasing/quality/msaa_3d=1
