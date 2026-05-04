@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cg046gmdqgviw"]
+[gd_scene format=4 uid="uid://cg046gmdqgviw"]
 
 [ext_resource type="Script" uid="uid://cmdm6s054t30i" path="res://Gameplay/slashy_grass/SlashyGrass.gd" id="1_tyr63"]
 [ext_resource type="Shader" uid="uid://bi8f7l8thcu8a" path="res://Gameplay/slashy_grass/SlashyGrass.gdshader" id="2_i5ctg"]
@@ -96,7 +96,8 @@ _limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0.0036231875, -112.65997), 0.0, -528.1253, 0, 0, Vector2(1, -173.25336), 107.58651, 0.0, 0, 0]
 point_count = 2
 
-[node name="SlashyGrass" type="Node3D" node_paths=PackedStringArray("pre_slash_mesh", "post_slash_mesh", "particles", "loot_dropper", "area")]
+[node name="SlashyGrass" type="Node3D" unique_id=396346915 node_paths=PackedStringArray("pre_slash_mesh", "post_slash_mesh", "particles", "loot_dropper", "area")]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0, 0, 0)
 script = ExtResource("1_tyr63")
 pre_slash_mesh = NodePath("pre_slash")
 post_slash_mesh = NodePath("post_slash")
@@ -104,30 +105,30 @@ particles = NodePath("CPUParticles3D")
 loot_dropper = NodePath("LootDropper")
 area = NodePath("Area3D")
 
-[node name="pre_slash" type="MeshInstance3D" parent="."]
+[node name="pre_slash" type="MeshInstance3D" parent="." unique_id=811082120]
 transform = Transform3D(0.100000046, 0, 0, 0, 0.100000046, 0, 0, 0, 0.100000046, 0, 0, 0)
 mesh = SubResource("ArrayMesh_psnjx")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_i5ctg")
 
-[node name="post_slash" type="MeshInstance3D" parent="."]
+[node name="post_slash" type="MeshInstance3D" parent="." unique_id=1773236372]
 transform = Transform3D(0.100000046, 0, 0, 0, 0.100000046, 0, 0, 0, 0.100000046, 0, 0, 0)
 visible = false
 mesh = SubResource("ArrayMesh_mijtf")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("4_qm31a")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1766805983]
 collision_layer = 16
 collision_mask = 6
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1803437676]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.1)
 shape = SubResource("BoxShape3D_i5ctg")
 
-[node name="Slashable" parent="." instance=ExtResource("6_2h3nx")]
+[node name="Slashable" parent="." unique_id=1113481310 instance=ExtResource("6_2h3nx")]
 
-[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1157738672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 emitting = false
 amount = 24
@@ -157,7 +158,7 @@ angle_max = 180.0
 scale_amount_min = 0.1
 scale_amount_max = 0.1
 
-[node name="LootDropper" parent="." instance=ExtResource("7_2h3nx")]
+[node name="LootDropper" parent="." unique_id=1151470191 instance=ExtResource("7_2h3nx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09999999, 0.2)
 available_loot = Dictionary[float, PackedScene]({
 0.1: ExtResource("8_kuk5u")
