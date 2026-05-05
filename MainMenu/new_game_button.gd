@@ -5,4 +5,4 @@ extends Button
 
 
 func _on_pressed() -> void:
-	Game.load_level(new_game_map, Vector3(-10.00, 5.0, -20.00), true)
+	Game.load_level(new_game_map, Vector3(0.00, 5.0, 0.00), true)

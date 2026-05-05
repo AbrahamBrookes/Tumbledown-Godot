@@ -10,6 +10,7 @@ enum DamageType {
 	FIRE,
 	SHARP,
 	BLUNT,
+	FALL_IN_WATER
 }
 
 # The type of damage

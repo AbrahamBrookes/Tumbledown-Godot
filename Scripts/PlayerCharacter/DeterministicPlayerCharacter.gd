@@ -34,10 +34,16 @@ var pushback_velocity: Vector3 = Vector3.ZERO
 ## expose the interactor so other scripts can access it
 @export var interactor: Interactor
 
+## This is the last known "on the floor" location of the player
+var last_known_safe_position: Vector3 = Vector3.ZERO
+
 func _ready() -> void:
 	stateMachine.TransitionTo("Locomote")
 
 func _physics_process(delta: float) -> void:
+	# cache was_on_floor to check the frame we start falling
+	if is_on_floor():
+		last_known_safe_position = global_position - (mesh.global_transform.basis.z * 0.5) # Cache the last known safe position as one unit behind the player
 	
 	# Decay pushback velocity (friction)
 	var pushback_friction = 10.0
@@ -60,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = combined_velocity.x
 	velocity.y = combined_velocity.y
 	velocity.z = combined_velocity.z
+		
 	move_and_slide()
 
 func receive_damage(damage: Damage) -> void:
@@ -89,3 +96,15 @@ func receive_damage(damage: Damage) -> void:
 
 func _on_invincibility_timer_timeout() -> void:
 	is_invincible = false
+
+
+func _on_wettable_fell_in_water() -> void:
+	# if we have a last_known_safe_position, teleport back there
+	if last_known_safe_position != Vector3.ZERO:
+		#global_position = last_known_safe_position
+		stateMachine.travel("Drowning", last_known_safe_position)
+		var damage = Damage.new()
+		damage.type = Damage.DamageType.FALL_IN_WATER
+		damage.amount = 1
+		damage.source = $Wettable
+		receive_damage(damage)
