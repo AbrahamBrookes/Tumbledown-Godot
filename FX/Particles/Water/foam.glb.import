@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bst3pf83nx3ht"
-path="res://.godot/imported/pushy_crate.glb-22f12da33b4266225337095aaaa0f087.scn"
+uid="uid://4m8yc8xfv8ri"
+path="res://.godot/imported/foam.glb-5ce380f1eac5fec07b44bc29275658f5.scn"
 
 [deps]
 
-source_file="res://Gameplay/pushy_crate/pushy_crate.glb"
-dest_files=["res://.godot/imported/pushy_crate.glb-22f12da33b4266225337095aaaa0f087.scn"]
+source_file="res://FX/Particles/Water/foam.glb"
+dest_files=["res://.godot/imported/foam.glb-5ce380f1eac5fec07b44bc29275658f5.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

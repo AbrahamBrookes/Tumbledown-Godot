@@ -36,12 +36,17 @@ func _physics_process(_delta):
 	
 	# early return if the ray isn't colliding
 	if not ray.is_colliding():
+		state_machine.travel("Locomote")
 		return
 	
 	var collider = ray.get_collider()
+	if not collider: return
 
 	# early return if we're not pushing into a pushable
-	if not collider or not collider.has_method("be_pushed"):
+	if not collider.has_method('can_be_pushed'):
+		return
+
+	if not collider.can_be_pushed():
 		return
 
 	# otherwise we're good to push!

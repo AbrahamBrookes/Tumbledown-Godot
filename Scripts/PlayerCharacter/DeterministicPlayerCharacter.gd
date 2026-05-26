@@ -39,6 +39,9 @@ var last_known_safe_position: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	stateMachine.TransitionTo("Locomote")
+	
+	# Keep splash effects in world space so they do not follow the player transform.
+	#$SplashParticle.top_level = true
 
 func _physics_process(delta: float) -> void:
 	# cache was_on_floor to check the frame we start falling
@@ -99,6 +102,9 @@ func _on_invincibility_timer_timeout() -> void:
 
 
 func _on_wettable_fell_in_water() -> void:
+
+	$SplashParticle.splash(global_position)
+	
 	# if we have a last_known_safe_position, teleport back there
 	if last_known_safe_position != Vector3.ZERO:
 		#global_position = last_known_safe_position

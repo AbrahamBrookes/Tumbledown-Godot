@@ -31,6 +31,11 @@ func Enter(extra_data = null):
 	initial_push_dir = DirectionUtils.get_cardinal_direction(dir)
 
 func Physics_Update(_delta: float):
+
+	if not pushable.can_be_pushed():
+		state_machine.travel("Locomote")
+		return
+
 	# Get the input direction to see if the player is pushing into the crate
 	var cardinal_input = InputUtils.get_cardinal_input()
 	
@@ -40,7 +45,6 @@ func Physics_Update(_delta: float):
 		pushingTimer = 0.0
 		# do nothing
 		return
-
 	# if the player pushes away from the crate, transition back to locomote
 	if cardinal_input != initial_push_dir:
 		Transitioned.emit('Locomote')
@@ -49,7 +53,7 @@ func Physics_Update(_delta: float):
 	# if the player is not pushing into the pushable at an acceptable angle, bail out
 	var to_pushable = (pushable.global_transform.origin - playerCharacter.global_transform.origin).normalized()
 	var input_direction = InputUtils.get_stick_input()
-	if input_direction.dot(to_pushable) < 0.75:
+	if input_direction.dot(to_pushable) < 0.5:
 		pushable.stop_being_pushed()
 		Transitioned.emit("Locomote")
 		return

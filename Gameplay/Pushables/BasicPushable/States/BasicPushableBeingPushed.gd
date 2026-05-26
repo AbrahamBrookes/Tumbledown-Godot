@@ -18,7 +18,7 @@ func Physics_Update(_delta: float):
 
 	# if the player is not holding an input, transition out of this state	
 	if input_direction.length() < 0.5:
-		Transitioned.emit("BasicPushableIdle")
+		Transitioned.emit("Idle")
 		return
 	
 	# otherwise move with the input

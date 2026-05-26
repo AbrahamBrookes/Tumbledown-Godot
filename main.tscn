@@ -8,11 +8,12 @@
 script = ExtResource("1_ig7tw")
 world = NodePath("World")
 
-[node name="World" type="Node" parent="." unique_id=1459490870 node_paths=PackedStringArray("loading_screen", "loading_bar")]
+[node name="World" type="Node" parent="." unique_id=1459490870 node_paths=PackedStringArray("loading_screen", "loading_bar", "loading_label")]
 process_mode = 3
 script = ExtResource("2_0xm2m")
 loading_screen = NodePath("../LoadingScreen")
 loading_bar = NodePath("../LoadingScreen/ProgressBar")
+loading_label = NodePath("../LoadingScreen/Label")
 
 [node name="LoadingScreen" parent="." unique_id=710478944 instance=ExtResource("3_h2yge")]
 

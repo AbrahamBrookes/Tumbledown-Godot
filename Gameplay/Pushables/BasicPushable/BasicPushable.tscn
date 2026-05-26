@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bi7cr08c6ipq"]
+
+[ext_resource type="Script" uid="uid://28ixo7fls5n8" path="res://Components/Pushable/Pushable.gd" id="3_rpwd6"]
+[ext_resource type="Script" uid="uid://bgdpnmflvsr46" path="res://Gameplay/Pushables/BasicPushable/States/BasicPushableIdle.gd" id="4_rpwd6"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="4_xb86j"]
+[ext_resource type="Script" uid="uid://cybqeyv4mm6v3" path="res://Gameplay/Pushables/BasicPushable/States/BasicPushableBeingPushed.gd" id="5_rpwd6"]
+[ext_resource type="Script" uid="uid://brne0bbilyvnw" path="res://Gameplay/Pushables/BasicPushable/States/BasicPushableFloat.gd" id="6_ljh8k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_edq33"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_38n4w"]
+
+[node name="BasicPushable" type="CharacterBody3D" unique_id=323365840 node_paths=PackedStringArray("state_machine")]
+script = ExtResource("3_rpwd6")
+state_machine = NodePath("StateMachine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=246002791]
+shape = SubResource("BoxShape3D_edq33")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=73778683 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_xb86j")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
+
+[node name="Idle" type="Node3D" parent="StateMachine" unique_id=1679072088]
+script = ExtResource("4_rpwd6")
+metadata/_custom_type_script = "uid://bgdpnmflvsr46"
+
+[node name="BeingPushed" type="Node3D" parent="StateMachine" unique_id=1285525898]
+script = ExtResource("5_rpwd6")
+metadata/_custom_type_script = "uid://cybqeyv4mm6v3"
+
+[node name="Float" type="Node3D" parent="StateMachine" unique_id=1486574690]
+script = ExtResource("6_ljh8k")
+metadata/_custom_type_script = "uid://brne0bbilyvnw"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1288916071]
+mesh = SubResource("BoxMesh_38n4w")

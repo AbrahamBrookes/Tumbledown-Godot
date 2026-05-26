@@ -11,3 +11,6 @@ func Physics_Update(_delta: float):
 	owner.velocity.y -= gravity
 	owner.velocity.z = 0
 	owner.move_and_slide()
+
+func be_pushed():
+	state_machine.TransitionTo("BeingPushed", InputUtils.get_cardinal_input())

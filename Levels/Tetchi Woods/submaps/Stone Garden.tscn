@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dfc2wck5lseqi" path="res://Art/Environment/Ruins/ruins_pillar_blocks/block.tscn" id="8_y7utg"]
 [ext_resource type="PackedScene" uid="uid://d2tb1l8878r38" path="res://Art/Environment/Ruins/ruins_pillar_blocks/slab.tscn" id="9_6wny6"]
 
-[node name="Masons Garden" type="Node3D" unique_id=1811173161]
+[node name="Stone Garden" type="Node3D" unique_id=1811173161]
 
 [node name="GridMap" type="GridMap" parent="." unique_id=557108137]
 mesh_library = ExtResource("1_duft6")

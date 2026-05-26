@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dgkpany1tbxeo"]
+
+[ext_resource type="Script" uid="uid://28ixo7fls5n8" path="res://Components/Pushable/Pushable.gd" id="1_h1vpq"]
+[ext_resource type="PackedScene" uid="uid://bst3pf83nx3ht" path="res://Art/Props/Crate01/pushy_crate.glb" id="2_sf7wr"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_vc3ex"]
+[ext_resource type="Script" uid="uid://bgdpnmflvsr46" path="res://Gameplay/Pushables/BasicPushable/States/BasicPushableIdle.gd" id="4_j76gs"]
+[ext_resource type="Script" uid="uid://cybqeyv4mm6v3" path="res://Gameplay/Pushables/BasicPushable/States/BasicPushableBeingPushed.gd" id="5_kxfjl"]
+[ext_resource type="Script" uid="uid://brne0bbilyvnw" path="res://Gameplay/Pushables/BasicPushable/States/BasicPushableFloat.gd" id="6_vc3ex"]
+[ext_resource type="Script" uid="uid://ddutuc736vxbf" path="res://Components/Wettable/Wettable.gd" id="7_kxfjl"]
+[ext_resource type="PackedScene" uid="uid://xc0pw0xl32gx" path="res://FX/Particles/Water/Splash01.tscn" id="8_s8rad"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s8rad"]
+
+[node name="PushyCrate" type="CharacterBody3D" unique_id=721930923 node_paths=PackedStringArray("state_machine")]
+script = ExtResource("1_h1vpq")
+state_machine = NodePath("StateMachine")
+metadata/_custom_type_script = "uid://28ixo7fls5n8"
+
+[node name="pushy_crate" parent="." unique_id=467351012 instance=ExtResource("2_sf7wr")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=542495114]
+shape = SubResource("BoxShape3D_s8rad")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=139535643 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_vc3ex")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
+
+[node name="Idle" type="Node3D" parent="StateMachine" unique_id=1090236857]
+script = ExtResource("4_j76gs")
+metadata/_custom_type_script = "uid://bgdpnmflvsr46"
+
+[node name="BeingPushed" type="Node3D" parent="StateMachine" unique_id=1707246529]
+script = ExtResource("5_kxfjl")
+metadata/_custom_type_script = "uid://cybqeyv4mm6v3"
+
+[node name="Float" type="Node3D" parent="StateMachine" unique_id=927201116]
+script = ExtResource("6_vc3ex")
+metadata/_custom_type_script = "uid://brne0bbilyvnw"
+
+[node name="Wettable" type="Node3D" parent="." unique_id=1786478540]
+visible = false
+script = ExtResource("7_kxfjl")
+metadata/_custom_type_script = "uid://ddutuc736vxbf"
+
+[node name="SplashParticle" parent="." unique_id=1610032494 instance=ExtResource("8_s8rad")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+
+[connection signal="fell_in_water" from="Wettable" to="SplashParticle" method="splash"]
+[connection signal="fell_in_water" from="Wettable" to="StateMachine" method="travel" binds= [&"Float", {}]]

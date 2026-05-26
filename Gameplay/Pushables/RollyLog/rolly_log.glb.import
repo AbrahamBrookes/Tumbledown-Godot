@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://blmmsqtg11y0w"
-path="res://.godot/imported/rolly_log.glb-6c3f2da5e4728f2cedcc0cac8b429268.scn"
+path="res://.godot/imported/rolly_log.glb-1e6283a69329492536cbe6887f4195d5.scn"
 
 [deps]
 
-source_file="res://Gameplay/rolly_log/rolly_log.glb"
-dest_files=["res://.godot/imported/rolly_log.glb-6c3f2da5e4728f2cedcc0cac8b429268.scn"]
+source_file="res://Gameplay/Pushables/RollyLog/rolly_log.glb"
+dest_files=["res://.godot/imported/rolly_log.glb-1e6283a69329492536cbe6887f4195d5.scn"]
 
 [params]
 
