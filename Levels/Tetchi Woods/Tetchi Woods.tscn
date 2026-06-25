@@ -4,14 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://b8xdmxp2u5myh" path="res://Levels/Tetchi Woods/submaps/Stone Pillars.tscn" id="2_o0x7v"]
 [ext_resource type="PackedScene" uid="uid://6ive82gsp7pp" path="res://Levels/Tetchi Woods/submaps/Silas Creek East.tscn" id="2_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://ce52en6yl3hjy" path="res://Levels/Tetchi Woods/submaps/Stonewater Lake.tscn" id="3_o6bsb"]
-[ext_resource type="PackedScene" uid="uid://bi7cr08c6ipq" path="res://Gameplay/Pushables/BasicPushable/BasicPushable.tscn" id="6_wbtck"]
 [ext_resource type="PackedScene" uid="uid://m13ntkxdmyv" path="res://Levels/Tetchi Woods/submaps/Stone Garden.tscn" id="7_tcmpw"]
-[ext_resource type="PackedScene" uid="uid://ddihv4pxvfq00" path="res://Scripts/Inventory/TestPickup.tscn" id="7_w2pnj"]
-[ext_resource type="PackedScene" uid="uid://c7tdjvh8p7cb2" path="res://Scripts/Inventory/TestPickup2.tscn" id="8_0ffjd"]
 [ext_resource type="PackedScene" uid="uid://bmosj7ir1kry6" path="res://Levels/Tetchi Woods/submaps/Bimminy Lakes.tscn" id="8_w1p48"]
 [ext_resource type="PackedScene" uid="uid://ws78mc0r8v3g" path="res://Levels/Tetchi Woods/submaps/Mole Hole.tscn" id="9_o6bsb"]
 [ext_resource type="PackedScene" uid="uid://bhrei1j7dv88l" path="res://Levels/Tetchi Woods/submaps/Watchers Grove.tscn" id="9_tcmpw"]
-[ext_resource type="PackedScene" uid="uid://13vw4kmvwt8j" path="res://Gameplay/Pushables/RollyLog/rolly_log.tscn" id="12_4hs3e"]
+[ext_resource type="PackedScene" uid="uid://2hvudm1edyoe" path="res://Levels/Tetchi Woods/submaps/Tolgarden.tscn" id="9_w1p48"]
+[ext_resource type="PackedScene" uid="uid://byk62dgetwr2a" path="res://Levels/Tetchi Woods/submaps/Knotwood.tscn" id="10_tcmpw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w1p48"]
 sky_top_color = Color(0.3955152, 0.5201397, 0.6982648, 1)
@@ -74,35 +72,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -19.999998)
 [node name="Bimminy Lakes" parent="." unique_id=2013758483 instance=ExtResource("8_w1p48")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
 
-[node name="BasicPushable" parent="." unique_id=1659345474 instance=ExtResource("6_wbtck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 4.2, -19.5)
+[node name="Tolgarden" parent="." unique_id=1126065379 instance=ExtResource("9_w1p48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -40)
 
-[node name="TestPickup" parent="." unique_id=634016111 instance=ExtResource("7_w2pnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.900001, 1.8000001, -23.2)
-
-[node name="TestPickup2" parent="." unique_id=1992520155 instance=ExtResource("7_w2pnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.400001, 1.8000001, -23.2)
-
-[node name="TestPickup3" parent="." unique_id=1640537178 instance=ExtResource("7_w2pnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.700001, 1.8000001, -23.2)
-
-[node name="TestPickup4" parent="." unique_id=1048112626 instance=ExtResource("7_w2pnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.100001, 1.8000001, -23.2)
-
-[node name="TestPickup5" parent="." unique_id=1486241854 instance=ExtResource("7_w2pnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.100001, 1.8000001, -23.2)
-
-[node name="TestPickup6" parent="." unique_id=62779725 instance=ExtResource("8_0ffjd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.305618, 1.7500005, -25.422289)
-
-[node name="BasicPushable2" parent="." unique_id=323365840 instance=ExtResource("6_wbtck")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, -22)
-
-[node name="RollyLog" parent="." unique_id=1025799832 instance=ExtResource("12_4hs3e")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 4, -17)
-
-[node name="RollyLog2" parent="." unique_id=1000969015 instance=ExtResource("12_4hs3e")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8, 4, -19)
-
-[node name="RollyLog3" parent="." unique_id=608302865 instance=ExtResource("12_4hs3e")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11, 4, -27)
+[node name="Knotwood" parent="." unique_id=1278762981 instance=ExtResource("10_tcmpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75, 0, -20)

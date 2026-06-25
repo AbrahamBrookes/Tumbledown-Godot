@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmib3owgf4g8o"]
+[gd_scene format=3 uid="uid://cmib3owgf4g8o"]
 
 [ext_resource type="MeshLibrary" uid="uid://cpb5gxw8v526e" path="res://Art/Terrain/Cubeys/2ubeys.tres" id="1_4pg0e"]
 
-[node name="submap_base" type="Node3D"]
+[node name="submap_base" type="Node3D" unique_id=1278762981]
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="." unique_id=1939626118]
 mesh_library = ExtResource("1_4pg0e")
 cell_size = Vector3(1, 0.5, 1)
 cell_scale = 0.5
