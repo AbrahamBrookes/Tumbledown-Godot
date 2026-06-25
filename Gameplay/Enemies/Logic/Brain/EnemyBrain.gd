@@ -5,7 +5,7 @@ extends Node
 class_name EnemyBrain
 
 ## PossibleThreats are just locations with a score. These are places the enemy wants to investigate
-var PossibleThreats: Array[Node3D]
+var PossibleThreats: Array[Node3D] = []
 
 ## A reference to the zone that we monitor to add possibleThreats
 @export var agroZone: Area3D
