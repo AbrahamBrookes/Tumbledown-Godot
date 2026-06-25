@@ -25,6 +25,7 @@
 [ext_resource type="FontFile" uid="uid://dhos0jfecis2a" path="res://Fonts/MPLUSRounded1c-Bold.ttf" id="17_gsa12"]
 [ext_resource type="Script" uid="uid://dwcbbwge02qmg" path="res://Scripts/PlayerCharacter/InputDirectionCast.gd" id="17_xa3l1"]
 [ext_resource type="Texture2D" uid="uid://svdfeftb3nag" path="res://Scripts/Health/heart-full.png" id="18_gsa12"]
+[ext_resource type="Script" uid="uid://dfy60fod56w2y" path="res://Scripts/PlayerCharacter/PlayerCameraAutoPeek.gd" id="20_ya6uc"]
 [ext_resource type="Script" uid="uid://dwqxg53ittw7m" path="res://Components/CratePusher/CratePusher.gd" id="24_m2ugw"]
 [ext_resource type="Script" uid="uid://ddutuc736vxbf" path="res://Components/Wettable/Wettable.gd" id="26_nopci"]
 
@@ -414,6 +415,13 @@ bones/37/scale = Vector3(1.0000001, 0.9999998, 1.0000002)
 [node name="kora_uv" parent="SkinnedMesh/rig/GeneralSkeleton" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_61hpo")
 
+[node name="CameraPeekRayCast3D" type="RayCast3D" parent="SkinnedMesh" unique_id=1939388160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+target_position = Vector3(0, 4, 4.5)
+collision_mask = 5
+debug_shape_custom_color = Color(0.74509805, 0, 0, 1)
+debug_shape_thickness = 5
+
 [node name="AnimationTree" type="AnimationTree" parent="SkinnedMesh" unique_id=315901550]
 tree_root = SubResource("AnimationNodeBlendTree_v7krk")
 anim_player = NodePath("../AnimationPlayer")
@@ -519,6 +527,20 @@ transform = Transform3D(1, 0, 0, 0, 0.6022289, 0.79832345, 0, -0.79832345, 0.602
 visible = false
 
 [node name="Dialogue" parent="Camera3D" unique_id=1493063983 instance=ExtResource("13_ucqvn")]
+
+[node name="PlayerCameraAutoPeek" type="Node" parent="Camera3D" unique_id=1251747787 node_paths=PackedStringArray("camera", "player", "ray")]
+script = ExtResource("20_ya6uc")
+camera = NodePath("..")
+player = NodePath("../..")
+ray = NodePath("../../SkinnedMesh/CameraPeekRayCast3D")
+min_distance = 4.0
+max_distance = 5.0
+max_speed_threshold = 1.0
+max_look_ahead_distance = 2.0
+look_ahead_lerp_speed = 0.015
+camera_angle_degrees = 55.0
+peek_lerp_speed = 0.01
+metadata/_custom_type_script = "uid://dfy60fod56w2y"
 
 [node name="GroundCast" type="RayCast3D" parent="." unique_id=1248192976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0429929, 0.00461194)
