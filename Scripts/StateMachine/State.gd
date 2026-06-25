@@ -32,4 +32,8 @@ func Update(_delta: float):
 
 
 func Physics_Update(_delta: float):
-	pass 
+	pass
+
+## A helper so that states can simply call move_and_slide
+func move_and_slide():
+	playerCharacter.move_and_slide()
