@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c2x1scoqycf3k"]
+
+[ext_resource type="PackedScene" uid="uid://bxk65pdbxyf1m" path="res://Gameplay/Enemies/Foxkin/baby_foxkin.glb" id="1_u1saf"]
+[ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="2_sa6dc"]
+[ext_resource type="Script" uid="uid://cus3kq77ygtbs" path="res://Gameplay/Enemies/Foxkin/States/FoxkinIdleBounce.gd" id="3_05iaq"]
+[ext_resource type="Script" uid="uid://b82bh2rsbmy73" path="res://Gameplay/Enemies/Foxkin/FoxkinTail.gd" id="4_05iaq"]
+
+[sub_resource type="Animation" id="Animation_05iaq"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vkx4n"]
+_data = {
+&"IdleStill": SubResource("Animation_05iaq")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_05iaq"]
+animation = &"FoxkinTail/IdleStill"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vkx4n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iclkx"]
+states/Idle/node = SubResource("AnimationNodeAnimation_05iaq")
+states/Idle/position = Vector2(380, 53)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_vkx4n")]
+graph_offset = Vector2(-67, -61)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_05iaq"]
+size = Vector3(0.3, 0.2, 0.3)
+
+[node name="BabyFoxkin" type="CharacterBody3D" unique_id=1462884824]
+
+[node name="baby_foxkin" parent="." unique_id=1449416318 instance=ExtResource("1_u1saf")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.031256557, 0.16156688, 0)
+
+[node name="AnimationPlayer" parent="baby_foxkin" index="1" unique_id=2109639181]
+libraries/FoxkinTail = SubResource("AnimationLibrary_vkx4n")
+
+[node name="AnimationTree" type="AnimationTree" parent="baby_foxkin" unique_id=1752686927]
+tree_root = SubResource("AnimationNodeStateMachine_iclkx")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="StateMachine" type="Node3D" parent="." unique_id=64001976 node_paths=PackedStringArray("animTree", "initial_state")]
+script = ExtResource("2_sa6dc")
+animTree = NodePath("../baby_foxkin/AnimationTree")
+initial_state = NodePath("")
+metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
+
+[node name="Idle" type="Node3D" parent="StateMachine" unique_id=212877109]
+script = ExtResource("3_05iaq")
+jump_velocity = 2.0
+max_travel_distance = 1.0
+metadata/_custom_type_script = "uid://cus3kq77ygtbs"
+
+[node name="FoxkinTail" type="Node" parent="." unique_id=10146427 node_paths=PackedStringArray("skeleton", "target_body")]
+script = ExtResource("4_05iaq")
+skeleton = NodePath("../baby_foxkin/Armature/Skeleton3D")
+target_body = NodePath("../baby_foxkin")
+metadata/_custom_type_script = "uid://b82bh2rsbmy73"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1117339184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999997, 0.29999995, -0.049999982)
+shape = SubResource("BoxShape3D_05iaq")
+
+[editable path="baby_foxkin"]
