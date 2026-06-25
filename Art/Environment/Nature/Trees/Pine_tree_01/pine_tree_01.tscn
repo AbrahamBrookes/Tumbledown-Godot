@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c83jd4qwjt4ge"]
+[gd_scene format=3 uid="uid://c83jd4qwjt4ge"]
 
 [ext_resource type="PackedScene" uid="uid://cykdo8ukmtvfw" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.glb" id="2_y73aw"]
 [ext_resource type="Shader" uid="uid://4evf4g0vq8kr" path="res://Art/Environment/Nature/Trees/Pine_tree_01/pine_tree_01.gdshader" id="3_8vvq7"]
@@ -38,41 +38,41 @@ shader_parameter/sway_distance = 0.2000000095
 shader_parameter/shimmer_strength = 0.0670000031825
 shader_parameter/shimmer_speed = 6.0430002870425
 
-[node name="pine_tree_01" type="Node3D"]
+[node name="pine_tree_01" type="Node3D" unique_id=2080724480]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=870827221]
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1536622533]
 shape = SubResource("ConcavePolygonShape3D_phkdn")
 
-[node name="pine_tree_01" parent="." instance=ExtResource("2_y73aw")]
+[node name="pine_tree_01" parent="." unique_id=452278806 instance=ExtResource("2_y73aw")]
 transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
 
 [node name="forest_tree_01" parent="pine_tree_01" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_pj4dj")
 
-[node name="tree_pine_01_flower_01" parent="." instance=ExtResource("4_pj4dj")]
+[node name="tree_pine_01_flower_01" parent="." unique_id=1042692511 instance=ExtResource("4_pj4dj")]
 visible = false
 
 [node name="Circle" parent="tree_pine_01_flower_01" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_yl30t")
 
-[node name="tree_pine_01_flower_03" parent="." instance=ExtResource("6_e32ex")]
+[node name="tree_pine_01_flower_03" parent="." unique_id=21038956 instance=ExtResource("6_e32ex")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06667507, 0.10729432)
 visible = false
 
 [node name="Circle_001" parent="tree_pine_01_flower_03" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_yl30t")
 
-[node name="tree_pine_01_flower_04" parent="." instance=ExtResource("7_bpkpi")]
+[node name="tree_pine_01_flower_04" parent="." unique_id=1979561688 instance=ExtResource("7_bpkpi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.048704743, 0)
 visible = false
 
 [node name="Circle_002" parent="tree_pine_01_flower_04" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_yl30t")
 
-[node name="tree_pine_01_flower_05" parent="." instance=ExtResource("8_uwqhg")]
+[node name="tree_pine_01_flower_05" parent="." unique_id=1831615352 instance=ExtResource("8_uwqhg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.053913713, 0.074964404, 0.012016773)
 visible = false
 
