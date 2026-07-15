@@ -6,7 +6,7 @@ extends Node
 
 
 ## The currently loaded level's file path for instantiating
-@export var main_menu_resource_path: String = "res://MainMenu/MainMenu.tscn"
+@export var main_menu_resource_path: String = "res://UI/MainMenu/MainMenu.tscn"
 
 ## A reference to the world which is the anchor point for loaded scenes
 @export var world: World

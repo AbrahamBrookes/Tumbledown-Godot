@@ -48,4 +48,8 @@ func render(inventory: Dictionary[String, int]):
 
 
 func _on_quit_button_pressed() -> void:
-	Game.load_level("res://MainMenu/MainMenu.tscn", Vector3.ZERO, false)
+	Game.load_level("res://UI/MainMenu/MainMenu.tscn", Vector3.ZERO, false)
+
+
+func _on_save_button_pressed() -> void:
+	SaveManager.save_game()

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="GameSave" format=3 uid="uid://c5k2outtprd1w"]
+
+[ext_resource type="Script" uid="uid://dwo7bprt0l781" path="res://Scripts/SaveManager/InventorySave.gd" id="1_dmxqf"]
+[ext_resource type="Script" uid="uid://ds3h32vnh3ifd" path="res://Scripts/SaveManager/LocationSave.gd" id="1_qetjg"]
+[ext_resource type="Script" uid="uid://du1ivnu2says3" path="res://Scripts/SaveManager/GameSave.gd" id="2_vs8sl"]
+[ext_resource type="Script" uid="uid://1ou2uqo4vxeh" path="res://Scripts/SaveManager/QuestSave.gd" id="3_ohb6c"]
+
+[sub_resource type="Resource" id="Resource_bxcmn"]
+script = ExtResource("1_dmxqf")
+metadata/_custom_type_script = "uid://dwo7bprt0l781"
+
+[sub_resource type="Resource" id="Resource_dmxqf"]
+script = ExtResource("1_qetjg")
+current_level = "res://Levels/world.tscn"
+current_location = Vector3(-17, 5, -30)
+metadata/_custom_type_script = "uid://ds3h32vnh3ifd"
+
+[sub_resource type="Resource" id="Resource_ss0yf"]
+script = ExtResource("3_ohb6c")
+metadata/_custom_type_script = "uid://1ou2uqo4vxeh"
+
+[resource]
+script = ExtResource("2_vs8sl")
+location_data = SubResource("Resource_dmxqf")
+quest_data = SubResource("Resource_ss0yf")
+inventory_data = SubResource("Resource_bxcmn")
+metadata/_custom_type_script = "uid://du1ivnu2says3"

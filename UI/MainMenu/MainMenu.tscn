@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dppku7gfqtkxk" path="res://UI/MainMenu/LoadGameButton.gd" id="1_4jkon"]
 [ext_resource type="Texture2D" uid="uid://cfiyfjc5e1uh7" path="res://media/Tumbledown_logo.png" id="2_0l83x"]
+[ext_resource type="Texture2D" uid="uid://svdfeftb3nag" path="res://Scripts/Health/heart-full.png" id="3_8x0bb"]
 
 [node name="Control" type="Control" unique_id=1997168825]
 layout_mode = 3
@@ -73,6 +74,101 @@ position = Vector2(0, -158)
 scale = Vector2(0.349609, 0.349609)
 texture = ExtResource("2_0l83x")
 
-[connection signal="pressed" from="ColorRect/Control/Load" to="ColorRect/Control/Load" method="load_game" flags=18]
+[node name="NewGameScreen" type="ColorRect" parent="." unique_id=999569106]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control" parent="NewGameScreen" unique_id=1334163259]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewGameScreen/Control" unique_id=123866196]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer (Slot1)" type="VBoxContainer" parent="NewGameScreen/Control/VBoxContainer" unique_id=1918089219]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)" unique_id=313713448]
+layout_mode = 2
+text = "Save Game 1"
+
+[node name="HBoxContainer (Slot1)" type="HBoxContainer" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)" unique_id=1387867097]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)" unique_id=1150630757]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 6
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/SubViewportContainer" unique_id=324134576]
+handle_input_locally = false
+size = Vector2i(120, 120)
+render_target_update_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)" unique_id=1544333369]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer" unique_id=1123409291]
+layout_mode = 2
+text = "Character Name"
+
+[node name="Current Location" type="Label" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer" unique_id=1236229226]
+layout_mode = 2
+text = "Current Map"
+
+[node name="Play Time" type="Label" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer" unique_id=912921381]
+layout_mode = 2
+text = "Play time 00:00:10"
+
+[node name="Hearts" type="HBoxContainer" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer" unique_id=539030546]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer/Hearts" unique_id=404923299]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_8x0bb")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer/Hearts" unique_id=398151573]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_8x0bb")
+expand_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer/Hearts" unique_id=473440024]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_8x0bb")
+expand_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="NewGameScreen/Control/VBoxContainer/VBoxContainer (Slot1)/HBoxContainer (Slot1)/VBoxContainer/Hearts" unique_id=1329468010]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture = ExtResource("3_8x0bb")
+expand_mode = 5
+
+[connection signal="pressed" from="ColorRect/Control/Load" to="ColorRect/Control/Load" method="load_game"]
 [connection signal="button_down" from="ColorRect/Control/Quit" to="ColorRect/Control/Load" method="quit"]
 [connection signal="button_down" from="ColorRect/Control/New Game" to="ColorRect/Control/Load" method="new_game"]

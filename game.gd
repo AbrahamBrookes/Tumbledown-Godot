@@ -6,6 +6,9 @@ extends Node
 
 var world: World
 
+## stash the current map on the game global for easy look up
+var current_map_path: String
+
 ## proxy load_level to the world's method
 func load_level(path: String, desired_position: Vector3, load_player_character: bool):
 	if not world:
@@ -13,3 +16,4 @@ func load_level(path: String, desired_position: Vector3, load_player_character: 
 		return
 	
 	world.load_level(path, desired_position, load_player_character)
+	current_map_path = path

@@ -12,7 +12,7 @@ class_name World
 var player_instance: Node3D
 
 ## The currently loaded level's file path for instantiating
-@export var current_level: String = "res://MainMenu/MainMenu.tscn"
+@export var current_level: String = "res://UI/MainMenu/MainMenu.tscn"
 
 ## A reference to the instantiated level
 var current_level_instance: Node
@@ -146,8 +146,6 @@ func place_player():
 			push_error("Failed to load player scene")
 		else:
 			player_instance = player_scene.instantiate()
-			
-		## TODO: deserialize the save file and hydrate the player model here, on first session load
 		
 	# attach to level
 	if player_instance.get_parent():
