@@ -6,5 +6,5 @@ class_name AngryBugIdle
 
 func Physics_Update(_delta: float):
 	# if we have an enemy in the possible threats, pursue it
-	if brain.PossibleThreats.count and brain.PossibleThreats.front():
+	if brain.PossibleThreats.size():
 		Transitioned.emit("AngryBugPursue", brain.PossibleThreats.front())
