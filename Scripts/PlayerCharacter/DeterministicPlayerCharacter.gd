@@ -30,6 +30,7 @@ var pushback_velocity: Vector3 = Vector3.ZERO
 
 ## expose the inventory so other scripts can access it
 @export var inventory: PlayerInventory
+@export var koyin_pouch: KoyinPouch
 
 ## expose the interactor so other scripts can access it
 @export var interactor: Interactor

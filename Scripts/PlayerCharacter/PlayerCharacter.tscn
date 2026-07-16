@@ -294,7 +294,7 @@ shader_parameter/blur_strength = 2.000000095
 shader_parameter/vignette_strength = 0.09600000456
 shader_parameter/vignette_softness = 0.69400002970512
 
-[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1055117701 node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "interactor")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1055117701 node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "koyin_pouch", "interactor")]
 process_mode = 1
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 4
@@ -311,6 +311,7 @@ gravity = 12.0
 player_health = NodePath("PlayerHealth")
 invincible_timer = NodePath("InvincibilityTimer")
 inventory = NodePath("PlayerInventory")
+koyin_pouch = NodePath("KoyinPouch")
 interactor = NodePath("Interactor")
 
 [node name="SplashParticle" parent="." unique_id=875663569 instance=ExtResource("2_mssuy")]

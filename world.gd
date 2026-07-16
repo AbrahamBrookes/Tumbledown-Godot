@@ -76,7 +76,6 @@ func load_level(path: String, desired_position: Vector3, load_player_character: 
 	#current_level_instance = new_level
 	#current_level = path
 
-
 func _process(_delta):
 	if loading_path == "":
 		return

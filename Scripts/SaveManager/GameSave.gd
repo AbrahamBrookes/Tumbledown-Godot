@@ -11,7 +11,9 @@ class_name GameSave
 ## An entrypoint for applying save data to the game world
 func apply():
 	location_data.apply()
+	inventory_data.apply()
 
 ## An entrypoint for gathering game state when persisting data
 func gather():
 	location_data.gather()
+	inventory_data.gather()
