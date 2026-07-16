@@ -21,6 +21,31 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Changelog" type="RichTextLabel" parent="ColorRect" unique_id=1225947443]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -373.0
+offset_right = 476.0
+grow_vertical = 0
+text = "Recent changes:
+ - Camera moves around all fancy like
+ - Can save/load game and persist:
+    - Number of koyins
+    - Current Level
+    - Position within level
+Still can't:
+ - Kill enemies
+ - Collect from chests
+ - Die (but you can lose hearts)
+Earlier changes:
+ - Slashable grass with random loot drops
+ - Sensitive weed
+ - Water splash effects (still WIP)
+ - Pushable logs and crates"
+
 [node name="Control" type="Control" parent="ColorRect" unique_id=1658112143]
 layout_mode = 1
 anchors_preset = 8
@@ -30,6 +55,13 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="New Game" type="Button" parent="ColorRect/Control" unique_id=868308187]
+layout_mode = 0
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 60.0
+text = "New Game"
 
 [node name="Load" type="Button" parent="ColorRect/Control" unique_id=39329191]
 layout_mode = 1
@@ -62,17 +94,24 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Quit"
 
-[node name="New Game" type="Button" parent="ColorRect/Control" unique_id=868308187]
-layout_mode = 0
-offset_left = -100.0
-offset_right = 100.0
-offset_bottom = 60.0
-text = "New Game"
-
 [node name="Sprite2D" type="Sprite2D" parent="ColorRect/Control" unique_id=181480586]
 position = Vector2(0, -158)
 scale = Vector2(0.349609, 0.349609)
 texture = ExtResource("2_0l83x")
+
+[node name="Label" type="Label" parent="ColorRect/Control" unique_id=476482559]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.5
+offset_top = -38.0
+offset_right = 29.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "v 0.0.23"
 
 [node name="NewGameScreen" type="ColorRect" parent="." unique_id=999569106]
 visible = false
@@ -169,6 +208,6 @@ layout_mode = 2
 texture = ExtResource("3_8x0bb")
 expand_mode = 5
 
+[connection signal="button_down" from="ColorRect/Control/New Game" to="ColorRect/Control/Load" method="new_game"]
 [connection signal="pressed" from="ColorRect/Control/Load" to="ColorRect/Control/Load" method="load_game"]
 [connection signal="button_down" from="ColorRect/Control/Quit" to="ColorRect/Control/Load" method="quit"]
-[connection signal="button_down" from="ColorRect/Control/New Game" to="ColorRect/Control/Load" method="new_game"]
