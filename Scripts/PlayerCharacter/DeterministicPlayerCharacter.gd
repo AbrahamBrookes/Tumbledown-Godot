@@ -35,6 +35,9 @@ var pushback_velocity: Vector3 = Vector3.ZERO
 ## expose the interactor so other scripts can access it
 @export var interactor: Interactor
 
+## expose the carryer so other scripts can access it
+@export var carryer: Carryer
+
 ## This is the last known "on the floor" location of the player
 var last_known_safe_position: Vector3 = Vector3.ZERO
 

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c2f6gkn1nj3vd" path="res://Art/Player/Character/import/kora_toon_exporting_to_godot.glb" id="2_oyuwf"]
 [ext_resource type="Texture2D" uid="uid://cke5o305l38eh" path="res://Art/Player/Character/kora_toon_dif.png" id="3_jb5ed"]
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="3_n6sth"]
+[ext_resource type="Script" uid="uid://k7viumb6h33g" path="res://Components/Carryable/Carryer.gd" id="5_eufy5"]
 [ext_resource type="Script" uid="uid://bm7xyyr5k284s" path="res://Scripts/PlayerCharacter/States/Slash.gd" id="5_ph5ji"]
 [ext_resource type="Script" uid="uid://cg7tsdk2ofmni" path="res://Scripts/PlayerCharacter/States/Locomote.gd" id="6_et2ma"]
 [ext_resource type="Script" uid="uid://r14b1w2ap2jr" path="res://Scripts/PlayerCharacter/States/LeaningPushable.gd" id="7_otshi"]
@@ -294,7 +295,7 @@ shader_parameter/blur_strength = 2.000000095
 shader_parameter/vignette_strength = 0.09600000456
 shader_parameter/vignette_softness = 0.69400002970512
 
-[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1055117701 node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "koyin_pouch", "interactor")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=1055117701 node_paths=PackedStringArray("mesh", "animTree", "stateMachine", "player_health", "invincible_timer", "inventory", "koyin_pouch", "interactor", "carryer")]
 process_mode = 1
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
 collision_layer = 4
@@ -313,6 +314,7 @@ invincible_timer = NodePath("InvincibilityTimer")
 inventory = NodePath("PlayerInventory")
 koyin_pouch = NodePath("KoyinPouch")
 interactor = NodePath("Interactor")
+carryer = NodePath("Carryer")
 
 [node name="SplashParticle" parent="." unique_id=875663569 instance=ExtResource("2_mssuy")]
 
@@ -327,6 +329,10 @@ script = ExtResource("24_m2ugw")
 ray = NodePath("../InputDirectionCastParent/InputDirectionCast")
 state_machine = NodePath("../SkinnedMesh/StateMachine")
 metadata/_custom_type_script = "uid://dwqxg53ittw7m"
+
+[node name="Carryer" type="Node" parent="." unique_id=1857866138]
+script = ExtResource("5_eufy5")
+metadata/_custom_type_script = "uid://k7viumb6h33g"
 
 [node name="Interactor" parent="." unique_id=488824456 node_paths=PackedStringArray("trigger", "player_character") instance=ExtResource("2_ottvh")]
 trigger = NodePath("../SkinnedMesh/InteractableArea3D")

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cswk11uy4xebt"]
+
+[ext_resource type="Script" uid="uid://b1gu1lcl8t5ev" path="res://Gameplay/Carryables/BasicCarryable/BasicCarryable.gd" id="1_30gfp"]
+[ext_resource type="PackedScene" uid="uid://c74oy52a8xy4a" path="res://Components/Interactable/Interactable.tscn" id="1_g4qfl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3t4fl"]
+height = 1.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_30gfp"]
+radius = 0.6
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=454347330]
+disable_mode = 1
+collision_layer = 9
+script = ExtResource("1_30gfp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=742343640]
+mesh = SubResource("SphereMesh_3t4fl")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1461300872]
+shape = SubResource("SphereShape3D_30gfp")
+
+[node name="Interactable" parent="." unique_id=806481524 instance=ExtResource("1_g4qfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+verb = "Lift"
+
+[connection signal="interacted" from="Interactable" to="." method="commence_pickup"]
