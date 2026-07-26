@@ -4,10 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c74oy52a8xy4a" path="res://Components/Interactable/Interactable.tscn" id="1_g4qfl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3t4fl"]
-height = 1.25
+radius = 0.3
+height = 0.75
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_30gfp"]
-radius = 0.6
+radius = 0.3
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=454347330]
 disable_mode = 1

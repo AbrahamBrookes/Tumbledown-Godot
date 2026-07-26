@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://bqmkhn41tdo0e" path="res://Scripts/PlayerCharacter/States/PushingPushable.gd" id="9_xa3l1"]
 [ext_resource type="Script" uid="uid://bcle844nc463r" path="res://Scripts/PlayerCharacter/States/Crawling.gd" id="10_5rovj"]
 [ext_resource type="Script" uid="uid://3w1wbhoushls" path="res://Scripts/PlayerCharacter/States/Jumping.gd" id="11_jxu01"]
+[ext_resource type="Script" uid="uid://besby1vko4jkb" path="res://Scripts/PlayerCharacter/States/PickingUpCarryable.gd" id="12_8ld3e"]
 [ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="12_haj5d"]
 [ext_resource type="Script" uid="uid://oj6wnredkch1" path="res://Scripts/PlayerCharacter/States/OpenChest.gd" id="12_io75w"]
 [ext_resource type="Script" uid="uid://dnq0hd0dpa8dx" path="res://Scripts/Inventory/PlayerInventory.gd" id="14_kejb0"]
@@ -34,6 +35,13 @@
 albedo_texture = ExtResource("3_jb5ed")
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_alo0e"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ofs0o"]
+animation = &"display_loot"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_kp3k0"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:DEF-breast.L", "%GeneralSkeleton:DEF-breast.R", "%GeneralSkeleton:DEF-forearm.L.001", "%GeneralSkeleton:DEF-forearm.R.001", "%GeneralSkeleton:DEF-shoulder.L", "%GeneralSkeleton:DEF-shoulder.R", "%GeneralSkeleton:DEF-upper_arm.L.001", "%GeneralSkeleton:DEF-upper_arm.R.001", "%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:RightHand", "%GeneralSkeleton:RightLowerArm", "%GeneralSkeleton:RightUpperArm"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l81yh"]
 animation = &"idle"
@@ -74,6 +82,18 @@ blend_point_6/pos = Vector2(1, -1)
 min_space = Vector2(0, -1)
 sync = true
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cwknc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuxx3"]
+animation = &"carrying_object"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_tpksw"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cwknc")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_cuxx3")
+blend_point_1/pos = -0.90000004
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jb5ed"]
 animation = &"display_loot"
 
@@ -111,6 +131,9 @@ min_space = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_61hpo"]
 animation = &"open_chest"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ld3e"]
+animation = &"pickup_object"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g4gtf"]
 animation = &"pushing_pushable"
@@ -188,10 +211,20 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eufy5"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ofs0o"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kp3k0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dtofk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmrpo"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_61bxm"]
 allow_transition_to_self = true
 states/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_1pc02")
-states/BlendSpace2D/position = Vector2(267, 195)
+states/BlendSpace2D/position = Vector2(2, 132)
+states/CarryingCarryable/node = SubResource("AnimationNodeBlendSpace1D_tpksw")
+states/CarryingCarryable/position = Vector2(137, 315)
 states/DisplayLoot/node = SubResource("AnimationNodeAnimation_jb5ed")
 states/DisplayLoot/position = Vector2(910, 200)
 states/Drowning/node = SubResource("AnimationNodeAnimation_nopci")
@@ -204,6 +237,8 @@ states/Locomote/node = SubResource("AnimationNodeBlendSpace1D_srys3")
 states/Locomote/position = Vector2(400, 100)
 states/OpenChest/node = SubResource("AnimationNodeAnimation_61hpo")
 states/OpenChest/position = Vector2(777, 200)
+states/PickingUpCarryable/node = SubResource("AnimationNodeAnimation_8ld3e")
+states/PickingUpCarryable/position = Vector2(97, 211)
 states/PushingPushable/node = SubResource("AnimationNodeAnimation_g4gtf")
 states/PushingPushable/position = Vector2(672, 39)
 states/Slash/node = SubResource("AnimationNodeAnimation_sma0w")
@@ -212,17 +247,24 @@ states/crawling/node = SubResource("AnimationNodeBlendSpace1D_ebfcu")
 states/crawling/position = Vector2(347, -174)
 states/crouch/node = SubResource("AnimationNodeAnimation_qhlp2")
 states/crouch/position = Vector2(406, -70)
-transitions = ["Locomote", "End", SubResource("AnimationNodeStateMachineTransition_wbke6"), "Slash", "Locomote", SubResource("AnimationNodeStateMachineTransition_eh4ht"), "Locomote", "Slash", SubResource("AnimationNodeStateMachineTransition_2l6ic"), "Locomote", "LeaningPushable", SubResource("AnimationNodeStateMachineTransition_k38qc"), "LeaningPushable", "PushingPushable", SubResource("AnimationNodeStateMachineTransition_831vp"), "PushingPushable", "LeaningPushable", SubResource("AnimationNodeStateMachineTransition_epm4v"), "PushingPushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_3diy6"), "LeaningPushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_uup32"), "Locomote", "crouch", SubResource("AnimationNodeStateMachineTransition_nw37k"), "crouch", "Locomote", SubResource("AnimationNodeStateMachineTransition_e511p"), "crouch", "crawling", SubResource("AnimationNodeStateMachineTransition_sl7d2"), "crawling", "crouch", SubResource("AnimationNodeStateMachineTransition_nedae"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_x44cg"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_tusl0"), "Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_no18i"), "Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_gy7fs"), "Locomote", "OpenChest", SubResource("AnimationNodeStateMachineTransition_io75w"), "OpenChest", "DisplayLoot", SubResource("AnimationNodeStateMachineTransition_ottvh"), "DisplayLoot", "Locomote", SubResource("AnimationNodeStateMachineTransition_xa3l1"), "Locomote", "Drowning", SubResource("AnimationNodeStateMachineTransition_mssuy"), "Drowning", "Locomote", SubResource("AnimationNodeStateMachineTransition_ya6uc"), "Jumping", "Drowning", SubResource("AnimationNodeStateMachineTransition_eufy5")]
-graph_offset = Vector2(38, -39)
+transitions = ["Locomote", "End", SubResource("AnimationNodeStateMachineTransition_wbke6"), "Slash", "Locomote", SubResource("AnimationNodeStateMachineTransition_eh4ht"), "Locomote", "Slash", SubResource("AnimationNodeStateMachineTransition_2l6ic"), "Locomote", "LeaningPushable", SubResource("AnimationNodeStateMachineTransition_k38qc"), "LeaningPushable", "PushingPushable", SubResource("AnimationNodeStateMachineTransition_831vp"), "PushingPushable", "LeaningPushable", SubResource("AnimationNodeStateMachineTransition_epm4v"), "PushingPushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_3diy6"), "LeaningPushable", "Locomote", SubResource("AnimationNodeStateMachineTransition_uup32"), "Locomote", "crouch", SubResource("AnimationNodeStateMachineTransition_nw37k"), "crouch", "Locomote", SubResource("AnimationNodeStateMachineTransition_e511p"), "crouch", "crawling", SubResource("AnimationNodeStateMachineTransition_sl7d2"), "crawling", "crouch", SubResource("AnimationNodeStateMachineTransition_nedae"), "Locomote", "Jumping", SubResource("AnimationNodeStateMachineTransition_x44cg"), "Jumping", "Locomote", SubResource("AnimationNodeStateMachineTransition_tusl0"), "Start", "BlendSpace2D", SubResource("AnimationNodeStateMachineTransition_no18i"), "Start", "Locomote", SubResource("AnimationNodeStateMachineTransition_gy7fs"), "Locomote", "OpenChest", SubResource("AnimationNodeStateMachineTransition_io75w"), "OpenChest", "DisplayLoot", SubResource("AnimationNodeStateMachineTransition_ottvh"), "DisplayLoot", "Locomote", SubResource("AnimationNodeStateMachineTransition_xa3l1"), "Locomote", "Drowning", SubResource("AnimationNodeStateMachineTransition_mssuy"), "Drowning", "Locomote", SubResource("AnimationNodeStateMachineTransition_ya6uc"), "Jumping", "Drowning", SubResource("AnimationNodeStateMachineTransition_eufy5"), "Locomote", "PickingUpCarryable", SubResource("AnimationNodeStateMachineTransition_ofs0o"), "PickingUpCarryable", "Locomote", SubResource("AnimationNodeStateMachineTransition_kp3k0"), "PickingUpCarryable", "CarryingCarryable", SubResource("AnimationNodeStateMachineTransition_dtofk"), "CarryingCarryable", "Locomote", SubResource("AnimationNodeStateMachineTransition_dmrpo")]
+graph_offset = Vector2(-204, 94)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_v7krk"]
-graph_offset = Vector2(-377, 48)
-nodes/output/position = Vector2(220, 100)
+graph_offset = Vector2(-484.9091, -14.181824)
+nodes/output/position = Vector2(440, 60)
 nodes/AnimSpeed/node = SubResource("AnimationNodeTimeScale_alo0e")
-nodes/AnimSpeed/position = Vector2(60, 100)
+nodes/AnimSpeed/position = Vector2(280, 60)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_61bxm")
-nodes/StateMachine/position = Vector2(-200, 100)
-node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"StateMachine"]
+nodes/StateMachine/position = Vector2(-480, 40)
+nodes/CarryingTorsoArms/node = SubResource("AnimationNodeBlend2_kp3k0")
+nodes/CarryingTorsoArms/position = Vector2(-20, 20)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ofs0o")
+nodes/Animation/position = Vector2(-220, 160)
+node_connections = [&"output", 0, &"AnimSpeed", &"AnimSpeed", 0, &"CarryingTorsoArms", &"CarryingTorsoArms", 0, &"StateMachine", &"CarryingTorsoArms", 1, &"Animation"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bwvvd"]
+size = Vector3(1, 0.469729, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ottvh"]
 size = Vector3(0.6, 0.5, 0.5)
@@ -232,8 +274,19 @@ _limits = [0.0, 20.0, 0.0, 1.0]
 _data = [Vector2(0, 18.016644), 0.0, 0.0, 0, 0, Vector2(0.25850338, 20), 0.0, 0.0, 0, 0, Vector2(0.8367347, 18.377254), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bwvvd"]
-size = Vector3(1, 0.469729, 1)
+[sub_resource type="Curve3D" id="Curve3D_8ld3e"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
+
+[sub_resource type="Curve3D" id="Curve3D_ofs0o"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.1431555e-06, 0, -5.9604645e-08, -2.3545408e-07, -0.17924911, -0.037455082, 2.3545408e-07, 0.17924911, 0.037455082, -3.3046413e-06, 0.9347998, -0.025688529, -1.3194555e-06, -0.029984713, -0.2098935, 1.3194555e-06, 0.029984713, 0.2098935, -1.9591896e-06, 1.3201947, 0.1883403, 0, 0, 0, 0, 0, 0, 2.0653932e-08, 1.1642112, 0.5032856),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_30vrr"]
 radius = 0.236864
@@ -330,8 +383,9 @@ ray = NodePath("../InputDirectionCastParent/InputDirectionCast")
 state_machine = NodePath("../SkinnedMesh/StateMachine")
 metadata/_custom_type_script = "uid://dwqxg53ittw7m"
 
-[node name="Carryer" type="Node" parent="." unique_id=1857866138]
+[node name="Carryer" type="Node" parent="." unique_id=1857866138 node_paths=PackedStringArray("player_character")]
 script = ExtResource("5_eufy5")
+player_character = NodePath("..")
 metadata/_custom_type_script = "uid://k7viumb6h33g"
 
 [node name="Interactor" parent="." unique_id=488824456 node_paths=PackedStringArray("trigger", "player_character") instance=ExtResource("2_ottvh")]
@@ -434,11 +488,22 @@ tree_root = SubResource("AnimationNodeBlendTree_v7krk")
 anim_player = NodePath("../AnimationPlayer")
 parameters/AnimSpeed/scale = 0.0
 parameters/StateMachine/BlendSpace2D/blend_position = Vector2(0.190763, 0.257642)
+parameters/StateMachine/CarryingCarryable/blend_position = 0.0
 parameters/StateMachine/Locomote/blend_position = 1.05407
 parameters/StateMachine/crawling/blend_position = 0.0
+parameters/CarryingTorsoArms/blend_amount = 0.0
+
+[node name="InteractableArea3D" type="Area3D" parent="SkinnedMesh" unique_id=751135180]
+transform = Transform3D(-0.70710254, 0, 0.7071115, 0, 1, 0, -0.7071115, 0, -0.70710254, -4.4239678e-06, 0.393901, 0.696701)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/InteractableArea3D" unique_id=1448405947]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
+shape = SubResource("BoxShape3D_bwvvd")
 
 [node name="StateMachine" type="Node3D" parent="SkinnedMesh" unique_id=1600379107 node_paths=PackedStringArray("animTree", "initial_state")]
-transform = Transform3D(-1, 0, 6.28631e-06, 0, 1, 0, -6.28631e-06, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.9999999, 0, 6.286309e-06, 0, 1, 0, -6.286309e-06, 0, -0.9999999, 0, 0, 0)
 script = ExtResource("3_n6sth")
 animTree = NodePath("../AnimationTree")
 initial_state = NodePath("Locomote")
@@ -514,14 +579,24 @@ wait_time = 1.2
 one_shot = true
 autostart = true
 
-[node name="InteractableArea3D" type="Area3D" parent="SkinnedMesh" unique_id=751135180]
-transform = Transform3D(-0.70710254, 0, 0.7071115, 0, 1, 0, -0.7071115, 0, -0.70710254, -4.4239678e-06, 0.393901, 0.696701)
-collision_layer = 0
-collision_mask = 8
+[node name="PickingUpCarryable" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1306909540 node_paths=PackedStringArray("path_follow", "start_until_attach_time")]
+script = ExtResource("12_8ld3e")
+path_follow = NodePath("Path3D/PathFollow3D")
+start_until_attach_time = NodePath("Timer")
+pickup_curve = SubResource("Curve3D_8ld3e")
+metadata/_custom_type_script = "uid://besby1vko4jkb"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SkinnedMesh/InteractableArea3D" unique_id=1448405947]
-transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
-shape = SubResource("BoxShape3D_bwvvd")
+[node name="Timer" type="Timer" parent="SkinnedMesh/StateMachine/PickingUpCarryable" unique_id=884439095]
+wait_time = 0.2
+one_shot = true
+
+[node name="Path3D" type="Path3D" parent="SkinnedMesh/StateMachine/PickingUpCarryable" unique_id=818338824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+curve = SubResource("Curve3D_ofs0o")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="SkinnedMesh/StateMachine/PickingUpCarryable/Path3D" unique_id=620221598]
+transform = Transform3D(1.0000002, 0, 0, 0, 1.0000153, 0, 0, 0, 1.0000209, -3.1431555e-06, 0, -5.9604645e-08)
+rotation_mode = 0
 
 [node name="hurt_capsule" type="CollisionShape3D" parent="." unique_id=54962612]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.566112, 0)
@@ -846,14 +921,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="fell_in_water" from="Wettable" to="." method="_on_wettable_fell_in_water"]
+[connection signal="body_entered" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_entered"]
+[connection signal="body_exited" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_exited"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/SlashAgainTimer" to="SkinnedMesh/StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/ApplyHurtTimer" to="SkinnedMesh/StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]
 [connection signal="area_entered" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_entered"]
 [connection signal="area_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_exited"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Locomote/CoyoteTimer" to="SkinnedMesh/StateMachine/Locomote" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Jumping/Timer" to="SkinnedMesh/StateMachine/Jumping" method="_on_timer_timeout"]
-[connection signal="body_entered" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_entered"]
-[connection signal="body_exited" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_exited"]
+[connection signal="timeout" from="SkinnedMesh/StateMachine/PickingUpCarryable/Timer" to="SkinnedMesh/StateMachine/PickingUpCarryable" method="_on_start_until_attach_time_timeout"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 
 [editable path="SkinnedMesh"]
