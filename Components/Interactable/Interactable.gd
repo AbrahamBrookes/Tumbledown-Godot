@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 ## The Interactable is a component you can add to any object in the world in order
 ## to make it interact-with-able. This manages a little popup that hovers over
@@ -24,7 +24,7 @@ signal interacted(interactor: Interactor)
 # on ready, fill the label with the text
 func _ready() -> void:
 	label.text = verb
-	popup.visible = false
+	hide_label()
 
 # a callable for interactors to trigger that signal
 func interact(interactor: Interactor) -> void:
@@ -38,7 +38,7 @@ func show_label() -> void:
 	# don't show the label if the interactable is disabled
 	if not enabled:
 		return
-	popup.visible = true
+	popup.show()
 
 func hide_label() -> void:
-	popup.visible = false
+	popup.hide()

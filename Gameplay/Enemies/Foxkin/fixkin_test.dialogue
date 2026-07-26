@@ -1,0 +1,8 @@
+~ start
+?: I'm a foxkin - that thing is my tail. I haven't got it working yet
+Foxkin: Hey can you go grab that egg over there for me?
+- Sure
+	Foxkin: Thanks! Bring it back to me here <3
+- Nope
+	Foxkin: Ok, maybe later
+=> END

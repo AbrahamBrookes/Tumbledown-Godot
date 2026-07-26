@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dppku7gfqtkxk" path="res://UI/MainMenu/LoadGameButton.gd" id="1_4jkon"]
 [ext_resource type="Texture2D" uid="uid://cfiyfjc5e1uh7" path="res://media/Tumbledown_logo.png" id="2_0l83x"]
 [ext_resource type="Texture2D" uid="uid://svdfeftb3nag" path="res://Scripts/Health/heart-full.png" id="3_8x0bb"]
+[ext_resource type="Script" uid="uid://dkvv2ejs5imvr" path="res://UI/MainMenu/VersionLabel.gd" id="3_nahvw"]
 
 [node name="Control" type="Control" unique_id=1997168825]
 layout_mode = 3
@@ -99,7 +100,7 @@ position = Vector2(0, -158)
 scale = Vector2(0.349609, 0.349609)
 texture = ExtResource("2_0l83x")
 
-[node name="Label" type="Label" parent="ColorRect/Control" unique_id=476482559]
+[node name="VersionLabel" type="Label" parent="ColorRect/Control" unique_id=476482559]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -111,7 +112,7 @@ offset_top = -38.0
 offset_right = 29.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "v 0.0.23"
+script = ExtResource("3_nahvw")
 
 [node name="NewGameScreen" type="ColorRect" parent="." unique_id=999569106]
 visible = false

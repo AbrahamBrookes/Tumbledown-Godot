@@ -16,13 +16,17 @@ class_name InventoryUI
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause_menu"):
 		get_viewport().set_input_as_handled()
-		hide()
-		get_tree().paused = false
+		obscure()
 
 ## Reveal is called instead of a simple show() so we can handle rendering or animations
 func reveal(inventory: PlayerInventory):
 	show()
 	render(inventory.inventory)
+
+## Similarly, obscure instead of hide()
+func obscure():
+	hide()
+	get_tree().paused = false
 
 ## Rendering takes the Inventory dictionary (which is key = ItemData id's and value = quantity) and
 ## renders item slots into the UI

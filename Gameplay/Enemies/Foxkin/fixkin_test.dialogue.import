@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bonanh82x3xl5"
+path="res://.godot/imported/fixkin_test.dialogue-6ba67466ddc25219a189e50d0f752d20.tres"
+
+[deps]
+
+source_file="res://Gameplay/Enemies/Foxkin/fixkin_test.dialogue"
+dest_files=["res://.godot/imported/fixkin_test.dialogue-6ba67466ddc25219a189e50d0f752d20.tres"]
+
+[params]
+
+defaults=true

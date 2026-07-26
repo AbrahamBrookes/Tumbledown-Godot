@@ -48,13 +48,14 @@ func pick_interactable() -> void:
 
 # when a body enters our trigger area, check if it's an interactable and add it to our list
 func _on_trigger_body_entered(body: Node) -> void:
-	var interactable = body.owner.get_node_or_null("Interactable")
+	var interactable = body.get_node_or_null("Interactable")
 	if interactable:
+		print(body.name)
 		interactables.append(interactable)
 
 # when a body exits our trigger area, check if it's an interactable and remove it from our list
 func _on_trigger_body_exited(body: Node) -> void:
-	var interactable = body.owner.get_node_or_null("Interactable")
+	var interactable = body.get_node_or_null("Interactable")
 	if interactable:
 		# hide the label
 		interactable.hide_label()
@@ -74,3 +75,10 @@ func _process(_delta: float) -> void:
 func interact() -> void:
 	if current_interactable:
 		current_interactable.interact(self)
+
+# capture input and route to the interact method
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("interact"):
+		get_viewport().set_input_as_handled()
+		print("interact")
+		interact()

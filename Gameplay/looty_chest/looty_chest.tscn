@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbgqe5pb6pw5j"]
+[gd_scene format=3 uid="uid://dbgqe5pb6pw5j"]
 
 [ext_resource type="PackedScene" uid="uid://uudbrusw3la4" path="res://Gameplay/looty_chest/looty_chest.glb" id="1_ckb4f"]
 [ext_resource type="Script" uid="uid://6fr47k0fqwne" path="res://Gameplay/looty_chest/LootyChest.gd" id="2_8j7aq"]
@@ -15,10 +15,10 @@ id = "test"
 name = "Test"
 flavour_text = "It's a test!"
 icon = ExtResource("3_a6b1r")
-world_object = ExtResource("5_l0leu")
 stackable = true
 stack_count = 1
 monetary_value = 100
+world_object = ExtResource("5_l0leu")
 metadata/_custom_type_script = "uid://br312hn0ai2f2"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oep1r"]
@@ -27,32 +27,36 @@ size = Vector3(0.8, 0.8, 0.8)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8j7aq"]
 albedo_texture = ExtResource("2_oep1r")
 
-[node name="looty_chest" node_paths=PackedStringArray("anim", "interactable", "persistable") instance=ExtResource("1_ckb4f")]
+[node name="looty_chest" unique_id=691252088 node_paths=PackedStringArray("anim", "interactable", "persistable") instance=ExtResource("1_ckb4f")]
 script = ExtResource("2_8j7aq")
 loot = SubResource("Resource_henre")
 anim = NodePath("AnimationPlayer")
 interactable = NodePath("Interactable")
 persistable = NodePath("Persistable")
 
-[node name="Persistable" parent="." index="0" instance=ExtResource("8_sbhpv")]
+[node name="Persistable" parent="." index="0" unique_id=483289944 instance=ExtResource("8_sbhpv")]
 save_file = "chests"
+data = {
+"is_open": true
+}
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1447469711]
 collision_layer = 15
 collision_mask = 15
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=560869714]
 shape = SubResource("BoxShape3D_oep1r")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(0.7773767, -6.7039096e-08, -2.7624472e-07, 0.6290354)
+bones/1/rotation = Quaternion(-0.07838296, -1.1579918e-07, 3.5583504e-08, 0.9969233)
 
 [node name="looty_chest" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_8j7aq")
 
-[node name="Interactable" parent="." index="4" instance=ExtResource("3_oep1r")]
+[node name="Interactable" parent="." index="4" unique_id=1617689740 instance=ExtResource("3_oep1r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 verb = "open"
+enabled = false
 
 [connection signal="loaded_from_disk" from="Persistable" to="." method="_on_persistable_loaded"]
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

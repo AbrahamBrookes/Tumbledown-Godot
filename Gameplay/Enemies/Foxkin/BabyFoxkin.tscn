@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://b8tm2dsp5o0p4" path="res://Scripts/StateMachine/StateMachine.gd" id="2_sa6dc"]
 [ext_resource type="Script" uid="uid://cus3kq77ygtbs" path="res://Gameplay/Enemies/Foxkin/States/FoxkinIdleBounce.gd" id="3_05iaq"]
 [ext_resource type="Script" uid="uid://b82bh2rsbmy73" path="res://Gameplay/Enemies/Foxkin/FoxkinTail.gd" id="4_05iaq"]
+[ext_resource type="PackedScene" uid="uid://cwpk0owd5slm7" path="res://UI/Dialogue/DialogueManager/DialogueBalloon.tscn" id="5_iclkx"]
+[ext_resource type="Resource" uid="uid://bonanh82x3xl5" path="res://Gameplay/Enemies/Foxkin/fixkin_test.dialogue" id="6_iclkx"]
+[ext_resource type="PackedScene" uid="uid://c74oy52a8xy4a" path="res://Components/Interactable/Interactable.tscn" id="7_5jpuj"]
 
 [sub_resource type="Animation" id="Animation_05iaq"]
 
@@ -32,22 +35,26 @@ graph_offset = Vector2(-67, -61)
 [sub_resource type="BoxShape3D" id="BoxShape3D_05iaq"]
 size = Vector3(0.3, 0.2, 0.3)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_5jpuj"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
 [node name="BabyFoxkin" type="CharacterBody3D" unique_id=1462884824]
+collision_layer = 255
+collision_mask = 9
 
 [node name="baby_foxkin" parent="." unique_id=1449416318 instance=ExtResource("1_u1saf")]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.031256557, 0.16156688, 0)
 
-[node name="AnimationPlayer" parent="baby_foxkin" index="1" unique_id=2109639181]
+[node name="AnimationPlayer" parent="baby_foxkin" index="1" unique_id=1343341305]
 libraries/FoxkinTail = SubResource("AnimationLibrary_vkx4n")
 
 [node name="AnimationTree" type="AnimationTree" parent="baby_foxkin" unique_id=1752686927]
 tree_root = SubResource("AnimationNodeStateMachine_iclkx")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="StateMachine" type="Node3D" parent="." unique_id=64001976 node_paths=PackedStringArray("animTree", "initial_state")]
+[node name="StateMachine" type="Node3D" parent="." unique_id=64001976 node_paths=PackedStringArray("animTree")]
 script = ExtResource("2_sa6dc")
 animTree = NodePath("../baby_foxkin/AnimationTree")
-initial_state = NodePath("")
 metadata/_custom_type_script = "uid://b8tm2dsp5o0p4"
 
 [node name="Idle" type="Node3D" parent="StateMachine" unique_id=212877109]
@@ -66,4 +73,18 @@ metadata/_custom_type_script = "uid://b82bh2rsbmy73"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.049999997, 0.29999995, -0.049999982)
 shape = SubResource("BoxShape3D_05iaq")
 
+[node name="DialogueBalloon" parent="." unique_id=1434168376 instance=ExtResource("5_iclkx")]
+dialogue_resource = ExtResource("6_iclkx")
+
+[node name="Interactable" parent="." unique_id=1880369164 instance=ExtResource("7_5jpuj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+verb = "Talk"
+
+[node name="Sprite3D" parent="Interactable" index="0" unique_id=1214610247]
+texture = SubResource("ViewportTexture_5jpuj")
+
+[connection signal="interacted" from="Interactable" to="DialogueBalloon" method="start" unbinds=1]
+
 [editable path="baby_foxkin"]
+[editable path="Interactable"]
+[editable path="Interactable/Sprite3D/SubViewport/InteractablePopup"]

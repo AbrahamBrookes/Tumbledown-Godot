@@ -46,13 +46,21 @@ theme_override_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="MarginContainer/Panel/MarginContainer" unique_id=1279124464]
 layout_mode = 2
-text = "INVENTORY GOES HERE"
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "~ Paused ~"
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=913514806]
 layout_mode = 2
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 10
+
+[node name="Close Button" type="Button" parent="MarginContainer/Panel/MarginContainer" unique_id=1704715558]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "  Close  "
 
 [node name="InventoryNavigatorCollectibles" type="Node" parent="." unique_id=540631096 node_paths=PackedStringArray("grid")]
 script = ExtResource("3_4r67x")
@@ -81,5 +89,6 @@ text = "Save"
 layout_mode = 2
 text = "Quit to main menu"
 
+[connection signal="pressed" from="MarginContainer/Panel/MarginContainer/Close Button" to="." method="obscure"]
 [connection signal="pressed" from="MarginContainer2/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="MarginContainer2/QuitButton" to="." method="_on_quit_button_pressed"]

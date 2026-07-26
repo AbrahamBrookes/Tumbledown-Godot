@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://3w1wbhoushls" path="res://Scripts/PlayerCharacter/States/Jumping.gd" id="11_jxu01"]
 [ext_resource type="PackedScene" uid="uid://bflp5jntvmqk8" path="res://UI/MainMenu/MainMenu.tscn" id="12_haj5d"]
 [ext_resource type="Script" uid="uid://oj6wnredkch1" path="res://Scripts/PlayerCharacter/States/OpenChest.gd" id="12_io75w"]
-[ext_resource type="PackedScene" uid="uid://dtyr0l5158u1f" path="res://UI/Dialogue/Dialogue.tscn" id="13_ucqvn"]
 [ext_resource type="Script" uid="uid://dnq0hd0dpa8dx" path="res://Scripts/Inventory/PlayerInventory.gd" id="14_kejb0"]
 [ext_resource type="Script" uid="uid://b4iilueaajuii" path="res://Scripts/Inventory/KoyinPouch.gd" id="15_m3vir"]
 [ext_resource type="Script" uid="uid://ueypqykueipa" path="res://Scripts/PlayerCharacter/States/Drowning.gd" id="16_nopci"]
@@ -28,6 +27,7 @@
 [ext_resource type="Script" uid="uid://dfy60fod56w2y" path="res://Scripts/PlayerCharacter/PlayerCameraAutoPeek.gd" id="20_ya6uc"]
 [ext_resource type="Script" uid="uid://dwqxg53ittw7m" path="res://Components/CratePusher/CratePusher.gd" id="24_m2ugw"]
 [ext_resource type="Script" uid="uid://ddutuc736vxbf" path="res://Components/Wettable/Wettable.gd" id="26_nopci"]
+[ext_resource type="PackedScene" uid="uid://cwpk0owd5slm7" path="res://UI/Dialogue/DialogueManager/DialogueBalloon.tscn" id="28_ya6uc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61hpo"]
 albedo_texture = ExtResource("3_jb5ed")
@@ -524,10 +524,259 @@ shape = SubResource("CapsuleShape3D_30vrr")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1569348329]
 transform = Transform3D(1, 0, 0, 0, 0.6022289, 0.79832345, 0, -0.79832345, 0.6022289, -4.76837e-07, 4.6677504, 2.6091404)
 
-[node name="Control" parent="Camera3D" unique_id=475166252 instance=ExtResource("12_haj5d")]
+[node name="InGameUI" type="CanvasLayer" parent="Camera3D" unique_id=442896003]
+layer = 20
+
+[node name="Control" type="Control" parent="Camera3D/InGameUI" unique_id=1011337115]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="KoyinsContainer" type="MarginContainer" parent="Camera3D/InGameUI/Control" unique_id=534231819]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/InGameUI/Control/KoyinsContainer" unique_id=174813021]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D/InGameUI/Control/KoyinsContainer/HBoxContainer" unique_id=128637911]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("16_nvibq")
+expand_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D/InGameUI/Control/KoyinsContainer/HBoxContainer" unique_id=322568452]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+
+[node name="KoyinLabel" type="Label" parent="Camera3D/InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer" unique_id=1167078516]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("17_gsa12")
+theme_override_font_sizes/font_size = 22
+text = "0"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/InGameUI/Control" unique_id=757772773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/InGameUI/Control/MarginContainer2" unique_id=591966036]
+layout_mode = 2
+
+[node name="HeartsGridContainer" type="GridContainer" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer" unique_id=372725438]
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+columns = 11
+
+[node name="TextureRect12" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1578194118]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect13" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1982515714]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect14" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1971965807]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect15" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1289945234]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect16" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1287359255]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect17" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=90214950]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect18" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=152077246]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect19" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=882210270]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect20" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=534335045]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect21" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1484314056]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect22" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1886320889]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1825753995]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1746665066]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1428712807]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=206597761]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1866880272]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect6" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=59124738]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect7" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1079061124]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect8" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=106133287]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect9" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=285406267]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect10" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1641303731]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="TextureRect11" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=329517529]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("18_gsa12")
+expand_mode = 4
+
+[node name="InventoryUI" parent="Camera3D/InGameUI" unique_id=1330398592 instance=ExtResource("17_534j1")]
 visible = false
 
-[node name="Dialogue" parent="Camera3D" unique_id=1493063983 instance=ExtResource("13_ucqvn")]
+[node name="DialogueBalloon" parent="Camera3D/InGameUI" unique_id=1434168376 instance=ExtResource("28_ya6uc")]
+
+[node name="MainMenu" parent="Camera3D" unique_id=475166252 instance=ExtResource("12_haj5d")]
+visible = false
 
 [node name="PlayerCameraAutoPeek" type="Node" parent="Camera3D" unique_id=1251747787 node_paths=PackedStringArray("camera", "player", "ray")]
 script = ExtResource("20_ya6uc")
@@ -564,19 +813,19 @@ debug_shape_thickness = 4
 [node name="PlayerHealth" parent="." unique_id=434863335 node_paths=PackedStringArray("hearts_container") instance=ExtResource("2_jb5ed")]
 max_health = 12
 current_health = 12
-hearts_container = NodePath("../InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer")
+hearts_container = NodePath("../Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer")
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=1812363404]
 one_shot = true
 
 [node name="PlayerInventory" type="Node" parent="." unique_id=503317180 node_paths=PackedStringArray("inventory_ui")]
 script = ExtResource("14_kejb0")
-inventory_ui = NodePath("../InGameUI/InventoryUI")
+inventory_ui = NodePath("../Camera3D/InGameUI/InventoryUI")
 metadata/_custom_type_script = "uid://dnq0hd0dpa8dx"
 
 [node name="KoyinPouch" type="Node" parent="." unique_id=1846634035 node_paths=PackedStringArray("label")]
 script = ExtResource("15_m3vir")
-label = NodePath("../InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer/KoyinLabel")
+label = NodePath("../Camera3D/InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer/KoyinLabel")
 metadata/_custom_type_script = "uid://b4iilueaajuii"
 
 [node name="Tiltshift" type="CanvasLayer" parent="." unique_id=895907889]
@@ -590,262 +839,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InGameUI" type="CanvasLayer" parent="." unique_id=442896003]
-layer = 20
-
-[node name="Control" type="Control" parent="InGameUI" unique_id=1011337115]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="KoyinsContainer" type="MarginContainer" parent="InGameUI/Control" unique_id=534231819]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InGameUI/Control/KoyinsContainer" unique_id=174813021]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/KoyinsContainer/HBoxContainer" unique_id=128637911]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-texture = ExtResource("16_nvibq")
-expand_mode = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="InGameUI/Control/KoyinsContainer/HBoxContainer" unique_id=322568452]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_constants/margin_left = 10
-
-[node name="KoyinLabel" type="Label" parent="InGameUI/Control/KoyinsContainer/HBoxContainer/MarginContainer" unique_id=1167078516]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("17_gsa12")
-theme_override_font_sizes/font_size = 22
-text = "0"
-
-[node name="MarginContainer2" type="MarginContainer" parent="InGameUI/Control" unique_id=757772773]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="InGameUI/Control/MarginContainer2" unique_id=591966036]
-layout_mode = 2
-
-[node name="HeartsGridContainer" type="GridContainer" parent="InGameUI/Control/MarginContainer2/VBoxContainer" unique_id=372725438]
-layout_direction = 3
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-columns = 11
-
-[node name="TextureRect12" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1578194118]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect13" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1982515714]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect14" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1971965807]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect15" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1289945234]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect16" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1287359255]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect17" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=90214950]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect18" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=152077246]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect19" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=882210270]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect20" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=534335045]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect21" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1484314056]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect22" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1886320889]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1825753995]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect2" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1746665066]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect3" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1428712807]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect4" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=206597761]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect5" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1866880272]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect6" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=59124738]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect7" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1079061124]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect8" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=106133287]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect9" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=285406267]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect10" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1641303731]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="TextureRect11" type="TextureRect" parent="InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=329517529]
-custom_minimum_size = Vector2(24, 24)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture = ExtResource("18_gsa12")
-expand_mode = 4
-
-[node name="InventoryUI" parent="InGameUI" unique_id=1330398592 instance=ExtResource("17_534j1")]
-visible = false
-
 [connection signal="fell_in_water" from="Wettable" to="." method="_on_wettable_fell_in_water"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/SlashAgainTimer" to="SkinnedMesh/StateMachine/Slash" method="finish_slashing"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Slash/ApplyHurtTimer" to="SkinnedMesh/StateMachine/Slash" method="_on_apply_hurt_timer_timeout"]
 [connection signal="area_entered" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_entered"]
 [connection signal="area_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="SkinnedMesh/StateMachine/Slash" method="_on_slash_detection_area_exited"]
-[connection signal="body_entered" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="Camera3D/Dialogue" method="_on_conversation_collider_entered"]
-[connection signal="body_exited" from="SkinnedMesh/StateMachine/Slash/SlashablesDetectionArea" to="Camera3D/Dialogue" method="_on_conversation_collider_exited"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Locomote/CoyoteTimer" to="SkinnedMesh/StateMachine/Locomote" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="SkinnedMesh/StateMachine/Jumping/Timer" to="SkinnedMesh/StateMachine/Jumping" method="_on_timer_timeout"]
 [connection signal="body_entered" from="SkinnedMesh/InteractableArea3D" to="Interactor" method="_on_trigger_body_entered"]
