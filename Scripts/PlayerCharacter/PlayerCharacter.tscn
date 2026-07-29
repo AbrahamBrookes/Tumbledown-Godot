@@ -27,8 +27,12 @@
 [ext_resource type="Script" uid="uid://dwcbbwge02qmg" path="res://Scripts/PlayerCharacter/InputDirectionCast.gd" id="17_xa3l1"]
 [ext_resource type="Texture2D" uid="uid://svdfeftb3nag" path="res://Scripts/Health/heart-full.png" id="18_gsa12"]
 [ext_resource type="Script" uid="uid://dfy60fod56w2y" path="res://Scripts/PlayerCharacter/PlayerCameraAutoPeek.gd" id="20_ya6uc"]
+[ext_resource type="Script" uid="uid://q4pkqkbcui2a" path="res://UI/InGameUI/GameOverlay/ControlsContainer.gd" id="23_cuxx3"]
+[ext_resource type="StyleBox" uid="uid://dqia8u2soetg8" path="res://UI/InGameUI/GameOverlay/GameOverlayControllerLabels.tres" id="23_kp3k0"]
+[ext_resource type="FontFile" uid="uid://buraody6vlisk" path="res://Fonts/AlteHaasGroteskBold.ttf" id="24_cwknc"]
 [ext_resource type="Script" uid="uid://dwqxg53ittw7m" path="res://Components/CratePusher/CratePusher.gd" id="24_m2ugw"]
 [ext_resource type="Script" uid="uid://ddutuc736vxbf" path="res://Components/Wettable/Wettable.gd" id="26_nopci"]
+[ext_resource type="Theme" uid="uid://dssgvu257o1si" path="res://addons/gut/gui/EditorRadioButton.tres" id="26_tpksw"]
 [ext_resource type="PackedScene" uid="uid://cwpk0owd5slm7" path="res://UI/Dialogue/DialogueManager/DialogueBalloon.tscn" id="28_ya6uc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61hpo"]
@@ -388,9 +392,10 @@ script = ExtResource("5_eufy5")
 player_character = NodePath("..")
 metadata/_custom_type_script = "uid://k7viumb6h33g"
 
-[node name="Interactor" parent="." unique_id=488824456 node_paths=PackedStringArray("trigger", "player_character") instance=ExtResource("2_ottvh")]
+[node name="Interactor" parent="." unique_id=488824456 node_paths=PackedStringArray("trigger", "player_character", "controls") instance=ExtResource("2_ottvh")]
 trigger = NodePath("../SkinnedMesh/InteractableArea3D")
 player_character = NodePath("..")
+controls = NodePath("../Camera3D/InGameUI/Control/ControlsContainer")
 
 [node name="SkinnedMesh" parent="." unique_id=1894765079 instance=ExtResource("2_oyuwf")]
 
@@ -653,7 +658,7 @@ theme_override_fonts/font = ExtResource("17_gsa12")
 theme_override_font_sizes/font_size = 22
 text = "0"
 
-[node name="MarginContainer2" type="MarginContainer" parent="Camera3D/InGameUI/Control" unique_id=757772773]
+[node name="HeartsContainer" type="MarginContainer" parent="Camera3D/InGameUI/Control" unique_id=757772773]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -665,17 +670,17 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/InGameUI/Control/MarginContainer2" unique_id=591966036]
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/InGameUI/Control/HeartsContainer" unique_id=591966036]
 layout_mode = 2
 
-[node name="HeartsGridContainer" type="GridContainer" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer" unique_id=372725438]
+[node name="HeartsGridContainer" type="GridContainer" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer" unique_id=372725438]
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 columns = 11
 
-[node name="TextureRect12" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1578194118]
+[node name="TextureRect12" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1578194118]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -683,7 +688,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect13" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1982515714]
+[node name="TextureRect13" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1982515714]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -691,7 +696,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect14" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1971965807]
+[node name="TextureRect14" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1971965807]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -699,7 +704,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect15" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1289945234]
+[node name="TextureRect15" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1289945234]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -707,7 +712,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect16" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1287359255]
+[node name="TextureRect16" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1287359255]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -715,7 +720,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect17" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=90214950]
+[node name="TextureRect17" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=90214950]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -723,7 +728,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect18" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=152077246]
+[node name="TextureRect18" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=152077246]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -731,7 +736,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect19" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=882210270]
+[node name="TextureRect19" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=882210270]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -739,7 +744,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect20" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=534335045]
+[node name="TextureRect20" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=534335045]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -747,7 +752,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect21" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1484314056]
+[node name="TextureRect21" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1484314056]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -755,7 +760,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect22" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1886320889]
+[node name="TextureRect22" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1886320889]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -763,7 +768,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1825753995]
+[node name="TextureRect" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1825753995]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -771,7 +776,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1746665066]
+[node name="TextureRect2" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1746665066]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -779,7 +784,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect3" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1428712807]
+[node name="TextureRect3" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1428712807]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -787,7 +792,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect4" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=206597761]
+[node name="TextureRect4" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=206597761]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -795,7 +800,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect5" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1866880272]
+[node name="TextureRect5" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1866880272]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -803,7 +808,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect6" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=59124738]
+[node name="TextureRect6" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=59124738]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -811,7 +816,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect7" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1079061124]
+[node name="TextureRect7" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1079061124]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -819,7 +824,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect8" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=106133287]
+[node name="TextureRect8" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=106133287]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -827,7 +832,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect9" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=285406267]
+[node name="TextureRect9" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=285406267]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -835,7 +840,7 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect10" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=1641303731]
+[node name="TextureRect10" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=1641303731]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -843,13 +848,214 @@ size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
 
-[node name="TextureRect11" type="TextureRect" parent="Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer" unique_id=329517529]
+[node name="TextureRect11" type="TextureRect" parent="Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer" unique_id=329517529]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 texture = ExtResource("18_gsa12")
 expand_mode = 4
+
+[node name="ControlsContainer" type="MarginContainer" parent="Camera3D/InGameUI/Control" unique_id=7003263 node_paths=PackedStringArray("a_label", "b_label")]
+custom_minimum_size = Vector2(210, 160)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 90
+theme_override_constants/margin_bottom = 40
+script = ExtResource("23_cuxx3")
+a_label = NodePath("Control5/ALabel")
+b_label = NodePath("Control6/BLabel")
+
+[node name="Control" type="Control" parent="Camera3D/InGameUI/Control/ControlsContainer" unique_id=227200813]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="Camera3D/InGameUI/Control/ControlsContainer/Control" unique_id=1609577689]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 12.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_styles/panel = ExtResource("23_kp3k0")
+
+[node name="YButton" type="Label" parent="Camera3D/InGameUI/Control/ControlsContainer/Control/Panel" unique_id=401044264]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("24_cwknc")
+theme_override_font_sizes/font_size = 18
+text = "Y"
+
+[node name="Control2" type="Control" parent="Camera3D/InGameUI/Control/ControlsContainer" unique_id=1619026213]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="Camera3D/InGameUI/Control/ControlsContainer/Control2" unique_id=1782998333]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 32.0
+offset_bottom = 12.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("23_kp3k0")
+
+[node name="XButton" type="Label" parent="Camera3D/InGameUI/Control/ControlsContainer/Control2/Panel" unique_id=1301395218]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("24_cwknc")
+theme_override_font_sizes/font_size = 18
+text = "X"
+
+[node name="Control3" type="Control" parent="Camera3D/InGameUI/Control/ControlsContainer" unique_id=419637325]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+
+[node name="Panel" type="Panel" parent="Camera3D/InGameUI/Control/ControlsContainer/Control3" unique_id=1717483655]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = -8.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("23_kp3k0")
+
+[node name="BButton" type="Label" parent="Camera3D/InGameUI/Control/ControlsContainer/Control3/Panel" unique_id=1595588200]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("24_cwknc")
+theme_override_font_sizes/font_size = 18
+text = "B"
+
+[node name="Control4" type="Control" parent="Camera3D/InGameUI/Control/ControlsContainer" unique_id=1001988686]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Camera3D/InGameUI/Control/ControlsContainer/Control4" unique_id=2084878377]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 12.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("23_kp3k0")
+
+[node name="AButton" type="Label" parent="Camera3D/InGameUI/Control/ControlsContainer/Control4/Panel" unique_id=1375482579]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -11.5
+offset_right = 5.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("24_cwknc")
+theme_override_font_sizes/font_size = 18
+text = "A"
+
+[node name="Control5" type="Panel" parent="Camera3D/InGameUI/Control/ControlsContainer" unique_id=1252545686]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="ALabel" type="Label" parent="Camera3D/InGameUI/Control/ControlsContainer/Control5" unique_id=45086865]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.286
+anchor_bottom = 0.286
+offset_left = 66.0
+offset_top = -10.01
+offset_right = 264.0
+offset_bottom = 9.99
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("26_tpksw")
+theme_override_fonts/font = ExtResource("24_cwknc")
+text = "alabel"
+
+[node name="Control6" type="Panel" parent="Camera3D/InGameUI/Control/ControlsContainer" unique_id=551205519]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="BLabel" type="Label" parent="Camera3D/InGameUI/Control/ControlsContainer/Control6" unique_id=2114241236]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.286
+anchor_bottom = 0.286
+offset_left = 96.0
+offset_top = 25.99
+offset_right = 264.0
+offset_bottom = 52.989998
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("26_tpksw")
+theme_override_fonts/font = ExtResource("24_cwknc")
 
 [node name="InventoryUI" parent="Camera3D/InGameUI" unique_id=1330398592 instance=ExtResource("17_534j1")]
 visible = false
@@ -894,7 +1100,7 @@ debug_shape_thickness = 4
 [node name="PlayerHealth" parent="." unique_id=434863335 node_paths=PackedStringArray("hearts_container") instance=ExtResource("2_jb5ed")]
 max_health = 12
 current_health = 12
-hearts_container = NodePath("../Camera3D/InGameUI/Control/MarginContainer2/VBoxContainer/HeartsGridContainer")
+hearts_container = NodePath("../Camera3D/InGameUI/Control/HeartsContainer/VBoxContainer/HeartsGridContainer")
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=1812363404]
 one_shot = true

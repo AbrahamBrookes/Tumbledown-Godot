@@ -19,6 +19,9 @@ var current_interactable: Interactable
 ## the player character using this interactor
 @export var player_character: DeterministicPlayerCharacter
 
+## we will also be updating the labels on the GameOverlay contextual buttons
+@export var controls: ControlsContainer
+
 # When we have too many interactables in range we pick the one that is _most_ in front of the player
 func pick_interactable() -> void:
 	var best_interactable: Interactable
@@ -40,9 +43,11 @@ func pick_interactable() -> void:
 	# if the interactable has changed, hide the label on the old one
 	if best_interactable != current_interactable and current_interactable:
 		current_interactable.hide_label()
+		controls.set_a_button('')
 	# show the label on the new interactable
 	if best_interactable and best_interactable != current_interactable:
 		best_interactable.show_label()
+		controls.set_a_button(best_interactable.verb)
 
 	current_interactable = best_interactable
 
@@ -50,7 +55,6 @@ func pick_interactable() -> void:
 func _on_trigger_body_entered(body: Node) -> void:
 	var interactable = body.get_node_or_null("Interactable")
 	if interactable:
-		print(body.name)
 		interactables.append(interactable)
 
 # when a body exits our trigger area, check if it's an interactable and remove it from our list
@@ -59,6 +63,7 @@ func _on_trigger_body_exited(body: Node) -> void:
 	if interactable:
 		# hide the label
 		interactable.hide_label()
+		controls.set_a_button('')
 
 		# if it was our current interactable, clear that
 		if interactable == current_interactable:
@@ -80,5 +85,4 @@ func interact() -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact"):
 		get_viewport().set_input_as_handled()
-		print("interact")
 		interact()
