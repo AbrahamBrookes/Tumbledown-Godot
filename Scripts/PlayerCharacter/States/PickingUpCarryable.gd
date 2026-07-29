@@ -20,10 +20,18 @@ var target_carryable: BasicCarryable
 ## how long it should take for the item to travel the path
 @export var lift_duration: float = 1.0
 
+## this state will override the interactors interactable to force throwing as a
+## workaround to having an actual carrying object state - we're reusing Locomote
+@export var interactor: Interactor
+
 ## We enter this state with a reference to the target Carryable
 func Enter(extra_data = null):
 	target_carryable = extra_data as BasicCarryable
 	start_until_attach_time.start()
+
+## on exit we want to flick the interactor override so we show the throw option
+func Exit():
+	interactor.override_interactable(target_carryable.throw_interactable)
 
 func _on_start_until_attach_time_timeout():
 	attach_carryable()

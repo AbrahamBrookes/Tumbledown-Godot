@@ -584,11 +584,12 @@ wait_time = 1.2
 one_shot = true
 autostart = true
 
-[node name="PickingUpCarryable" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1306909540 node_paths=PackedStringArray("path_follow", "start_until_attach_time")]
+[node name="PickingUpCarryable" type="Node3D" parent="SkinnedMesh/StateMachine" unique_id=1306909540 node_paths=PackedStringArray("path_follow", "start_until_attach_time", "interactor")]
 script = ExtResource("12_8ld3e")
 path_follow = NodePath("Path3D/PathFollow3D")
 start_until_attach_time = NodePath("Timer")
 pickup_curve = SubResource("Curve3D_8ld3e")
+interactor = NodePath("../../../Interactor")
 metadata/_custom_type_script = "uid://besby1vko4jkb"
 
 [node name="Timer" type="Timer" parent="SkinnedMesh/StateMachine/PickingUpCarryable" unique_id=884439095]

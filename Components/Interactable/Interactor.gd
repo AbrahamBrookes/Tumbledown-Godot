@@ -16,6 +16,9 @@ var interactables: Array = []
 ## the currently focussed Interactable
 var current_interactable: Interactable
 
+## we can manually override the interactable in order to force a state
+var forced_interactable: Interactable = null
+
 ## the player character using this interactor
 @export var player_character: DeterministicPlayerCharacter
 
@@ -74,10 +77,14 @@ func _on_trigger_body_exited(body: Node) -> void:
 
 func _process(_delta: float) -> void:
 	# pick the best interactable from our list
-	pick_interactable()
+	if forced_interactable == null:
+		pick_interactable()
 
 # when the player presses the interact action, call interact on the current interactable
 func interact() -> void:
+	if forced_interactable:
+		forced_interactable.interact(self)
+		return
 	if current_interactable:
 		current_interactable.interact(self)
 
@@ -86,3 +93,16 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact"):
 		get_viewport().set_input_as_handled()
 		interact()
+
+## sometimes we want to hard-override what the a button will do ie when carrying
+## things, press a to throw. In this case, we hard-set the Carryable to be our
+## Interactor and until the player throws it, they can't interact with anything
+func override_interactable(new_interactable: Interactable):
+	forced_interactable = new_interactable
+	
+	if forced_interactable == null:
+		controls.set_a_button('')
+	else:
+		controls.set_a_button(forced_interactable.verb)
+	
+	

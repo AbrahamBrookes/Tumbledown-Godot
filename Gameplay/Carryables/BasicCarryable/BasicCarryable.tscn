@@ -10,10 +10,11 @@ height = 0.75
 [sub_resource type="SphereShape3D" id="SphereShape3D_30gfp"]
 radius = 0.3
 
-[node name="StaticBody3D" type="StaticBody3D" unique_id=454347330]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=1401869722 node_paths=PackedStringArray("throw_interactable")]
 disable_mode = 1
 collision_layer = 9
 script = ExtResource("1_30gfp")
+throw_interactable = NodePath("ThrowInteractable")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=742343640]
 mesh = SubResource("SphereMesh_3t4fl")
@@ -23,7 +24,12 @@ skeleton = NodePath("")
 shape = SubResource("SphereShape3D_30gfp")
 
 [node name="Interactable" parent="." unique_id=806481524 instance=ExtResource("1_g4qfl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 verb = "Lift"
 
+[node name="ThrowInteractable" parent="." unique_id=2047830250 instance=ExtResource("1_g4qfl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.8)
+verb = "throw"
+
 [connection signal="interacted" from="Interactable" to="." method="commence_pickup"]
+[connection signal="interacted" from="ThrowInteractable" to="." method="commence_throw"]
