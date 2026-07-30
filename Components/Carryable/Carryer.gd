@@ -22,6 +22,19 @@ func pick_up_carryable(carryable: BasicCarryable):
 ## Throw the carryable - note this is called from the Carryable using a hook-up
 ## Interactor and Interactable rig
 func throw(interactor: Interactor):
-	print("trowh")
-	interactor.override_interactable(null)
+	if target_carryable:
+		# Re-parent object back to the scene root if it was attached to the hand
+		target_carryable.reparent(get_tree().current_scene)
+		
+		# Calculate throw direction and force
+		var throw_direction: Vector3 = interactor.player_character.mesh.global_transform.basis.z
+		var throw_force: float = 12.0
+		
+		# Apply impulse to start move_and_collide processing
+		target_carryable.apply_throw_impulse(throw_direction * throw_force)
+		
+		interactor.override_interactable(null)
+		
+		player_character.stateMachine.TransitionTo("ThrowingCarryable", target_carryable)
 	
+		target_carryable = null
